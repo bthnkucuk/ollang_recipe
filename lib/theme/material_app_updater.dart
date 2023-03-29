@@ -11,13 +11,19 @@ class MaterialAppUpdater extends StatefulWidget {
 }
 
 class MaterialAppUpdaterState extends State<MaterialAppUpdater> {
-  ThemeMode themeMode = ThemeMode.system;
+  ThemeMode themeMode = ThemeMode.light;
+  Brightness brightness = Brightness.light;
 
-  void changeTheme({required ThemeMode mode, Brightness? brightness}) {
-    setState(() {
-      themeMode = mode;
-      SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(statusBarBrightness: brightness));
-    });
+  void changeTheme() {
+    if (themeMode == ThemeMode.light) {
+      themeMode = ThemeMode.dark;
+      brightness = Brightness.dark;
+    } else {
+      themeMode = ThemeMode.light;
+      brightness = Brightness.light;
+    }
+
+    setState(() => SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(statusBarBrightness: brightness)));
   }
 
   @override

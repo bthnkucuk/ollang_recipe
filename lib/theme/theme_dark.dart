@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'app_colors.dart';
+import 'package:ollang_recipe/theme/app_colors.dart';
 
 ThemeData darkTheme = ThemeData(
   useMaterial3: true,
