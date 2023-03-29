@@ -1,10 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../main.dart';
+import '../../../theme/material_app_updater.dart';
+
 enum LoadingStatus { loading, loaded, error }
 
 class HomeController extends GetxController {
-  final key = GlobalKey();
+  final scaffoldKey = GlobalKey();
+  BuildContext get context => scaffoldKey.currentContext!;
+  final Rx<IconData> themeIcon = Rx(Icons.light_mode_outlined);
+
+  void changeTheme() {
+    if (MaterialAppInheritedWidget.of(context).themeMode == ThemeMode.light) {
+      themeIcon(Icons.dark_mode_outlined);
+    } else {
+      themeIcon(Icons.light_mode_outlined);
+    }
+    MaterialAppInheritedWidget.of(context).changeTheme();
+  }
+
+  void goFavorite() => Navigator.pushNamed(context, Screens.favorite);
 
   final Rx<LoadingStatus> loadingStatus = LoadingStatus.loading.obs;
 

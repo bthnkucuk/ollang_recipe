@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'components/my_media_query.dart';
+import 'screens/favorite_screen/favorite_screen.dart';
 import 'screens/home_screen/home_screen.dart';
 import 'theme/material_app_updater.dart';
 import 'theme/theme_dark.dart';
@@ -9,18 +11,23 @@ void main() {
   runApp(const MyApp());
 }
 
-final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
+    MyMediaQuery.setScreenSize();
+
     return MaterialAppUpdater(
       child: Builder(builder: (context) {
         return MaterialApp(
-          title: 'Flutter Demo',
-          navigatorKey: navigatorKey,
+          title: 'Ollang Recipe',
+          initialRoute: '/',
+          routes: {
+            Screens.home: (context) => const HomeScreen(),
+            Screens.favorite: (context) => const FavoriteScreen(),
+          },
+          navigatorKey: Screens.navigatorKey,
           theme: lightTheme,
           darkTheme: darkTheme,
           debugShowCheckedModeBanner: false,
@@ -30,4 +37,10 @@ class MyApp extends StatelessWidget {
       }),
     );
   }
+}
+
+class Screens {
+  static GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+  static const String home = '/home';
+  static const String favorite = '/favorite';
 }
