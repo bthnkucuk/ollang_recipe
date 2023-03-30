@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:ollang_recipe/core/session_services.dart';
 
 import 'components/my_media_query.dart';
 import 'screens/favorite_screen/favorite_screen.dart';
@@ -16,6 +18,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Get.put(SessionServices());
     MyMediaQuery.setScreenSize();
 
     return MaterialAppUpdater(

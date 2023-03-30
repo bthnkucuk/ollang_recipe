@@ -1,93 +1,136 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:get/get.dart';
+import 'package:ollang_recipe/components/extensions.dart';
+import 'package:ollang_recipe/core/models/recipes_model.dart';
+import 'package:ollang_recipe/core/session_services.dart';
 import 'package:ollang_recipe/theme/text_style.dart';
 
-class SingleRecipeWidget extends StatelessWidget {
-  const SingleRecipeWidget({super.key});
+class SingleRecipeWidget extends StatefulWidget {
+  final bool isFavorite;
+
+  final Recipe recipe;
+
+  const SingleRecipeWidget(
+      {super.key, this.isFavorite = false, required this.recipe});
 
   @override
+  State<SingleRecipeWidget> createState() => _SingleRecipeWidgetState();
+}
+
+class _SingleRecipeWidgetState extends State<SingleRecipeWidget> {
+  @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 85,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        color: Colors.white,
-      ),
-      margin: const EdgeInsets.only(bottom: 15),
-      child: Row(
+    return Slidable(
+      key: const ValueKey(0),
+      enabled: widget.isFavorite ? true : false,
+      endActionPane: ActionPane(
+        motion: const ScrollMotion(),
+        dismissible: DismissiblePane(
+            onDismissed: (() =>
+                Get.find<SessionServices>().deleteFavorite(widget.recipe))),
         children: [
-          //image
-          Container(
-            height: 75,
-            width: 90,
-            margin: const EdgeInsets.symmetric(horizontal: 10),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
-                image: const DecorationImage(
-                  fit: BoxFit.cover,
-                  image: NetworkImage(
-                    "https://images.unsplash.com/photo-1484723091739-30a097e8f929?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1547&q=80",
-                  ),
-                )),
+          SlidableAction(
+            onPressed: ((_) {
+              print("object");
+            }),
+            backgroundColor: Color(0xFFFE4A49),
+            foregroundColor: Colors.white,
+            icon: Icons.delete,
+            label: 'Delete',
           ),
-          //information
-          Expanded(
-              child: Container(
-            margin: const EdgeInsets.symmetric(vertical: 10),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Strawberry Hazelnut Salad',
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
+        ],
+      ),
+      child: Container(
+        height: 90.h,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10.w),
+          color: Colors.white,
+        ),
+        padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            /// Recipe Image
+
+            ClipRRect(
+              borderRadius: BorderRadius.circular(15.w),
+              child: AspectRatio(
+                aspectRatio: 90 / 75,
+                child: Image.network(
+                  widget.recipe.images!.thumbnail!.url ?? widget.recipe.image!,
+                  fit: BoxFit.cover,
                 ),
-                Opacity(
-                  opacity: 0.5,
-                  child: Row(
+              ),
+            ),
+
+            SizedBox(width: 10.w),
+
+            //Recipe Information
+            Expanded(
+              child: ColoredBox(
+                color: Colors.transparent,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(vertical: 5.h),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      Text(widget.recipe.label ?? "Name",
+                          maxLines: 1, overflow: TextOverflow.ellipsis),
                       Row(
                         children: [
-                          Icon(
-                            Icons.local_fire_department_outlined,
-                            size: 20,
+                          Expanded(
+                            child: Row(
+                              children: [
+                                Icon(Icons.local_fire_department_outlined,
+                                    size: 20.w),
+                                Text(
+                                    "${(widget.recipe.calories ?? 0).floor()} Kcal",
+                                    style: s9W400)
+                              ],
+                            ),
                           ),
-                          Text(
-                            "540 Kcal",
-                            style: s9W400,
-                          )
-                        ],
-                      ),
-                      const SizedBox(width: 15),
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.schedule,
-                            size: 20,
+                          Expanded(
+                            child: Row(
+                              children: [
+                                Icon(Icons.schedule, size: 20.w),
+                                Text('${widget.recipe.totalTime} Min',
+                                    style: s9W400)
+                              ],
+                            ),
                           ),
-                          Text(
-                            "20 Min",
-                            style: s9W400,
-                          )
                         ],
-                      ),
+                      )
                     ],
                   ),
-                )
-              ],
-            ),
-          )),
-          //favorite icon
-          Container(
-              alignment: Alignment.topCenter,
-              margin: const EdgeInsets.all(10),
-              child: Opacity(
-                opacity: 0.5,
-                child: const Icon(
-                  Icons.favorite_border_sharp,
-                  size: 27,
                 ),
-              ))
-        ],
+              ),
+            ),
+
+            // Favorite icon
+            IconButton(
+                onPressed: (() {
+                  Get.find<SessionServices>().saveFavorite(widget.recipe);
+                  setState(() {
+                    widget.recipe;
+                  });
+                }),
+                icon: Icon(
+                  Get.find<SessionServices>()
+                              .hiveStorage
+                              .user
+                              .favorites
+                              .firstWhereOrNull((element) =>
+                                  element.label == widget.recipe.label) ==
+                          null
+                      ? Icons.favorite_border_sharp
+                      : Icons.favorite,
+                  color: Colors.black.withOpacity(0.5),
+                  size: 27.w,
+                ))
+          ],
+        ),
       ),
     );
   }

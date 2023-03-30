@@ -90,7 +90,7 @@ ThemeData lightTheme = ThemeData(
     ),
   ),
   inputDecorationTheme: InputDecorationTheme(
-    fillColor: Colors.grey.shade400,
+    fillColor: AppColors.primaryContainerLight,
     contentPadding: const EdgeInsets.symmetric(horizontal: 10),
     filled: true,
     labelStyle: const TextStyle(
@@ -106,6 +106,10 @@ ThemeData lightTheme = ThemeData(
     border: OutlineInputBorder(
       borderRadius: BorderRadius.circular(10.0),
       borderSide: BorderSide.none,
+    ),
+    focusedBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(10.0),
+      borderSide: BorderSide(color: AppColors.primary.withOpacity(0.5), width: 0.5),
     ),
   ),
   textSelectionTheme: const TextSelectionThemeData(
