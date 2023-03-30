@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 
 import '../theme/text_style.dart';
 
+///[MyInputField] is a custom input field widget
 class MyInputField extends StatelessWidget {
   const MyInputField({
     Key? key,

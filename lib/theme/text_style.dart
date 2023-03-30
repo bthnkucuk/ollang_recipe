@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../main.dart';
 
+//this file is used to define all text style in the app
+
 /// fontSize: 8
 TextStyle get s8W300 => Theme.of(Screens.navigatorKey.currentContext!)
     .textTheme

@@ -12,7 +12,7 @@ class FavoriteView extends GetView<FavoriteController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAppBar(centerTitle: 'Favorite Screen'),
+      appBar: const MyAppBar(centerTitle: 'Favorites'),
       body: Obx(() {
         return Padding(
           padding: EdgeInsets.symmetric(horizontal: 15.w),
@@ -30,7 +30,9 @@ class FavoriteView extends GetView<FavoriteController> {
                           children: [
                             if (index == 0) SizedBox(height: 20.h),
                             SingleRecipeWidget(
-                              isFavorite: true,
+                              onDelete: () => controller
+                                  .deleteFav(controller.recipiesList[index]),
+                              isDismissible: true,
                               recipe: controller.recipiesList[index],
                             ),
                             SizedBox(height: 10.h)

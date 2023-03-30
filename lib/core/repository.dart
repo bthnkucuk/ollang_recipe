@@ -4,12 +4,13 @@ import 'dart:io';
 import 'package:ollang_recipe/core/models/recipes_model.dart';
 import 'package:ollang_recipe/core/network_service.dart';
 
+///[Repository] is a class that is used to make requests to the server.
 class Repository extends Header {
   Repository._();
   static final Repository instance = Repository._();
 
-  Future<BaseHttpRequest<Recipies>> search(String searchQuery) async {
-    // try {
+  ///[search] is a method that is used to search for recipes.
+  Future<Recipies> search(String searchQuery) async {
     var response = await HttpClient.instance.request(
         method: HttpMethods.GET,
         path: HttpUrls.searchUrl,
@@ -23,29 +24,33 @@ class Repository extends Header {
 
     if (response!.statusCode == HttpStatus.ok) {
       Recipies model = Recipies().fromJson(jsonDecode(response.body));
-      return BaseHttpRequest(status: response.statusCode, data: model);
+      return model;
     } else {
-      HttpNotOkModel model =
-          HttpNotOkModel().fromJson(jsonDecode(response.body));
-
-      return BaseHttpRequest(
-          status: response.statusCode, errorMessage: model.errorMessage);
+      throw Exception("Status Error");
     }
-    // }
+  }
 
-    // catch (e, s) {
-    //   /// TODO: burayı halledin:
-    //   return BaseHttpRequest(
-    //       status: 20000, errorMessage: 'Repository Catch Block');
-    // }
+  Future<Recipies> lazyLoadSearch(String nextPage) async {
+    var response = await HttpClient.instance.request(
+        method: HttpMethods.GET,
+        path: nextPage,
+        isUriParse: true,
+        headers: createHeader());
+
+    print(response!.body);
+
+    if (response!.statusCode == HttpStatus.ok) {
+      Recipies model = Recipies().fromJson(jsonDecode(response.body));
+      return model;
+    } else {
+      throw Exception("Status Error");
+    }
   }
 }
 
-// TODO(bthn) buraya token al
+///[Header] is a class that is used to create a header for the request.
 class Header {
   Map<String, String> createHeader({Map<String, String> addHeader = const {}}) {
-    /// TODO(bthn) Accept-Language localden alıncak!
-
     Map<String, String> header = {
       'Content-type': 'application/json',
       ...addHeader,
@@ -53,18 +58,4 @@ class Header {
 
     return header;
   }
-}
-
-class HttpNotOkModel {
-  final String? errorMessage;
-
-  HttpNotOkModel({this.errorMessage});
-
-  HttpNotOkModel fromJson(Map<String, dynamic> json) => HttpNotOkModel(
-        errorMessage: json['error'],
-      );
-
-  Map<String, dynamic> toJson() => {
-        'error': errorMessage,
-      };
 }

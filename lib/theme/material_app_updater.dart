@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-/// Material App'te değişiklik yapılmak istendiği zaman mantık burada uygulanmalı
+/// [MaterialAppUpdater] is used to update MaterialApp's themeMode, and notify material app to rebuild.
 class MaterialAppUpdater extends StatefulWidget {
   final Widget child;
   const MaterialAppUpdater({super.key, required this.child});
@@ -23,7 +23,8 @@ class MaterialAppUpdaterState extends State<MaterialAppUpdater> {
       brightness = Brightness.light;
     }
 
-    setState(() => SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(statusBarBrightness: brightness)));
+    setState(() => SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(statusBarBrightness: brightness)));
   }
 
   @override
@@ -49,7 +50,9 @@ class MaterialAppInheritedWidget extends InheritedWidget {
   });
 
   static MaterialAppUpdaterState of(BuildContext context) {
-    return context.dependOnInheritedWidgetOfExactType<MaterialAppInheritedWidget>()!.state;
+    return context
+        .dependOnInheritedWidgetOfExactType<MaterialAppInheritedWidget>()!
+        .state;
   }
 
   @override

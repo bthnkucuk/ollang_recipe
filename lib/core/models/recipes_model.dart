@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:get/state_manager.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 part 'recipes_model.g.dart';
@@ -130,33 +131,35 @@ class Recipe {
     this.digest,
   });
 
-  String? uri;
   @HiveField(0)
-  String? label;
+  String? uri;
   @HiveField(1)
-  String? image;
+  String? label;
   @HiveField(2)
+  String? image;
+  @HiveField(3)
   Images? images;
   String? source;
   String? url;
   String? shareAs;
   num? recipeYield;
   List<DietLabel?>? dietLabels;
-  List<String>? healthLabels;
-  List<Caution>? cautions;
+  List<String?>? healthLabels;
+  List<Caution?>? cautions;
   List<String>? ingredientLines;
   List<Ingredient>? ingredients;
-  @HiveField(3)
+  @HiveField(4)
   num? calories;
   num? totalWeight;
-  @HiveField(4)
+  @HiveField(5)
   num? totalTime;
   List<String>? cuisineType;
   List<MealType?>? mealType;
   List<DishType?>? dishType;
   Map<String, Total>? totalNutrients;
   Map<String, Total>? totalDaily;
-  List<Digest>? digest;
+  List<Digest?>? digest;
+  RxBool isFavorite = false.obs;
 
   factory Recipe.fromJson(Map<String, dynamic> json) => Recipe(
         uri: json["uri"],
@@ -170,14 +173,14 @@ class Recipe {
         dietLabels: json["dietLabels"] == null
             ? []
             : List<DietLabel?>.from(
-                json["dietLabels"]!.map((x) => dietLabelValues.map[x])),
+                json["dietLabels"].map((x) => dietLabelValues.map[x])),
         healthLabels: json["healthLabels"] == null
             ? []
-            : List<String>.from(json["healthLabels"]!.map((x) => x)),
+            : List<String?>.from(json["healthLabels"].map((x) => x)),
         cautions: json["cautions"] == null
             ? []
-            : List<Caution>.from(
-                json["cautions"]!.map((x) => cautionValues.map[x]!)),
+            : List<Caution?>.from(
+                json["cautions"]!.map((x) => cautionValues.map[x])),
         ingredientLines: json["ingredientLines"] == null
             ? []
             : List<String>.from(json["ingredientLines"]!.map((x) => x)),
@@ -254,7 +257,7 @@ class Recipe {
             .map((k, v) => MapEntry<String, dynamic>(k, v.toJson())),
         "digest": digest == null
             ? []
-            : List<dynamic>.from(digest!.map((x) => x.toJson())),
+            : List<dynamic>.from(digest!.map((x) => x!.toJson())),
       };
 }
 

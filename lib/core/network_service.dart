@@ -4,26 +4,7 @@ import 'package:http/http.dart' as http;
 // ignore: constant_identifier_names
 enum HttpMethods { GET, POST }
 
-abstract class IBaseModel<T> {
-  IBaseModel();
-
-  Map<String, dynamic> toJson();
-
-  T fromJson(Map<String, dynamic> json);
-}
-
-class BaseHttpRequest<T> {
-  int status;
-  T? data;
-  String? errorMessage;
-
-  BaseHttpRequest({
-    required this.status,
-    this.data,
-    this.errorMessage,
-  });
-}
-
+///[HttpClient] is a class that is used to make requests to the server.
 class HttpClient {
   HttpClient._();
   static final HttpClient instance = HttpClient._();
@@ -32,16 +13,22 @@ class HttpClient {
     required HttpMethods method,
     String baseUrl = HttpUrls.baseUrl,
     required String path,
+    bool isUriParse = false,
     Map<String, dynamic>? queryParameters,
     Map<String, String>? headers,
     Object? body,
   }) async {
-    var uri = Uri(
-      scheme: 'https',
-      host: baseUrl,
-      path: path,
-      queryParameters: queryParameters,
-    );
+    Uri uri;
+    if (isUriParse) {
+      uri = Uri.parse(path);
+    } else {
+      uri = Uri(
+        scheme: 'https',
+        host: baseUrl,
+        path: path,
+        queryParameters: queryParameters,
+      );
+    }
 
     http.Response? response;
 
@@ -74,20 +61,9 @@ class HttpClient {
   }
 }
 
+///[HttpUrls] is a class that is used to create a url for the request.
 class HttpUrls {
   static const String baseUrl = 'api.edamam.com';
 
   static const String searchUrl = 'api/recipes/v2';
-}
-
-class NoInternetException {
-  final String message;
-  final int statusCode;
-  NoInternetException(this.message, this.statusCode);
-}
-
-class HttpNotOkException implements Exception {
-  final String? message;
-  final int? statusCode;
-  HttpNotOkException({this.message, this.statusCode});
 }

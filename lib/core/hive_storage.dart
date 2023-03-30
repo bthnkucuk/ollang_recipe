@@ -3,6 +3,7 @@ import 'package:ollang_recipe/core/models/recipes_model.dart';
 
 import 'models/user_model.dart';
 
+///[HiveStorage] is a class that stores the user's data in the local database.
 class HiveStorage {
   late Box<User> _box;
   late User user;
@@ -25,7 +26,7 @@ class HiveStorage {
       Hive.registerAdapter(LargeAdapter());
     }
 
-    _box = await Hive.openBox<User>('ss');
+    _box = await Hive.openBox<User>('storage');
 
     if (_box.get("user") == null) {
       await _box.put(

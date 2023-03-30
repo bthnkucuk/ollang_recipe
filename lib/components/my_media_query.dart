@@ -3,7 +3,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-/// MediaQuery Data'larına buradan erişilecek ve değişiklik yapmak gerekirse burdan yapılacak.
+///[MyMediaQuery] is a class that contains all the information about the screen size, padding, etc.
 class MyMediaQuery {
   static late double width;
   static late double height;

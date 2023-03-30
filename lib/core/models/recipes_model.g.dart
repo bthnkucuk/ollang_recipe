@@ -17,27 +17,30 @@ class RecipeAdapter extends TypeAdapter<Recipe> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Recipe(
-      label: fields[0] as String?,
-      image: fields[1] as String?,
-      images: fields[2] as Images?,
-      calories: fields[3] as num?,
-      totalTime: fields[4] as num?,
+      uri: fields[0] as String?,
+      label: fields[1] as String?,
+      image: fields[2] as String?,
+      images: fields[3] as Images?,
+      calories: fields[4] as num?,
+      totalTime: fields[5] as num?,
     );
   }
 
   @override
   void write(BinaryWriter writer, Recipe obj) {
     writer
-      ..writeByte(5)
+      ..writeByte(6)
       ..writeByte(0)
-      ..write(obj.label)
+      ..write(obj.uri)
       ..writeByte(1)
-      ..write(obj.image)
+      ..write(obj.label)
       ..writeByte(2)
-      ..write(obj.images)
+      ..write(obj.image)
       ..writeByte(3)
-      ..write(obj.calories)
+      ..write(obj.images)
       ..writeByte(4)
+      ..write(obj.calories)
+      ..writeByte(5)
       ..write(obj.totalTime);
   }
 
