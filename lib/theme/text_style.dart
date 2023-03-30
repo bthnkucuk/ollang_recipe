@@ -24,6 +24,28 @@ TextStyle get s8W700 => Theme.of(Screens.navigatorKey.currentContext!)
     .bodySmall!
     .copyWith(fontSize: 8, fontWeight: FontWeight.w700);
 
+/// fontSize: 9
+TextStyle get s9W300 => Theme.of(Screens.navigatorKey.currentContext!)
+    .textTheme
+    .bodySmall!
+    .copyWith(fontSize: 9, fontWeight: FontWeight.w300);
+TextStyle get s9W400 => Theme.of(Screens.navigatorKey.currentContext!)
+    .textTheme
+    .bodySmall!
+    .copyWith(fontSize: 9, fontWeight: FontWeight.w400);
+TextStyle get s9W500 => Theme.of(Screens.navigatorKey.currentContext!)
+    .textTheme
+    .bodySmall!
+    .copyWith(fontSize: 9, fontWeight: FontWeight.w500);
+TextStyle get s9W600 => Theme.of(Screens.navigatorKey.currentContext!)
+    .textTheme
+    .bodySmall!
+    .copyWith(fontSize: 9, fontWeight: FontWeight.w600);
+TextStyle get s9W700 => Theme.of(Screens.navigatorKey.currentContext!)
+    .textTheme
+    .bodySmall!
+    .copyWith(fontSize: 9, fontWeight: FontWeight.w700);
+
 /// fontSize: 10
 TextStyle get s10W300 => Theme.of(Screens.navigatorKey.currentContext!)
     .textTheme
