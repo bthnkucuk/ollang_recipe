@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ollang_recipe/core/session_services.dart';
 
 import '../../../core/loading_status.dart';
+import '../../../core/models/recipes_search_info_model.dart';
+import '../../../core/repository.dart';
 import '../../../main.dart';
 
 class SplashController extends GetxController {
@@ -18,17 +21,28 @@ class SplashController extends GetxController {
 
   /// Init olduğunda çalıştırılacak olan Future işlemler.
   Future<void> ready() async {
-    try {
-      loadingStatus = LoadingStatus.loading;
+    // try {
+    loadingStatus = LoadingStatus.loading;
 
-      /// Dummy bekleme
-      await Future.delayed(const Duration(seconds: 2));
-      goHome();
+    /// Dummy bekleme
+    Get.put(SessionServices());
 
-      loadingStatus = LoadingStatus.loaded;
-    } catch (e) {
-      loadingStatus = LoadingStatus.error;
-    }
+    Get.find<SessionServices>().recipesSearchInfo = await getSearchInfo();
+    await Future.delayed(const Duration(seconds: 1));
+    goHome();
+
+    loadingStatus = LoadingStatus.loaded;
+    // } catch (e) {
+    //   loadingStatus = LoadingStatus.error;
+
+    //   print(e);
+    // }
+  }
+
+  Future<RecipesSearchInfoModel> getSearchInfo() async {
+    var response = await Repository.instance.recipesSearchInfo();
+
+    return response;
   }
 
   @override

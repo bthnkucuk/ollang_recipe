@@ -5,7 +5,8 @@ class _DetailInfo extends StatelessWidget {
   final num? calories;
   final num? duration;
   final num? starCount;
-  final bool? isFavorite;
+  final RxBool? isFavorite;
+  final VoidCallback onFavoritePressed;
 
   const _DetailInfo({
     this.recipeName,
@@ -13,6 +14,7 @@ class _DetailInfo extends StatelessWidget {
     this.duration,
     this.starCount,
     this.isFavorite,
+    required this.onFavoritePressed,
   });
 
   @override
@@ -39,14 +41,21 @@ class _DetailInfo extends StatelessWidget {
               Expanded(
                 flex: 1,
                 child: GestureDetector(
-                  /// TODO: fava kaydet.
-                  onTap: null,
-                  child: Icon(
-                    isFavorite == false ? Icons.favorite_border_sharp : Icons.favorite,
-                    color: Theme.of(context).colorScheme.onPrimary,
-                    size: 30.w,
-                  ),
-                ),
+
+                    /// TODO: fava kaydet.
+                    onTap: null,
+                    child: IconButton(
+                        padding: EdgeInsets.zero,
+                        onPressed: onFavoritePressed,
+                        icon: Obx(
+                          () => Icon(
+                            isFavorite!.value == false
+                                ? Icons.favorite_border_sharp
+                                : Icons.favorite,
+                            color: Theme.of(context).colorScheme.onPrimary,
+                            size: 30.w,
+                          ),
+                        ))),
               )
             ],
           ),
@@ -65,7 +74,8 @@ class _DetailInfo extends StatelessWidget {
                       color: Theme.of(context).colorScheme.onPrimary,
                     ),
                     SizedBox(width: 5.w),
-                    Text("${(calories ?? 0).floor()} Kcal", style: s9W400(context))
+                    Text("${(calories ?? 0).floor()} Kcal",
+                        style: s9W400(context))
                   ],
                 ),
               ),

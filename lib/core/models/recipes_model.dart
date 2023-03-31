@@ -20,12 +20,16 @@ class Recipies {
   WelcomeLinks? links;
   List<Hit>? hits;
 
-  Recipies fromJson(Map<String, dynamic> json) => Recipies(
+  factory Recipies.fromJson(Map<String, dynamic> json) => Recipies(
         from: json["from"],
         to: json["to"],
         count: json["count"],
-        links: json["_links"] == null ? null : WelcomeLinks.fromJson(json["_links"]),
-        hits: json["hits"] == null ? [] : List<Hit>.from(json["hits"]!.map((x) => Hit.fromJson(x))),
+        links: json["_links"] == null
+            ? null
+            : WelcomeLinks.fromJson(json["_links"]),
+        hits: json["hits"] == null
+            ? []
+            : List<Hit>.from(json["hits"]!.map((x) => Hit.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -33,7 +37,9 @@ class Recipies {
         "to": to,
         "count": count,
         "_links": links?.toJson(),
-        "hits": hits == null ? [] : List<dynamic>.from(hits!.map((x) => x.toJson())),
+        "hits": hits == null
+            ? []
+            : List<dynamic>.from(hits!.map((x) => x.toJson())),
       };
 }
 
@@ -48,7 +54,8 @@ class Hit {
 
   factory Hit.fromJson(Map<String, dynamic> json) => Hit(
         recipe: json["recipe"] == null ? null : Recipe.fromJson(json["recipe"]),
-        links: json["_links"] == null ? null : HitLinks.fromJson(json["_links"]),
+        links:
+            json["_links"] == null ? null : HitLinks.fromJson(json["_links"]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -95,7 +102,8 @@ class Next {
 
 enum Title { NEXT_PAGE, SELF }
 
-final titleValues = EnumValues({"Next page": Title.NEXT_PAGE, "Self": Title.SELF});
+final titleValues =
+    EnumValues({"Next page": Title.NEXT_PAGE, "Self": Title.SELF});
 
 @HiveType(typeId: 1)
 class Recipe {
@@ -165,26 +173,43 @@ class Recipe {
         recipeYield: json["yield"],
         dietLabels: json["dietLabels"] == null
             ? []
-            : List<DietLabel?>.from(json["dietLabels"].map((x) => dietLabelValues.map[x])),
-        healthLabels: json["healthLabels"] == null ? [] : List<String?>.from(json["healthLabels"].map((x) => x)),
-        cautions:
-            json["cautions"] == null ? [] : List<Caution?>.from(json["cautions"]!.map((x) => cautionValues.map[x])),
-        ingredientLines:
-            json["ingredientLines"] == null ? [] : List<String>.from(json["ingredientLines"]!.map((x) => x)),
+            : List<DietLabel?>.from(
+                json["dietLabels"].map((x) => dietLabelValues.map[x])),
+        healthLabels: json["healthLabels"] == null
+            ? []
+            : List<String?>.from(json["healthLabels"].map((x) => x)),
+        cautions: json["cautions"] == null
+            ? []
+            : List<Caution?>.from(
+                json["cautions"]!.map((x) => cautionValues.map[x])),
+        ingredientLines: json["ingredientLines"] == null
+            ? []
+            : List<String>.from(json["ingredientLines"]!.map((x) => x)),
         ingredients: json["ingredients"] == null
             ? []
-            : List<Ingredient>.from(json["ingredients"]!.map((x) => Ingredient.fromJson(x))),
+            : List<Ingredient>.from(
+                json["ingredients"]!.map((x) => Ingredient.fromJson(x))),
         calories: json["calories"]?.toDouble(),
         totalWeight: json["totalWeight"]?.toDouble(),
         totalTime: json["totalTime"],
-        cuisineType: json["cuisineType"] == null ? [] : List<String>.from(json["cuisineType"]!.map((x) => x)),
-        mealType:
-            json["mealType"] == null ? [] : List<MealType?>.from(json["mealType"]!.map((x) => mealTypeValues.map[x])),
-        dishType:
-            json["dishType"] == null ? [] : List<DishType?>.from(json["dishType"]!.map((x) => dishTypeValues.map[x])),
-        totalNutrients: Map.from(json["totalNutrients"]!).map((k, v) => MapEntry<String, Total>(k, Total.fromJson(v))),
-        totalDaily: Map.from(json["totalDaily"]!).map((k, v) => MapEntry<String, Total>(k, Total.fromJson(v))),
-        digest: json["digest"] == null ? [] : List<Digest>.from(json["digest"]!.map((x) => Digest.fromJson(x))),
+        cuisineType: json["cuisineType"] == null
+            ? []
+            : List<String>.from(json["cuisineType"]!.map((x) => x)),
+        mealType: json["mealType"] == null
+            ? []
+            : List<MealType?>.from(
+                json["mealType"]!.map((x) => mealTypeValues.map[x])),
+        dishType: json["dishType"] == null
+            ? []
+            : List<DishType?>.from(
+                json["dishType"]!.map((x) => dishTypeValues.map[x])),
+        totalNutrients: Map.from(json["totalNutrients"]!)
+            .map((k, v) => MapEntry<String, Total>(k, Total.fromJson(v))),
+        totalDaily: Map.from(json["totalDaily"]!)
+            .map((k, v) => MapEntry<String, Total>(k, Total.fromJson(v))),
+        digest: json["digest"] == null
+            ? []
+            : List<Digest>.from(json["digest"]!.map((x) => Digest.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -196,27 +221,55 @@ class Recipe {
         "url": url,
         "shareAs": shareAs,
         "yield": recipeYield,
-        "dietLabels": dietLabels == null ? [] : List<dynamic>.from(dietLabels!.map((x) => dietLabelValues.reverse[x])),
-        "healthLabels": healthLabels == null ? [] : List<dynamic>.from(healthLabels!.map((x) => x)),
-        "cautions": cautions == null ? [] : List<dynamic>.from(cautions!.map((x) => cautionValues.reverse[x])),
-        "ingredientLines": ingredientLines == null ? [] : List<dynamic>.from(ingredientLines!.map((x) => x)),
-        "ingredients": ingredients == null ? [] : List<dynamic>.from(ingredients!.map((x) => x.toJson())),
+        "dietLabels": dietLabels == null
+            ? []
+            : List<dynamic>.from(
+                dietLabels!.map((x) => dietLabelValues.reverse[x])),
+        "healthLabels": healthLabels == null
+            ? []
+            : List<dynamic>.from(healthLabels!.map((x) => x)),
+        "cautions": cautions == null
+            ? []
+            : List<dynamic>.from(
+                cautions!.map((x) => cautionValues.reverse[x])),
+        "ingredientLines": ingredientLines == null
+            ? []
+            : List<dynamic>.from(ingredientLines!.map((x) => x)),
+        "ingredients": ingredients == null
+            ? []
+            : List<dynamic>.from(ingredients!.map((x) => x.toJson())),
         "calories": calories,
         "totalWeight": totalWeight,
         "totalTime": totalTime,
-        "cuisineType": cuisineType == null ? [] : List<dynamic>.from(cuisineType!.map((x) => x)),
-        "mealType": mealType == null ? [] : List<dynamic>.from(mealType!.map((x) => mealTypeValues.reverse[x])),
-        "dishType": dishType == null ? [] : List<dynamic>.from(dishType!.map((x) => dishTypeValues.reverse[x])),
-        "totalNutrients": Map.from(totalNutrients!).map((k, v) => MapEntry<String, dynamic>(k, v.toJson())),
-        "totalDaily": Map.from(totalDaily!).map((k, v) => MapEntry<String, dynamic>(k, v.toJson())),
-        "digest": digest == null ? [] : List<dynamic>.from(digest!.map((x) => x!.toJson())),
+        "cuisineType": cuisineType == null
+            ? []
+            : List<dynamic>.from(cuisineType!.map((x) => x)),
+        "mealType": mealType == null
+            ? []
+            : List<dynamic>.from(
+                mealType!.map((x) => mealTypeValues.reverse[x])),
+        "dishType": dishType == null
+            ? []
+            : List<dynamic>.from(
+                dishType!.map((x) => dishTypeValues.reverse[x])),
+        "totalNutrients": Map.from(totalNutrients!)
+            .map((k, v) => MapEntry<String, dynamic>(k, v.toJson())),
+        "totalDaily": Map.from(totalDaily!)
+            .map((k, v) => MapEntry<String, dynamic>(k, v.toJson())),
+        "digest": digest == null
+            ? []
+            : List<dynamic>.from(digest!.map((x) => x!.toJson())),
       };
 }
 
 enum Caution { SULFITES, FODMAP, GLUTEN, WHEAT }
 
-final cautionValues = EnumValues(
-    {"FODMAP": Caution.FODMAP, "Gluten": Caution.GLUTEN, "Sulfites": Caution.SULFITES, "Wheat": Caution.WHEAT});
+final cautionValues = EnumValues({
+  "FODMAP": Caution.FODMAP,
+  "Gluten": Caution.GLUTEN,
+  "Sulfites": Caution.SULFITES,
+  "Wheat": Caution.WHEAT
+});
 
 enum DietLabel { HIGH_FIBER, LOW_CARB, LOW_SODIUM, BALANCED }
 
@@ -256,7 +309,9 @@ class Digest {
         hasRdi: json["hasRDI"],
         daily: json["daily"]?.toDouble(),
         unit: unitValues.map[json["unit"]],
-        sub: json["sub"] == null ? [] : List<Digest>.from(json["sub"]!.map((x) => Digest.fromJson(x))),
+        sub: json["sub"] == null
+            ? []
+            : List<Digest>.from(json["sub"]!.map((x) => Digest.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -267,7 +322,8 @@ class Digest {
         "hasRDI": hasRdi,
         "daily": daily,
         "unit": unitValues.reverse[unit],
-        "sub": sub == null ? [] : List<dynamic>.from(sub!.map((x) => x.toJson())),
+        "sub":
+            sub == null ? [] : List<dynamic>.from(sub!.map((x) => x.toJson())),
       };
 }
 
@@ -297,11 +353,20 @@ final schemaOrgTagValues = EnumValues({
 
 enum Unit { G, MG, UNIT_G, EMPTY, KCAL }
 
-final unitValues = EnumValues({"%": Unit.EMPTY, "g": Unit.G, "kcal": Unit.KCAL, "mg": Unit.MG, "µg": Unit.UNIT_G});
+final unitValues = EnumValues({
+  "%": Unit.EMPTY,
+  "g": Unit.G,
+  "kcal": Unit.KCAL,
+  "mg": Unit.MG,
+  "µg": Unit.UNIT_G
+});
 
 enum DishType { SALAD, CONDIMENTS_AND_SAUCES }
 
-final dishTypeValues = EnumValues({"condiments and sauces": DishType.CONDIMENTS_AND_SAUCES, "salad": DishType.SALAD});
+final dishTypeValues = EnumValues({
+  "condiments and sauces": DishType.CONDIMENTS_AND_SAUCES,
+  "salad": DishType.SALAD
+});
 
 @HiveType(typeId: 2)
 class Images {
@@ -319,9 +384,12 @@ class Images {
   Large? large;
 
   factory Images.fromJson(Map<String, dynamic> json) => Images(
-        thumbnail: json["THUMBNAIL"] == null ? null : Large.fromJson(json["THUMBNAIL"]),
+        thumbnail: json["THUMBNAIL"] == null
+            ? null
+            : Large.fromJson(json["THUMBNAIL"]),
         small: json["SMALL"] == null ? null : Large.fromJson(json["SMALL"]),
-        regular: json["REGULAR"] == null ? null : Large.fromJson(json["REGULAR"]),
+        regular:
+            json["REGULAR"] == null ? null : Large.fromJson(json["REGULAR"]),
         large: json["LARGE"] == null ? null : Large.fromJson(json["LARGE"]),
       );
 

@@ -21,12 +21,8 @@ packages:
     dependency: transitive
     description:
       name: archive
-<<<<<<< HEAD
       sha256: d6347d54a2d8028e0437e3c099f66fdb8ae02c4720c1e7534c9f24c10351f85d
       url: "https://pub.dev"
-=======
-      url: "https://pub.dartlang.org"
->>>>>>> 8c8364031a04956de2ef4f625b5d47dd9138d274
     source: hosted
     version: "3.3.6"
   args:
@@ -379,12 +375,8 @@ packages:
     dependency: "direct main"
     description:
       name: lottie
-<<<<<<< HEAD
       sha256: "14b489bf93af84727a07c87c73580a9413f9cbffa4ea2342f3f71447a674a3fb"
       url: "https://pub.dev"
-=======
-      url: "https://pub.dartlang.org"
->>>>>>> 8c8364031a04956de2ef4f625b5d47dd9138d274
     source: hosted
     version: "2.3.1"
   matcher:
@@ -503,12 +495,8 @@ packages:
     dependency: transitive
     description:
       name: pointycastle
-<<<<<<< HEAD
       sha256: c3120a968135aead39699267f4c74bc9a08e4e909e86bc1b0af5bfd78691123c
       url: "https://pub.dev"
-=======
-      url: "https://pub.dartlang.org"
->>>>>>> 8c8364031a04956de2ef4f625b5d47dd9138d274
     source: hosted
     version: "3.7.2"
   pool:

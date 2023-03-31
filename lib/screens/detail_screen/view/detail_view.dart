@@ -40,14 +40,16 @@ class DetailView extends GetView<DetailController> {
                       child: Image.network(
                         controller.image!,
                         fit: BoxFit.fill,
-                        errorBuilder: (context, error, stackTrace) => const MyErrorWidget(),
+                        errorBuilder: (context, error, stackTrace) =>
+                            const MyErrorWidget(),
                       ),
                     )
                   : const SizedBox(),
               collapseMode: CollapseMode.parallax,
             ),
             bottom: PreferredSize(
-              preferredSize: Size.fromHeight(kToolbarHeight + MyMediaQuery.padding.top),
+              preferredSize:
+                  Size.fromHeight(kToolbarHeight + MyMediaQuery.padding.top),
               child: Container(
                 decoration: BoxDecoration(
                   color: Theme.of(context).colorScheme.primaryContainer,
@@ -63,7 +65,8 @@ class DetailView extends GetView<DetailController> {
                   calories: controller.recipe.calories,
                   duration: controller.recipe.totalTime,
                   starCount: controller.recipe.recipeYield,
-                  isFavorite: controller.recipe.isFavorite.value,
+                  isFavorite: controller.recipe.isFavorite,
+                  onFavoritePressed: () => controller.saveFav(),
                 ),
               ),
             ),
@@ -111,7 +114,8 @@ class DetailView extends GetView<DetailController> {
                 error: 'Health Labels Not Found!',
               ),
             ),
-          SliverToBoxAdapter(child: SizedBox(height: MyMediaQuery.padding.bottom * 2)),
+          SliverToBoxAdapter(
+              child: SizedBox(height: MyMediaQuery.padding.bottom * 2)),
         ],
       ),
     );

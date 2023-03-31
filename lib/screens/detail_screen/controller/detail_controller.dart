@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ollang_recipe/core/models/recipes_model.dart';
 
+import '../../../core/session_services.dart';
+
 class DetailController extends GetxController {
   final Recipe recipe;
   DetailController(this.recipe) {
@@ -33,7 +35,12 @@ class DetailController extends GetxController {
     Icons.lunch_dining_outlined
   ];
 
-  //final session = Get.find<SessionServices>();
+  final sessionService = Get.find<SessionServices>();
+
+  void saveFav() {
+    recipe.isFavorite.value = !recipe.isFavorite.value;
+    sessionService.saveFavorite(recipe);
+  }
 
   @override
   void onReady() {

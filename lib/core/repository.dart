@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:ollang_recipe/core/models/recipes_model.dart';
+import 'package:ollang_recipe/core/models/recipes_search_info_model.dart';
 import 'package:ollang_recipe/core/network_service.dart';
 
 ///[Repository] is a class that is used to make requests to the server.
@@ -23,7 +24,7 @@ class Repository extends Header {
         headers: createHeader());
 
     if (response!.statusCode == HttpStatus.ok) {
-      Recipies model = Recipies().fromJson(jsonDecode(response.body));
+      Recipies model = Recipies.fromJson(jsonDecode(response.body));
       return model;
     } else {
       throw Exception("Status Error");
@@ -37,10 +38,23 @@ class Repository extends Header {
         isUriParse: true,
         headers: createHeader());
 
-    print(response!.body);
+    if (response!.statusCode == HttpStatus.ok) {
+      Recipies model = Recipies.fromJson(jsonDecode(response.body));
+      return model;
+    } else {
+      throw Exception("Status Error");
+    }
+  }
+
+  Future<RecipesSearchInfoModel> recipesSearchInfo() async {
+    var response = await HttpClient.instance.request(
+        method: HttpMethods.GET,
+        path: HttpUrls.searcjInfo,
+        headers: createHeader());
 
     if (response!.statusCode == HttpStatus.ok) {
-      Recipies model = Recipies().fromJson(jsonDecode(response.body));
+      RecipesSearchInfoModel model = RecipesSearchInfoModel.fromJson(
+          jsonDecode(response.body)['paths']['/api/recipes/v2']);
       return model;
     } else {
       throw Exception("Status Error");

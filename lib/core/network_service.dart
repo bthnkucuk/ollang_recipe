@@ -66,4 +66,6 @@ class HttpUrls {
   static const String baseUrl = 'api.edamam.com';
 
   static const String searchUrl = 'api/recipes/v2';
+
+  static const String searcjInfo = 'doc/open-api/recipe-search-v2.json';
 }
