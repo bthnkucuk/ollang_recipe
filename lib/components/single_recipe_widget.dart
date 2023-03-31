@@ -14,11 +14,7 @@ class SingleRecipeWidget extends StatelessWidget {
   final Recipe recipe;
 
   const SingleRecipeWidget(
-      {super.key,
-      this.isDismissible = false,
-      required this.recipe,
-      this.onFavIconTap,
-      this.onDelete});
+      {super.key, this.isDismissible = false, required this.recipe, this.onFavIconTap, this.onDelete});
 
   @override
   Widget build(BuildContext context) {
@@ -60,9 +56,12 @@ class SingleRecipeWidget extends StatelessWidget {
               borderRadius: BorderRadius.circular(15.w),
               child: AspectRatio(
                 aspectRatio: 90 / 75,
-                child: Image.network(
-                  recipe.images!.thumbnail!.url ?? recipe.image!,
-                  fit: BoxFit.cover,
+                child: Hero(
+                  tag: recipe.uri!,
+                  child: Image.network(
+                    recipe.images!.thumbnail!.url ?? recipe.image!,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
             ),
@@ -79,8 +78,7 @@ class SingleRecipeWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(recipe.label ?? "Name",
-                          maxLines: 1, overflow: TextOverflow.ellipsis),
+                      Text(recipe.label ?? "----", maxLines: 1, overflow: TextOverflow.ellipsis),
                       Row(
                         children: [
                           Expanded(
@@ -89,12 +87,10 @@ class SingleRecipeWidget extends StatelessWidget {
                                 Icon(
                                   Icons.local_fire_department_outlined,
                                   size: 20.w,
-                                  color:
-                                      Theme.of(context).colorScheme.onPrimary,
+                                  color: Theme.of(context).colorScheme.onPrimary,
                                 ),
                                 SizedBox(width: 5.w),
-                                Text("${(recipe.calories ?? 0).floor()} Kcal",
-                                    style: s9W400)
+                                Text("${(recipe.calories ?? 0).floor()} Kcal", style: s9W400(context))
                               ],
                             ),
                           ),
@@ -104,11 +100,10 @@ class SingleRecipeWidget extends StatelessWidget {
                                 Icon(
                                   Icons.schedule,
                                   size: 20.w,
-                                  color:
-                                      Theme.of(context).colorScheme.onPrimary,
+                                  color: Theme.of(context).colorScheme.onPrimary,
                                 ),
                                 SizedBox(width: 5.w),
-                                Text('${recipe.totalTime} Min', style: s9W400)
+                                Text('${recipe.totalTime} Min', style: s9W400(context))
                               ],
                             ),
                           ),
@@ -125,9 +120,7 @@ class SingleRecipeWidget extends StatelessWidget {
               Obx(() => IconButton(
                   onPressed: onFavIconTap,
                   icon: Icon(
-                    !recipe.isFavorite.value
-                        ? Icons.favorite_border_sharp
-                        : Icons.favorite,
+                    !recipe.isFavorite.value ? Icons.favorite_border_sharp : Icons.favorite,
                     color: Theme.of(context).colorScheme.onPrimary,
                     size: 27.w,
                   )))

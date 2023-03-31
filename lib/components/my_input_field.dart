@@ -63,7 +63,7 @@ class MyInputField extends StatelessWidget {
         errorMaxLines: 5,
         fillColor: fillColor,
         hintText: hintText,
-        hintStyle: s14W400.copyWith(color: Colors.grey.shade600),
+        hintStyle: s14W400(context).copyWith(color: Colors.grey.shade600),
         suffixIcon: suffixIcon ?? const SizedBox.shrink(),
         border: disableBorders != null
             ? const OutlineInputBorder(borderSide: BorderSide.none)
@@ -71,9 +71,7 @@ class MyInputField extends StatelessWidget {
                 borderRadius: BorderRadius.all(Radius.circular(10)),
                 borderSide: BorderSide.none,
               ),
-        enabledBorder: disableBorders != null
-            ? const OutlineInputBorder(borderSide: BorderSide.none)
-            : null,
+        enabledBorder: disableBorders != null ? const OutlineInputBorder(borderSide: BorderSide.none) : null,
         contentPadding: EdgeInsets.only(
           top: verticalPadding ?? 0,
           bottom: verticalPadding ?? 0,

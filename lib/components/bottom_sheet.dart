@@ -13,34 +13,40 @@ mixin ModalBottomSheet {
       backgroundColor: backgroundColor ?? Theme.of(context).colorScheme.primaryContainer,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(20.w),
-          topRight: Radius.circular(20.w),
+          topLeft: Radius.circular(30.w),
+          topRight: Radius.circular(30.w),
         ),
       ),
       isScrollControlled: true,
       builder: (BuildContext context) {
-        return Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
-              child: Column(
-                children: [
-                  Divider(indent: MyMediaQuery.width * 0.4, endIndent: MyMediaQuery.width * 0.4, thickness: 4),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
+        return SizedBox(
+          height: MyMediaQuery.height * 0.6,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: EdgeInsets.only(top: 10.h),
+                child: ColoredBox(
+                  color: Colors.transparent,
+                  child: Column(
                     children: [
-                      Text(title, style: s20W600.copyWith(color: Theme.of(context).colorScheme.primary)),
+                      Divider(indent: MyMediaQuery.width * 0.4, endIndent: MyMediaQuery.width * 0.4, thickness: 4),
+                      SizedBox(height: 10.h),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(title, style: s20W600(context).copyWith(color: Theme.of(context).colorScheme.primary)),
+                        ],
+                      ),
                     ],
                   ),
-                  SizedBox(height: 10.h),
-                ],
+                ),
               ),
-            ),
-            widget,
-          ],
+              widget,
+            ],
+          ),
         );
       },
     );

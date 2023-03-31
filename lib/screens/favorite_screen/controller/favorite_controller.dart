@@ -3,7 +3,7 @@ import 'package:ollang_recipe/core/models/recipes_model.dart';
 import 'package:ollang_recipe/core/session_services.dart';
 import 'package:ollang_recipe/screens/home_screen/controller/home_controller.dart';
 
-enum LoadingStatus { loading, loaded, error }
+import '../../../core/loading_status.dart';
 
 class FavoriteController extends GetxController {
   LoadingStatus get loadingStatus => _loadingStatus.value;
@@ -18,17 +18,14 @@ class FavoriteController extends GetxController {
   deleteFav(Recipe recipe) {
     sessionService.deleteFavorite(recipe);
     homeController.recipiesList
-        .firstWhere((element) =>
-            element.recipe!.label == recipe.label &&
-            element.recipe!.uri == recipe.uri)
+        .firstWhere((element) => element.recipe!.label == recipe.label && element.recipe!.uri == recipe.uri)
         .recipe!
         .isFavorite
         .value = false;
   }
 
   loadRecipes() {
-    recipiesList.value =
-        sessionService.hiveStorage.user.favorites.reversed.toList();
+    recipiesList.value = sessionService.hiveStorage.user.favorites.reversed.toList();
 
     loadingStatus = LoadingStatus.loaded;
   }

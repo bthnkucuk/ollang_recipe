@@ -23,9 +23,9 @@ class MyAppBar extends StatelessWidget with PreferredSizeWidget {
       centerTitle: true,
       title: Text(centerTitle),
       leading: IconButton(
-        onPressed: Navigator.of(context).canPop() ? Navigator.of(context).maybePop : leadingOnPressed,
+        onPressed: leadingOnPressed,
         icon: Icon(
-          Navigator.of(context).canPop() ? Icons.arrow_back_ios_new : leadingIcon,
+          leadingIcon,
           color: Theme.of(context).colorScheme.onPrimary,
         ),
       ),

@@ -1,203 +1,111 @@
 import 'package:flutter/material.dart';
 
-import '../main.dart';
-
 //this file is used to define all text style in the app
 
 /// fontSize: 8
-TextStyle get s8W300 => Theme.of(Screens.navigatorKey.currentContext!)
-    .textTheme
-    .bodySmall!
-    .copyWith(fontSize: 8, fontWeight: FontWeight.w300);
-TextStyle get s8W400 => Theme.of(Screens.navigatorKey.currentContext!)
-    .textTheme
-    .bodySmall!
-    .copyWith(fontSize: 8, fontWeight: FontWeight.w400);
-TextStyle get s8W500 => Theme.of(Screens.navigatorKey.currentContext!)
-    .textTheme
-    .bodySmall!
-    .copyWith(fontSize: 8, fontWeight: FontWeight.w500);
-TextStyle get s8W600 => Theme.of(Screens.navigatorKey.currentContext!)
-    .textTheme
-    .bodySmall!
-    .copyWith(fontSize: 8, fontWeight: FontWeight.w600);
-TextStyle get s8W700 => Theme.of(Screens.navigatorKey.currentContext!)
-    .textTheme
-    .bodySmall!
-    .copyWith(fontSize: 8, fontWeight: FontWeight.w700);
+TextStyle s8W300(BuildContext context) =>
+    Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 8, fontWeight: FontWeight.w300);
+TextStyle s8W400(BuildContext context) =>
+    Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 8, fontWeight: FontWeight.w400);
+TextStyle s8W500(BuildContext context) =>
+    Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 8, fontWeight: FontWeight.w500);
+TextStyle s8W600(BuildContext context) =>
+    Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 8, fontWeight: FontWeight.w600);
+TextStyle s8W700(BuildContext context) =>
+    Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 8, fontWeight: FontWeight.w700);
 
 /// fontSize: 9
-TextStyle get s9W300 => Theme.of(Screens.navigatorKey.currentContext!)
-    .textTheme
-    .bodySmall!
-    .copyWith(fontSize: 9, fontWeight: FontWeight.w300);
-TextStyle get s9W400 => Theme.of(Screens.navigatorKey.currentContext!)
-    .textTheme
-    .bodySmall!
-    .copyWith(fontSize: 9, fontWeight: FontWeight.w400);
-TextStyle get s9W500 => Theme.of(Screens.navigatorKey.currentContext!)
-    .textTheme
-    .bodySmall!
-    .copyWith(fontSize: 9, fontWeight: FontWeight.w500);
-TextStyle get s9W600 => Theme.of(Screens.navigatorKey.currentContext!)
-    .textTheme
-    .bodySmall!
-    .copyWith(fontSize: 9, fontWeight: FontWeight.w600);
-TextStyle get s9W700 => Theme.of(Screens.navigatorKey.currentContext!)
-    .textTheme
-    .bodySmall!
-    .copyWith(fontSize: 9, fontWeight: FontWeight.w700);
+TextStyle s9W300(BuildContext context) =>
+    Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 9, fontWeight: FontWeight.w300);
+TextStyle s9W400(BuildContext context) =>
+    Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 9, fontWeight: FontWeight.w400);
+TextStyle s9W500(BuildContext context) =>
+    Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 9, fontWeight: FontWeight.w500);
+TextStyle s9W600(BuildContext context) =>
+    Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 9, fontWeight: FontWeight.w600);
+TextStyle s9W700(BuildContext context) =>
+    Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 9, fontWeight: FontWeight.w700);
 
 /// fontSize: 10
-TextStyle get s10W300 => Theme.of(Screens.navigatorKey.currentContext!)
-    .textTheme
-    .bodySmall!
-    .copyWith(fontSize: 10, fontWeight: FontWeight.w300);
-TextStyle get s10W400 => Theme.of(Screens.navigatorKey.currentContext!)
-    .textTheme
-    .bodySmall!
-    .copyWith(fontSize: 10, fontWeight: FontWeight.w400);
-TextStyle get s10W500 => Theme.of(Screens.navigatorKey.currentContext!)
-    .textTheme
-    .bodySmall!
-    .copyWith(fontSize: 10, fontWeight: FontWeight.w500);
-TextStyle get s10W600 => Theme.of(Screens.navigatorKey.currentContext!)
-    .textTheme
-    .bodySmall!
-    .copyWith(fontSize: 10, fontWeight: FontWeight.w600);
-TextStyle get s10W700 => Theme.of(Screens.navigatorKey.currentContext!)
-    .textTheme
-    .bodySmall!
-    .copyWith(fontSize: 10, fontWeight: FontWeight.w700);
+TextStyle s10W300(BuildContext context) =>
+    Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 10, fontWeight: FontWeight.w300);
+TextStyle s10W400(BuildContext context) =>
+    Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 10, fontWeight: FontWeight.w400);
+TextStyle s10W500(BuildContext context) =>
+    Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 10, fontWeight: FontWeight.w500);
+TextStyle s10W600(BuildContext context) =>
+    Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 10, fontWeight: FontWeight.w600);
+TextStyle s10W700(BuildContext context) =>
+    Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 10, fontWeight: FontWeight.w700);
 
 /// fontSize: 12
-TextStyle get s12W300 => Theme.of(Screens.navigatorKey.currentContext!)
-    .textTheme
-    .bodySmall!
-    .copyWith(fontSize: 12, fontWeight: FontWeight.w300);
-TextStyle get s12W400 => Theme.of(Screens.navigatorKey.currentContext!)
-    .textTheme
-    .bodySmall!
-    .copyWith(fontSize: 12, fontWeight: FontWeight.w400);
-TextStyle get s12W500 => Theme.of(Screens.navigatorKey.currentContext!)
-    .textTheme
-    .bodySmall!
-    .copyWith(fontSize: 12, fontWeight: FontWeight.w500);
-TextStyle get s12W600 => Theme.of(Screens.navigatorKey.currentContext!)
-    .textTheme
-    .bodySmall!
-    .copyWith(fontSize: 12, fontWeight: FontWeight.w600);
-TextStyle get s12W700 => Theme.of(Screens.navigatorKey.currentContext!)
-    .textTheme
-    .bodySmall!
-    .copyWith(fontSize: 12, fontWeight: FontWeight.w700);
+TextStyle s12W300(BuildContext context) =>
+    Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 12, fontWeight: FontWeight.w300);
+TextStyle s12W400(BuildContext context) =>
+    Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 12, fontWeight: FontWeight.w400);
+TextStyle s12W500(BuildContext context) =>
+    Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 12, fontWeight: FontWeight.w500);
+TextStyle s12W600(BuildContext context) =>
+    Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 12, fontWeight: FontWeight.w600);
+TextStyle s12W700(BuildContext context) =>
+    Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 12, fontWeight: FontWeight.w700);
 
 /// fontSize: 14
-TextStyle get s14W300 => Theme.of(Screens.navigatorKey.currentContext!)
-    .textTheme
-    .bodySmall!
-    .copyWith(fontSize: 14, fontWeight: FontWeight.w300);
-TextStyle get s14W400 => Theme.of(Screens.navigatorKey.currentContext!)
-    .textTheme
-    .bodySmall!
-    .copyWith(fontSize: 14, fontWeight: FontWeight.w400);
-TextStyle get s14W500 => Theme.of(Screens.navigatorKey.currentContext!)
-    .textTheme
-    .bodySmall!
-    .copyWith(fontSize: 14, fontWeight: FontWeight.w500);
-TextStyle get s14W600 => Theme.of(Screens.navigatorKey.currentContext!)
-    .textTheme
-    .bodySmall!
-    .copyWith(fontSize: 14, fontWeight: FontWeight.w600);
-TextStyle get s14W700 => Theme.of(Screens.navigatorKey.currentContext!)
-    .textTheme
-    .bodySmall!
-    .copyWith(fontSize: 14, fontWeight: FontWeight.w700);
+TextStyle s14W300(BuildContext context) =>
+    Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 14, fontWeight: FontWeight.w300);
+TextStyle s14W400(BuildContext context) =>
+    Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 14, fontWeight: FontWeight.w400);
+TextStyle s14W500(BuildContext context) =>
+    Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 14, fontWeight: FontWeight.w500);
+TextStyle s14W600(BuildContext context) =>
+    Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 14, fontWeight: FontWeight.w600);
+TextStyle s14W700(BuildContext context) =>
+    Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 14, fontWeight: FontWeight.w700);
 
 /// fontSize: 16
-TextStyle get s16W300 => Theme.of(Screens.navigatorKey.currentContext!)
-    .textTheme
-    .bodySmall!
-    .copyWith(fontSize: 16, fontWeight: FontWeight.w300);
-TextStyle get s16W400 => Theme.of(Screens.navigatorKey.currentContext!)
-    .textTheme
-    .bodySmall!
-    .copyWith(fontSize: 16, fontWeight: FontWeight.w400);
-TextStyle get s16W500 => Theme.of(Screens.navigatorKey.currentContext!)
-    .textTheme
-    .bodySmall!
-    .copyWith(fontSize: 16, fontWeight: FontWeight.w500);
-TextStyle get s16W600 => Theme.of(Screens.navigatorKey.currentContext!)
-    .textTheme
-    .bodySmall!
-    .copyWith(fontSize: 16, fontWeight: FontWeight.w600);
-TextStyle get s16W700 => Theme.of(Screens.navigatorKey.currentContext!)
-    .textTheme
-    .bodySmall!
-    .copyWith(fontSize: 16, fontWeight: FontWeight.w700);
+TextStyle s16W300(BuildContext context) =>
+    Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 16, fontWeight: FontWeight.w300);
+TextStyle s16W400(BuildContext context) =>
+    Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 16, fontWeight: FontWeight.w400);
+TextStyle s16W500(BuildContext context) =>
+    Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 16, fontWeight: FontWeight.w500);
+TextStyle s16W600(BuildContext context) =>
+    Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 16, fontWeight: FontWeight.w600);
+TextStyle s16W700(BuildContext context) =>
+    Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 16, fontWeight: FontWeight.w700);
 
 /// fontSize: 18
-TextStyle get s18W300 => Theme.of(Screens.navigatorKey.currentContext!)
-    .textTheme
-    .bodySmall!
-    .copyWith(fontSize: 18, fontWeight: FontWeight.w300);
-TextStyle get s18W400 => Theme.of(Screens.navigatorKey.currentContext!)
-    .textTheme
-    .bodySmall!
-    .copyWith(fontSize: 18, fontWeight: FontWeight.w400);
-TextStyle get s18W500 => Theme.of(Screens.navigatorKey.currentContext!)
-    .textTheme
-    .bodySmall!
-    .copyWith(fontSize: 18, fontWeight: FontWeight.w500);
-TextStyle get s18W600 => Theme.of(Screens.navigatorKey.currentContext!)
-    .textTheme
-    .bodySmall!
-    .copyWith(fontSize: 18, fontWeight: FontWeight.w600);
-TextStyle get s18W700 => Theme.of(Screens.navigatorKey.currentContext!)
-    .textTheme
-    .bodySmall!
-    .copyWith(fontSize: 18, fontWeight: FontWeight.w700);
+TextStyle s18W300(BuildContext context) =>
+    Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 18, fontWeight: FontWeight.w300);
+TextStyle s18W400(BuildContext context) =>
+    Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 18, fontWeight: FontWeight.w400);
+TextStyle s18W500(BuildContext context) =>
+    Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 18, fontWeight: FontWeight.w500);
+TextStyle s18W600(BuildContext context) =>
+    Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 18, fontWeight: FontWeight.w600);
+TextStyle s18W700(BuildContext context) =>
+    Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 18, fontWeight: FontWeight.w700);
 
 /// fontSize: 20
-TextStyle get s20W300 => Theme.of(Screens.navigatorKey.currentContext!)
-    .textTheme
-    .bodySmall!
-    .copyWith(fontSize: 20, fontWeight: FontWeight.w300);
-TextStyle get s20W400 => Theme.of(Screens.navigatorKey.currentContext!)
-    .textTheme
-    .bodySmall!
-    .copyWith(fontSize: 20, fontWeight: FontWeight.w400);
-TextStyle get s20W500 => Theme.of(Screens.navigatorKey.currentContext!)
-    .textTheme
-    .bodySmall!
-    .copyWith(fontSize: 20, fontWeight: FontWeight.w500);
-TextStyle get s20W600 => Theme.of(Screens.navigatorKey.currentContext!)
-    .textTheme
-    .bodySmall!
-    .copyWith(fontSize: 20, fontWeight: FontWeight.w600);
-TextStyle get s20W700 => Theme.of(Screens.navigatorKey.currentContext!)
-    .textTheme
-    .bodySmall!
-    .copyWith(fontSize: 20, fontWeight: FontWeight.w700);
+TextStyle s20W300(BuildContext context) =>
+    Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 20, fontWeight: FontWeight.w300);
+TextStyle s20W400(BuildContext context) =>
+    Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 20, fontWeight: FontWeight.w400);
+TextStyle s20W500(BuildContext context) =>
+    Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 20, fontWeight: FontWeight.w500);
+TextStyle s20W600(BuildContext context) =>
+    Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 20, fontWeight: FontWeight.w600);
+TextStyle s20W700(BuildContext context) =>
+    Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 20, fontWeight: FontWeight.w700);
 
 /// fontSize: 24
-TextStyle get s24W300 => Theme.of(Screens.navigatorKey.currentContext!)
-    .textTheme
-    .bodySmall!
-    .copyWith(fontSize: 24, fontWeight: FontWeight.w300);
-TextStyle get s24W400 => Theme.of(Screens.navigatorKey.currentContext!)
-    .textTheme
-    .bodySmall!
-    .copyWith(fontSize: 24, fontWeight: FontWeight.w400);
-TextStyle get s24W500 => Theme.of(Screens.navigatorKey.currentContext!)
-    .textTheme
-    .bodySmall!
-    .copyWith(fontSize: 24, fontWeight: FontWeight.w500);
-TextStyle get s24W600 => Theme.of(Screens.navigatorKey.currentContext!)
-    .textTheme
-    .bodySmall!
-    .copyWith(fontSize: 24, fontWeight: FontWeight.w600);
-TextStyle get s24W700 => Theme.of(Screens.navigatorKey.currentContext!)
-    .textTheme
-    .bodySmall!
-    .copyWith(fontSize: 24, fontWeight: FontWeight.w700);
+TextStyle s24W300(BuildContext context) =>
+    Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 24, fontWeight: FontWeight.w300);
+TextStyle s24W400(BuildContext context) =>
+    Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 24, fontWeight: FontWeight.w400);
+TextStyle s24W500(BuildContext context) =>
+    Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 24, fontWeight: FontWeight.w500);
+TextStyle s24W600(BuildContext context) =>
+    Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 24, fontWeight: FontWeight.w600);
+TextStyle s24W700(BuildContext context) =>
+    Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 24, fontWeight: FontWeight.w700);
