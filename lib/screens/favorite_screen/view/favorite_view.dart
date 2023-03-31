@@ -4,6 +4,7 @@ import 'package:ollang_recipe/components/extensions.dart';
 
 import '../../../components/my_app_bar.dart';
 import '../../../components/single_recipe_widget.dart';
+import '../../../core/loading_status.dart';
 import '../controller/favorite_controller.dart';
 
 class FavoriteView extends GetView<FavoriteController> {
@@ -12,7 +13,11 @@ class FavoriteView extends GetView<FavoriteController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const MyAppBar(centerTitle: 'Favorites'),
+      appBar: MyAppBar(
+        centerTitle: 'Favorites',
+        leadingIcon: Icons.arrow_back_ios_new_outlined,
+        leadingOnPressed: () => Navigator.maybePop(context),
+      ),
       body: Obx(() {
         return Padding(
           padding: EdgeInsets.symmetric(horizontal: 15.w),
@@ -30,8 +35,7 @@ class FavoriteView extends GetView<FavoriteController> {
                           children: [
                             if (index == 0) SizedBox(height: 20.h),
                             SingleRecipeWidget(
-                              onDelete: () => controller
-                                  .deleteFav(controller.recipiesList[index]),
+                              onDelete: () => controller.deleteFav(controller.recipiesList[index]),
                               isDismissible: true,
                               recipe: controller.recipiesList[index],
                             ),

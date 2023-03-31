@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:ollang_recipe/core/models/recipes_model.dart';
 import 'package:ollang_recipe/core/session_services.dart';
 import 'package:ollang_recipe/screens/detail_screen/detail_screen.dart';
+import 'package:ollang_recipe/screens/splash_screen/splash_screen.dart';
 
 import 'components/my_media_query.dart';
 import 'screens/favorite_screen/favorite_screen.dart';
@@ -28,30 +29,42 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           title: 'Ollang Recipe',
           initialRoute: '/',
+          onGenerateRoute: (settings) {
+            if (settings.name == "/favorite") {
+              return PageRouteBuilder(
+                  transitionDuration: const Duration(seconds: 1),
+                  settings: settings, // Pass this to make popUntil(), pushNamedAndRemoveUntil(), works
+                  pageBuilder: (_, __, ___) => const FavoriteScreen(),
+                  transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c));
+            }
+
+            return MaterialPageRoute(builder: (_) => const SplashScreen());
+          },
           routes: {
+            Screens.splash: (context) => const SplashScreen(),
             Screens.home: (context) => const HomeScreen(),
-            Screens.favorite: (context) => const FavoriteScreen(),
             Screens.detail: (context) {
               var recipe = ModalRoute.of(context)!.settings.arguments as Recipe;
 
               return DetailScreen(recipe: recipe);
             },
           },
-          navigatorKey: Screens.navigatorKey,
+          navigatorKey: navigatorKey,
           theme: lightTheme,
           darkTheme: darkTheme,
           debugShowCheckedModeBanner: false,
           themeMode: MaterialAppInheritedWidget.of(context).themeMode,
-          home: const HomeScreen(),
         );
       }),
     );
   }
 }
 
+GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+
 ///[Screens] is a class that contains all the routes of the application
 class Screens {
-  static GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+  static const String splash = '/splash';
   static const String home = '/home';
   static const String favorite = '/favorite';
   static const String detail = '/detail';

@@ -1,4 +1,3 @@
-import 'package:equatable/equatable.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:ollang_recipe/core/models/recipes_model.dart';
 part 'user_model.g.dart';
