@@ -1,8 +1,3 @@
-<style>
-img{max-width: 250px;margin-right: 10px;margin-bottom: 10px;}
-#foo {color: red;}
-</style>
-
 # ollang_recipe
 
 Flutter recipe search app using Edamam api.
@@ -10,6 +5,8 @@ Flutter recipe search app using Edamam api.
 <br />
 
 ## Demo
+
+<img src="https://lh4.googleusercontent.com/a4DQdUNkSwcDVuMYVtr-ogkSdffnzfsMU3oKH-oMCgRpZTZnmula7EnJdftPcclv7lo=w2400" style="max-width: 250px;margin-right: 10px;margin-bottom: 10px;">
 
 ![My Image](https://lh4.googleusercontent.com/a4DQdUNkSwcDVuMYVtr-ogkSdffnzfsMU3oKH-oMCgRpZTZnmula7EnJdftPcclv7lo=w2400)
 ![My Image](https://lh5.googleusercontent.com/yYd81V2jcK_uqXhRTOMVCnJvNVmGWDt6vArQMxqd1K0AlgODZWn_C-e-B328-wtVX6c=w2400)
