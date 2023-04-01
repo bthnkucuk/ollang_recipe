@@ -1,3 +1,5 @@
+///[RecipesSearchInfoModel] is a model class for recipes search info,
+/// its for filtering recipes
 class RecipesSearchInfoModel {
   RecipesSearchInfoModel({
     this.recipesSearchInfoModelGet,

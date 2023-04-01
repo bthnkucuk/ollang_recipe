@@ -25,6 +25,8 @@ class FavoriteController extends GetxController {
   void goDetail(Recipe recipe) => Navigator.pushNamed(context, Screens.detail,
       arguments: recipe..isFavorite.value = true);
 
+  /// [deleteFav] is deleting the recipe from the local storage using sessionService.
+  /// It also updates the [isFavorite] value of the recipe in the [homeController.recipiesList] for updating home screen.
   deleteFav(Recipe recipe) {
     sessionService.deleteFavorite(recipe);
     homeController.recipiesList
@@ -36,6 +38,7 @@ class FavoriteController extends GetxController {
         .value = false;
   }
 
+  /// [loadRecipes] is loading the list of favorites from the local storage using sessionService.
   loadRecipes() {
     recipiesList.value =
         sessionService.hiveStorage.user.favorites.reversed.toList();

@@ -28,13 +28,14 @@ class DetailView extends GetView<DetailController> {
             pinned: true,
             expandedHeight: MyMediaQuery.height * .4,
             floating: false,
-            // title: const Text('Detail Screen'),
             leading: GestureDetector(
               onTap: () => controller.goBack(),
               child: const Icon(Icons.arrow_back_ios_new_outlined),
             ),
             flexibleSpace: FlexibleSpaceBar(
               background: controller.image != null
+
+                  /// Hero widget for animation
                   ? Hero(
                       tag: controller.recipe.uri!,
                       child: MyNetworkImage(url: controller.image),

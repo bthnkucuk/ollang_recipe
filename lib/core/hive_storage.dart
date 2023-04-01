@@ -11,8 +11,12 @@ class HiveStorage {
     _initHive();
   }
 
+  ///[initHive] is a function that initialize hive database.
   _initHive() async {
     await Hive.initFlutter();
+
+    ///this if statements check if the adapter is registered or not.
+    ///if not registered, register it.
     if (!Hive.isAdapterRegistered(0)) {
       Hive.registerAdapter(UserAdapter());
     }

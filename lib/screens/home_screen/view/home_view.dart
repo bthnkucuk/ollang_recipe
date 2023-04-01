@@ -127,9 +127,14 @@ class HomeView extends GetView<HomeController> {
                             },
                           ),
                         )
+
+                      // some state handling
+                      else if (controller.textEditingController.text.isEmpty)
+                        const Expanded(
+                            child: Center(child: Text('Search something!')))
                       else
                         const Expanded(
-                            child: Center(child: Text('Nothing Found!')))
+                            child: Center(child: Text('Nothing Found2!')))
                     else if (controller.loadingStatus == LoadingStatus.loading)
                       Expanded(
                         child:

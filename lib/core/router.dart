@@ -14,6 +14,7 @@ class Screens {
   static const String error = '/error';
 }
 
+///[MyRouteGenerator] is a class that generate route based on [Screens] class.
 class MyRouteGenerator {
   static Route<dynamic>? generate(RouteSettings routeSettings) {
     switch (routeSettings.name) {

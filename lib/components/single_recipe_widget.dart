@@ -15,31 +15,28 @@ class SingleRecipeWidget extends StatelessWidget {
   final Recipe recipe;
 
   const SingleRecipeWidget(
-      {super.key, this.isDismissible = false, required this.recipe, this.onFavIconTap, this.onDelete});
+      {super.key,
+      this.isDismissible = false,
+      required this.recipe,
+      this.onFavIconTap,
+      this.onDelete});
 
   @override
   Widget build(BuildContext context) {
-    return Slidable(
-      key: const ValueKey(0),
-      enabled: isDismissible ? true : false,
-      endActionPane: ActionPane(
-        motion: const ScrollMotion(),
-        dismissible: DismissiblePane(
-            onDismissed: onDelete ??
-                () {
-                  print("object");
-                }),
-        children: [
-          SlidableAction(
-            onPressed: ((_) {
-              print("object");
-            }),
-            backgroundColor: Color(0xFFFE4A49),
-            foregroundColor: Colors.white,
-            icon: Icons.delete,
-            label: 'Delete',
-          ),
-        ],
+    // Dismissible widget
+    return Dismissible(
+      direction:
+          isDismissible ? DismissDirection.endToStart : DismissDirection.none,
+      key: Key(recipe.uri!), // Unique key
+      onDismissed: (direction) => onDelete!(),
+      background: Container(
+        color: Colors.red,
+        alignment: Alignment.centerRight,
+        padding: EdgeInsets.only(right: 20.w),
+        child: const Icon(
+          Icons.delete,
+          color: Colors.white,
+        ),
       ),
       child: Container(
         height: 90.h,
@@ -78,7 +75,8 @@ class SingleRecipeWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(recipe.label ?? "----", maxLines: 1, overflow: TextOverflow.ellipsis),
+                      Text(recipe.label ?? "----",
+                          maxLines: 1, overflow: TextOverflow.ellipsis),
                       Row(
                         children: [
                           Expanded(
@@ -87,10 +85,12 @@ class SingleRecipeWidget extends StatelessWidget {
                                 Icon(
                                   Icons.local_fire_department_outlined,
                                   size: 20.w,
-                                  color: Theme.of(context).colorScheme.onPrimary,
+                                  color:
+                                      Theme.of(context).colorScheme.onPrimary,
                                 ),
                                 SizedBox(width: 5.w),
-                                Text("${(recipe.calories ?? 0).floor()} Kcal", style: s9W400(context))
+                                Text("${(recipe.calories ?? 0).floor()} Kcal",
+                                    style: s9W400(context))
                               ],
                             ),
                           ),
@@ -100,10 +100,12 @@ class SingleRecipeWidget extends StatelessWidget {
                                 Icon(
                                   Icons.schedule,
                                   size: 20.w,
-                                  color: Theme.of(context).colorScheme.onPrimary,
+                                  color:
+                                      Theme.of(context).colorScheme.onPrimary,
                                 ),
                                 SizedBox(width: 5.w),
-                                Text('${recipe.totalTime} Min', style: s9W400(context))
+                                Text('${recipe.totalTime} Min',
+                                    style: s9W400(context))
                               ],
                             ),
                           ),
@@ -120,7 +122,9 @@ class SingleRecipeWidget extends StatelessWidget {
               Obx(() => IconButton(
                   onPressed: onFavIconTap,
                   icon: Icon(
-                    !recipe.isFavorite.value ? Icons.favorite_border_sharp : Icons.favorite,
+                    !recipe.isFavorite.value
+                        ? Icons.favorite_border_sharp
+                        : Icons.favorite,
                     color: Theme.of(context).colorScheme.onPrimary,
                     size: 27.w,
                   )))

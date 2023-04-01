@@ -11,6 +11,9 @@ class Repository extends Header {
   static final Repository instance = Repository._();
 
   ///[search] is a method that is used to search for recipes.
+  ///[searchQuery] is a string that is used to search for recipes.
+  ///[filterQuery] is a map that is used to filter recipes.
+  ///[isRandom] is a boolean that is used to get random recipes.
   Future<Recipies> search(String searchQuery,
       {Map<String, dynamic> filterQuery = const {},
       bool isRandom = false}) async {
@@ -36,6 +39,7 @@ class Repository extends Header {
     }
   }
 
+  ///[lazyLoadSearch] is a method that is used to lazy load recipes.
   Future<Recipies> lazyLoadSearch(String nextPage) async {
     var response = await HttpClient.instance.request(
         method: HttpMethods.GET,
@@ -51,6 +55,7 @@ class Repository extends Header {
     }
   }
 
+  ///[recipesSearchInfo] is a method that is used to get recipes search info.
   Future<RecipesSearchInfoModel> recipesSearchInfo() async {
     var response = await HttpClient.instance.request(
         method: HttpMethods.GET,

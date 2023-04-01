@@ -8,6 +8,8 @@ class SessionServices extends GetxController {
   HiveStorage hiveStorage = HiveStorage();
   RecipesSearchInfoModel recipesSearchInfo = RecipesSearchInfoModel();
 
+  ///[saveFavorite] is a function that save recipe to user favorite list.
+  ///if the recipe is already in the list, it will be deleted.
   Future<void> saveFavorite(Recipe recipe) async {
     if (hiveStorage.user.favorites.firstWhereOrNull((element) =>
             element.label == recipe.label && element.uri == recipe.uri) ==
@@ -20,12 +22,14 @@ class SessionServices extends GetxController {
     }
   }
 
+  ///[deleteFavorite] is a function that delete recipe from user favorite list.
   Future<void> deleteFavorite(Recipe recipe) async {
     hiveStorage.user.favorites
         .removeWhere((element) => element.label == recipe.label);
     await hiveStorage.user.save();
   }
 
+  ///[saveHistory] is a function that save user search history, limit to 10, and return the list.
   Future<List<String>> saveHistory(String key) async {
     await deleteHistory(key);
 
@@ -41,6 +45,7 @@ class SessionServices extends GetxController {
     return reversedList;
   }
 
+  ///[deleteHistory] is a function that delete user search history, and return the list.
   Future<List<String>> deleteHistory(String key) async {
     hiveStorage.user.searchHistory.removeWhere((element) => element == key);
     await hiveStorage.user.save();

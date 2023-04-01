@@ -5,6 +5,9 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 part 'recipes_model.g.dart';
 
+///[Recipies] is a class that use to parse json data from api, and useing.
+///If data need to be saved in local storage, it use [Hive] package.
+///
 class Recipies {
   Recipies({
     this.from,

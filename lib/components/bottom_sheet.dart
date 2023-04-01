@@ -4,13 +4,15 @@ import 'package:ollang_recipe/components/my_media_query.dart';
 
 import '../theme/text_style.dart';
 
+///[ModalBottomSheet] is a class that contains all the bottom sheets in the app.
 mixin ModalBottomSheet {
   /// Bütün sayfalardaki bottom sheetler buradan çağırılır.
   static Future<T?> showBottomSheet<T>(Widget widget, BuildContext context,
       {required String title, Color? backgroundColor}) async {
     return showModalBottomSheet<T>(
       context: context,
-      backgroundColor: backgroundColor ?? Theme.of(context).colorScheme.primaryContainer,
+      backgroundColor:
+          backgroundColor ?? Theme.of(context).colorScheme.primaryContainer,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(30.w),
@@ -29,7 +31,10 @@ mixin ModalBottomSheet {
                   color: Colors.transparent,
                   child: Column(
                     children: [
-                      Divider(indent: MyMediaQuery.width * 0.4, endIndent: MyMediaQuery.width * 0.4, thickness: 4),
+                      Divider(
+                          indent: MyMediaQuery.width * 0.4,
+                          endIndent: MyMediaQuery.width * 0.4,
+                          thickness: 4),
                       SizedBox(height: 10.h),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,

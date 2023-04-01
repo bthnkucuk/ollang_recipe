@@ -2,6 +2,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:ollang_recipe/components/my_error_widget.dart';
 
+///[MyNetworkImage] is a class that use cached_network_image package and show image.
+///If image is not found, it shows [MyErrorWidget].
+///If user open recipe in favorite page, it shows image from local storage.
 class MyNetworkImage extends StatelessWidget {
   const MyNetworkImage({super.key, required this.url, this.width, this.height});
 

@@ -32,14 +32,17 @@ class HomeController extends GetxController {
   final RxList<Hit> recipiesList = <Hit>[].obs;
   String? nextPage;
 
+  //For fitering the recipes
   final RxDouble timeStart = 0.0.obs;
   final RxDouble timeEnd = 300.0.obs;
   final RxList<String> dishTypeSelectedList = <String>[].obs;
   final RxList<String> mealTypeSelectedList = <String>[].obs;
   final RxList<String> cuisineTypeSelectedList = <String>[].obs;
   final RxList<String> healtSelectedList = <String>[].obs;
+  //For http request query parameters
   Map<String, dynamic> filterForQuery = {};
 
+  ///[applyFilter] is applying the filter to the query and search the recipe.
   void applyFilter() {
     if (dishTypeSelectedList.isNotEmpty) {
       filterForQuery[FilterTypes.dishType.name] = dishTypeSelectedList;
@@ -63,6 +66,7 @@ class HomeController extends GetxController {
     Navigator.maybePop(context);
   }
 
+//when the search text is focused, the history overlay will be shown.
   _focusListener() {
     if (focusNode.hasFocus) {
       showOverlay();
@@ -87,7 +91,12 @@ class HomeController extends GetxController {
       return _SearchHistory(
           offset: offset,
           list: searchHistory,
-          onDelete: (String value) async {
+          onTap: (value) async {
+            textEditingController.text = value;
+            FocusScope.of(context).unfocus();
+            await search(value);
+          },
+          onDelete: (value) async {
             searchHistory.value = await sessionService.deleteHistory(value);
           });
     });
@@ -101,6 +110,8 @@ class HomeController extends GetxController {
     overlayEntry = null;
   }
 
+  ///[getFilter] is getting the filter for the filter,
+  ///ist taking filters from [RecipesSearchInfoModel] the model is getting from the api in splash screen.
   List<String> getFilter(FilterTypes type) {
     try {
       return sessionService
@@ -114,6 +125,10 @@ class HomeController extends GetxController {
     }
   }
 
+  ///[findRandom] is finding the random recipe from the api.
+  ///api not executing empty query, so it is taking the random filter from the [getFilter] method.
+  ///if at least one filter is selected, api will execute the query with the selected filter.
+  /// isRandom is add query parameter "random=true"
   Future<void> findRandom() async {
     var random = getFilter(FilterTypes.mealType);
     random.shuffle();
@@ -131,6 +146,7 @@ class HomeController extends GetxController {
     }
   }
 
+//for saving selected filter to the list
   void saveFilter(String chip, FilterTypes type) {
     switch (type) {
       case FilterTypes.dishType:
@@ -159,6 +175,7 @@ class HomeController extends GetxController {
 
   BuildContext get context => scaffoldKey.currentContext!;
 
+//for changing the theme
   void changeTheme() => MaterialAppInheritedWidget.of(context).changeTheme();
   Future<void> goFavorite() async =>
       await Navigator.pushNamed(context, Screens.favorite);
@@ -170,6 +187,7 @@ class HomeController extends GetxController {
         title: "Filter");
   }
 
+//for clearing the filter
   void clearFilters() {
     dishTypeSelectedList.clear();
     mealTypeSelectedList.clear();
@@ -182,6 +200,9 @@ class HomeController extends GetxController {
     Navigator.maybePop(context);
   }
 
+  ///[search] is searching the recipe from the api.
+  ///if some error occurs, it will change [LoadingStatus] to error.
+  ///if not error occurs, it will change [LoadingStatus] to loaded.
   Future<void> search(String query) async {
     if (textEditingController.text.isNotEmpty) {
       searchHistory.value = await sessionService.saveHistory(query);
@@ -217,25 +238,18 @@ class HomeController extends GetxController {
     }
   }
 
+  ///[saveFav] is saving the recipe to the favorite list.
   void saveFav(int index) {
     recipiesList[index].recipe!.isFavorite.value =
         !recipiesList[index].recipe!.isFavorite.value;
     sessionService.saveFavorite(recipiesList[index].recipe!);
   }
 
-  /// Init olduğunda çalıştırılacak olan Future işlemler.
-  Future<void> ready() async {
-    try {
-      loadingStatus = LoadingStatus.loading;
-      await Future.wait([]);
-      loadingStatus = LoadingStatus.loaded;
-    } catch (e) {
-      loadingStatus = LoadingStatus.error;
-    }
-  }
-
   lazyLoad() {
     /// for lazy load
+    /// if the scroll is at the max scroll extent - 400, it will execute the [search] method.
+    /// nextPage is the next page url from the api.
+    /// nextPage can be null. Its for not sending too many request to the api and detect the if next page is exist.
     scrollController.addListener(() async {
       if (scrollController.position.maxScrollExtent - 400 <=
           scrollController.offset) {
@@ -253,12 +267,6 @@ class HomeController extends GetxController {
         } catch (_) {}
       }
     });
-  }
-
-  @override
-  Future<void> onReady() async {
-    super.onReady();
-    await ready();
   }
 
   @override

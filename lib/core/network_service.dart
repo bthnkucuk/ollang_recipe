@@ -2,13 +2,16 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 // ignore: constant_identifier_names
+
+///[HttpMethods] is a enum define http methods.
 enum HttpMethods { GET, POST }
 
-///[HttpClient] is a class that is used to make requests to the server.
+///[HttpClient] is a base class that is used to make requests to the server
 class HttpClient {
   HttpClient._();
   static final HttpClient instance = HttpClient._();
 
+  ///[request] is a method that is used to make all requests to the server.
   Future<http.Response?> request({
     required HttpMethods method,
     String baseUrl = HttpUrls.baseUrl,

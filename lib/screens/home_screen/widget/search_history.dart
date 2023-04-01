@@ -1,14 +1,19 @@
 part of '../controller/home_controller.dart';
 
+///[_SearchHistory] is the widget that shows the search history.
+///It is a overlay widget that is displayed on top of the screen.
 class _SearchHistory extends StatefulWidget {
   final Offset offset;
   final List<String> list;
   final Function(String value) onDelete;
+  final Function(String value) onTap;
+
   const _SearchHistory({
     Key? key,
     required this.offset,
     required this.list,
     required this.onDelete,
+    required this.onTap,
   }) : super(key: key);
 
   @override
@@ -124,9 +129,15 @@ class _SearchHistoryState extends State<_SearchHistory>
                               size: 20.w,
                             ),
                             SizedBox(width: 10.w),
-                            Text(
-                              widget.list[index],
-                              style: s14W600(context),
+                            GestureDetector(
+                              onTap: () async {
+                                await widget.onTap(widget.list[index]);
+                                print("object");
+                              },
+                              child: Text(
+                                widget.list[index],
+                                style: s14W600(context),
+                              ),
                             ),
                             const Spacer(),
                             GestureDetector(

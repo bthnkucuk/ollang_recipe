@@ -19,24 +19,28 @@ class SplashController extends GetxController {
   Future<void> goHome() async =>
       await Navigator.popAndPushNamed(context, Screens.home);
 
-  /// Init olduğunda çalıştırılacak olan Future işlemler.
   Future<void> ready() async {
-    // try {
-    loadingStatus = LoadingStatus.loading;
+    try {
+      loadingStatus = LoadingStatus.loading;
 
-    /// Dummy bekleme
-    Get.put(SessionServices());
+      ///[SessionServices] is a GetxController that is used to handle background processes.
+      ///its starting splash screen and running in the background.
+      Get.put(SessionServices());
 
-    Get.find<SessionServices>().recipesSearchInfo = await getSearchInfo();
-    await Future.delayed(const Duration(seconds: 1));
-    goHome();
+      ///[getSearchInfo] is getting the search info from the api. There are api request schema.
+      ///Im usig the schema to create the filters. And finde api filters.
+      Get.find<SessionServices>().recipesSearchInfo = await getSearchInfo();
+      await Future.delayed(const Duration(seconds: 1));
 
-    loadingStatus = LoadingStatus.loaded;
-    // } catch (e) {
-    //   loadingStatus = LoadingStatus.error;
+      // when background processes are done, navigate to home screen
+      goHome();
 
-    //   print(e);
-    // }
+      loadingStatus = LoadingStatus.loaded;
+    } catch (e) {
+      loadingStatus = LoadingStatus.error;
+
+      print(e);
+    }
   }
 
   Future<RecipesSearchInfoModel> getSearchInfo() async {
