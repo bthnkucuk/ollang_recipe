@@ -21,7 +21,7 @@ class _SingleFilter extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        Text(filterName, style: s18W600(context)),
+        Utf8EncodedText(filterName, style: s18W600(context)),
         SizedBox(height: 10.h),
         Wrap(
           spacing: 6.w,
@@ -36,9 +36,10 @@ class _SingleFilter extends StatelessWidget {
               shape: const StadiumBorder(),
               labelStyle: s12W300(context),
               backgroundColor: Theme.of(context).colorScheme.primary,
-              label: Text(
+              label: Utf8EncodedText(
                 chipList[index],
-                style: s12W500(context).copyWith(color: isSelected ? Colors.green : Colors.white),
+                style: s12W500(context)
+                    .copyWith(color: isSelected ? Colors.green : Colors.white),
               ),
               onSelected: (value) => onChipTap(chipList[index], filterType),
               selected: isSelected,

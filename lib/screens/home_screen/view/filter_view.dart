@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ollang_recipe/components/extensions.dart';
+import 'package:ollang_recipe/components/utf8_encoded_text.dart';
 import 'package:ollang_recipe/screens/home_screen/controller/home_controller.dart';
 import '../../../theme/text_style.dart';
 
@@ -66,11 +67,12 @@ class FilterView extends GetView<HomeController> {
             RangeSlider(
               divisions: 100,
               inactiveColor: Colors.grey,
-              labels: RangeLabels(
-                  controller.timeStart.value.round().toString(), controller.timeEnd.value.round().toString()),
+              labels: RangeLabels(controller.timeStart.value.round().toString(),
+                  controller.timeEnd.value.round().toString()),
               min: 0.0,
               max: 300.0,
-              values: RangeValues(controller.timeStart.value, controller.timeEnd.value),
+              values: RangeValues(
+                  controller.timeStart.value, controller.timeEnd.value),
               onChanged: (values) {
                 controller.timeStart(values.start);
                 controller.timeEnd(values.end);
@@ -92,7 +94,9 @@ class FilterView extends GetView<HomeController> {
                 style: s20W500(context).copyWith(color: Colors.white),
               ),
             ),
-            TextButton(onPressed: () => controller.clearFilters(), child: const Text('Clear All Filters')),
+            TextButton(
+                onPressed: () => controller.clearFilters(),
+                child: const Text('Clear All Filters')),
           ],
         ),
       ),

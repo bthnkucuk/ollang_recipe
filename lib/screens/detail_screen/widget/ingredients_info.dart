@@ -25,8 +25,8 @@ class _IngredientsInfo extends StatelessWidget {
                     )),
                 SizedBox(width: 5.w),
                 Expanded(
-                  child: Text(
-                    ingredients[index].text ?? '',
+                  child: Utf8EncodedText(
+                    ingredients[index].text,
                     style: s12W500(context),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,

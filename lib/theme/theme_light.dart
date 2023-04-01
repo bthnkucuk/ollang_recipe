@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'app_colors.dart';
 
 ThemeData lightTheme = ThemeData(
-  useMaterial3: true,
+  useMaterial3: false,
   brightness: Brightness.light,
 
   scaffoldBackgroundColor: AppColors.backgroundLight,
@@ -39,29 +39,74 @@ ThemeData lightTheme = ThemeData(
   /// where "light" is FontWeight.w300, "regular" is FontWeight.w400 and "medium" is FontWeight.w500.
   textTheme: const TextTheme(
     /// Label TextTheme
-    labelSmall: TextStyle(fontSize: 11, fontWeight: FontWeight.w500, color: AppColors.textLightTheme),
-    labelMedium: TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: AppColors.textLightTheme),
-    labelLarge: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: AppColors.textLightTheme),
+    labelSmall: TextStyle(
+        fontSize: 11,
+        fontWeight: FontWeight.w500,
+        color: AppColors.textLightTheme),
+    labelMedium: TextStyle(
+        fontSize: 12,
+        fontWeight: FontWeight.w500,
+        color: AppColors.textLightTheme),
+    labelLarge: TextStyle(
+        fontSize: 14,
+        fontWeight: FontWeight.w500,
+        color: AppColors.textLightTheme),
 
     /// Body TextTheme
-    bodySmall: TextStyle(fontSize: 12, fontWeight: FontWeight.w400, color: AppColors.textLightTheme),
-    bodyMedium: TextStyle(fontSize: 14, fontWeight: FontWeight.w400, color: AppColors.textLightTheme),
-    bodyLarge: TextStyle(fontSize: 16, fontWeight: FontWeight.w400, color: AppColors.textLightTheme),
+    bodySmall: TextStyle(
+        fontSize: 12,
+        fontWeight: FontWeight.w400,
+        color: AppColors.textLightTheme),
+    bodyMedium: TextStyle(
+        fontSize: 14,
+        fontWeight: FontWeight.w400,
+        color: AppColors.textLightTheme),
+    bodyLarge: TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.w400,
+        color: AppColors.textLightTheme),
 
     /// Title TextTheme
-    titleSmall: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: AppColors.textLightTheme),
-    titleMedium: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: AppColors.textLightTheme),
-    titleLarge: TextStyle(fontSize: 22, fontWeight: FontWeight.w500, color: AppColors.textLightTheme),
+    titleSmall: TextStyle(
+        fontSize: 14,
+        fontWeight: FontWeight.w500,
+        color: AppColors.textLightTheme),
+    titleMedium: TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.w500,
+        color: AppColors.textLightTheme),
+    titleLarge: TextStyle(
+        fontSize: 22,
+        fontWeight: FontWeight.w500,
+        color: AppColors.textLightTheme),
 
     /// Headline TextTheme
-    headlineSmall: TextStyle(fontSize: 24, fontWeight: FontWeight.w400, color: AppColors.textLightTheme),
-    headlineMedium: TextStyle(fontSize: 28, fontWeight: FontWeight.w400, color: AppColors.textLightTheme),
-    headlineLarge: TextStyle(fontSize: 32, fontWeight: FontWeight.w400, color: AppColors.textLightTheme),
+    headlineSmall: TextStyle(
+        fontSize: 24,
+        fontWeight: FontWeight.w400,
+        color: AppColors.textLightTheme),
+    headlineMedium: TextStyle(
+        fontSize: 28,
+        fontWeight: FontWeight.w400,
+        color: AppColors.textLightTheme),
+    headlineLarge: TextStyle(
+        fontSize: 32,
+        fontWeight: FontWeight.w400,
+        color: AppColors.textLightTheme),
 
     /// Display TextTheme
-    displaySmall: TextStyle(fontSize: 36, fontWeight: FontWeight.w400, color: AppColors.textLightTheme),
-    displayMedium: TextStyle(fontSize: 45, fontWeight: FontWeight.w400, color: AppColors.textLightTheme),
-    displayLarge: TextStyle(fontSize: 57, fontWeight: FontWeight.w400, color: AppColors.textLightTheme),
+    displaySmall: TextStyle(
+        fontSize: 36,
+        fontWeight: FontWeight.w400,
+        color: AppColors.textLightTheme),
+    displayMedium: TextStyle(
+        fontSize: 45,
+        fontWeight: FontWeight.w400,
+        color: AppColors.textLightTheme),
+    displayLarge: TextStyle(
+        fontSize: 57,
+        fontWeight: FontWeight.w400,
+        color: AppColors.textLightTheme),
   ),
 
   /// Button TextTheme
@@ -109,7 +154,8 @@ ThemeData lightTheme = ThemeData(
     ),
     focusedBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(10.0),
-      borderSide: BorderSide(color: AppColors.primary.withOpacity(0.5), width: 0.5),
+      borderSide:
+          BorderSide(color: AppColors.primary.withOpacity(0.5), width: 0.5),
     ),
   ),
   textSelectionTheme: const TextSelectionThemeData(
@@ -135,7 +181,8 @@ ThemeData lightTheme = ThemeData(
   outlinedButtonTheme: OutlinedButtonThemeData(
     style: ButtonStyle(
       backgroundColor: MaterialStateProperty.all<Color>(Colors.transparent),
-      side: MaterialStateProperty.all<BorderSide>(const BorderSide(color: AppColors.primary)),
+      side: MaterialStateProperty.all<BorderSide>(
+          const BorderSide(color: AppColors.primary)),
       padding: MaterialStateProperty.all<EdgeInsets>(EdgeInsets.zero),
       textStyle: MaterialStateProperty.all<TextStyle>(
         const TextStyle(

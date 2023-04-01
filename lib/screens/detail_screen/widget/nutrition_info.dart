@@ -38,7 +38,7 @@ class _NutritionInfo extends StatelessWidget {
                 ),
                 SizedBox(width: 5.w),
                 Expanded(
-                  child: Text(
+                  child: Utf8EncodedText(
                     info,
                     style: s14W500(context),
                     maxLines: 1,

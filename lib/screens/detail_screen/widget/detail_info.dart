@@ -30,9 +30,9 @@ class _DetailInfo extends StatelessWidget {
             children: [
               Expanded(
                 flex: 10,
-                child: Text(
-                  recipeName ?? '',
-                  style: s24W600(context).copyWith(fontSize: 30),
+                child: Utf8EncodedText(
+                  recipeName,
+                  style: s24W600(context),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),

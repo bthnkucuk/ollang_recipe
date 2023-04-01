@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:ollang_recipe/components/extensions.dart';
 
 import '../theme/text_style.dart';
 
@@ -18,7 +19,6 @@ class MyInputField extends StatelessWidget {
     this.controller,
     this.textInputAction,
     required this.onSubmitted,
-    this.disableBorders,
     this.leftPadding,
     this.initialValue,
     this.maxLines,
@@ -36,7 +36,6 @@ class MyInputField extends StatelessWidget {
   final Color? fillColor;
   final bool? readOnly;
   final TextEditingController? controller;
-  final bool? disableBorders;
   final double? leftPadding;
   final String? initialValue;
   final int? maxLines;
@@ -68,15 +67,16 @@ class MyInputField extends StatelessWidget {
             color:
                 Theme.of(context).textTheme.bodySmall!.color!.withOpacity(0.4)),
         suffixIcon: suffixIcon ?? const SizedBox.shrink(),
-        border: disableBorders != null
-            ? const OutlineInputBorder(borderSide: BorderSide.none)
-            : const OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(10)),
-                borderSide: BorderSide.none,
-              ),
-        enabledBorder: disableBorders != null
-            ? const OutlineInputBorder(borderSide: BorderSide.none)
-            : null,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(10.w)),
+          borderSide: BorderSide.none,
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.vertical(top: Radius.circular(10.w)),
+          borderSide: BorderSide(
+              color: Theme.of(context).colorScheme.primary.withOpacity(0.5),
+              width: 0.5),
+        ),
         contentPadding: EdgeInsets.zero,
       ),
     );

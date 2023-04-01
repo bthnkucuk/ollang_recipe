@@ -1,7 +1,12 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:get/get.dart';
+import 'package:ollang_recipe/components/extensions.dart';
 import 'package:ollang_recipe/core/models/recipes_model.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:screenshot/screenshot.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../../../core/session_services.dart';
@@ -33,6 +38,8 @@ class DetailController extends GetxController {
     Icons.local_fire_department_outlined,
     Icons.lunch_dining_outlined
   ];
+  late final ScrollController scrollController;
+  ScreenshotController screenshotController = ScreenshotController();
 
   final sessionService = Get.find<SessionServices>();
 
@@ -43,12 +50,36 @@ class DetailController extends GetxController {
 
 //for share recipe
   share() async {
-    final file = await DefaultCacheManager().getSingleFile(recipe.image!);
+    final directory = (await getApplicationDocumentsDirectory()).path;
+
+    var ss = await screenshotController.captureAndSave(directory,
+        fileName: 'scren_shot_detailaa.jpg',
+        delay: const Duration(milliseconds: 100));
 
     Share.shareXFiles(
-      [XFile(file.path)],
-      text:
-          "${recipe.label!}\n\nfor more info please check link \n\n${recipe.uri!}",
+      [XFile(ss!)],
+      text: 'Ollang Recipe',
+      subject: recipe.label!.utf8CodecEncoded,
     );
+  }
+
+  final RxDouble scrollRange = 1.0.obs;
+  _scrollListener() {
+    var offset = scrollController.offset;
+    var max = scrollController.position.maxScrollExtent;
+    scrollRange.value = (max - offset) / max;
+  }
+
+  @override
+  void onInit() {
+    super.onInit();
+    scrollController = ScrollController()..addListener(_scrollListener);
+  }
+
+  @override
+  void onClose() {
+    super.onClose();
+    scrollController.removeListener(_scrollListener);
+    scrollController.dispose();
   }
 }

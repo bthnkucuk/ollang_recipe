@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ollang_recipe/components/extensions.dart';
 import 'package:ollang_recipe/components/my_network_image.dart';
+import 'package:ollang_recipe/components/utf8_encoded_text.dart';
 import 'package:ollang_recipe/core/models/recipes_model.dart';
 import 'package:ollang_recipe/theme/text_style.dart';
 
@@ -74,8 +75,11 @@ class SingleRecipeWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(recipe.label ?? "----",
-                          maxLines: 1, overflow: TextOverflow.ellipsis),
+                      Utf8EncodedText(
+                        recipe.label,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
                       Row(
                         children: [
                           Expanded(
@@ -88,7 +92,8 @@ class SingleRecipeWidget extends StatelessWidget {
                                       Theme.of(context).colorScheme.onPrimary,
                                 ),
                                 SizedBox(width: 5.w),
-                                Text("${(recipe.calories ?? 0).floor()} Kcal",
+                                Utf8EncodedText(
+                                    "${(recipe.calories ?? 0).floor()} Kcal",
                                     style: s9W400(context))
                               ],
                             ),
@@ -103,7 +108,7 @@ class SingleRecipeWidget extends StatelessWidget {
                                       Theme.of(context).colorScheme.onPrimary,
                                 ),
                                 SizedBox(width: 5.w),
-                                Text('${recipe.totalTime} Min',
+                                Utf8EncodedText('${recipe.totalTime} Min',
                                     style: s9W400(context))
                               ],
                             ),

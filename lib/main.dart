@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ollang_recipe/components/no_glow_effect.dart';
 
 import 'components/my_media_query.dart';
 
@@ -21,6 +22,10 @@ class MyApp extends StatelessWidget {
     return MaterialAppUpdater(
       child: Builder(builder: (context) {
         return MaterialApp(
+          builder: (context, child) => ScrollConfiguration(
+            behavior: NoGlowBehavior(),
+            child: child!,
+          ),
           title: 'Ollang Recipe',
           onGenerateRoute: MyRouteGenerator.generate,
           navigatorKey: navigatorKey,

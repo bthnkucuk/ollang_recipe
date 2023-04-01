@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'app_colors.dart';
 
 ThemeData darkTheme = ThemeData(
-  useMaterial3: true,
+  useMaterial3: false,
   brightness: Brightness.dark,
   scaffoldBackgroundColor: AppColors.backgroundDark,
   primaryIconTheme: const IconThemeData(color: Colors.white),
@@ -37,29 +37,74 @@ ThemeData darkTheme = ThemeData(
   ),
   textTheme: const TextTheme(
     /// Label TextTheme
-    labelSmall: TextStyle(fontSize: 11, fontWeight: FontWeight.w500, color: AppColors.textDarkTheme),
-    labelMedium: TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: AppColors.textDarkTheme),
-    labelLarge: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: AppColors.textDarkTheme),
+    labelSmall: TextStyle(
+        fontSize: 11,
+        fontWeight: FontWeight.w500,
+        color: AppColors.textDarkTheme),
+    labelMedium: TextStyle(
+        fontSize: 12,
+        fontWeight: FontWeight.w500,
+        color: AppColors.textDarkTheme),
+    labelLarge: TextStyle(
+        fontSize: 14,
+        fontWeight: FontWeight.w500,
+        color: AppColors.textDarkTheme),
 
     /// Body TextTheme
-    bodySmall: TextStyle(fontSize: 12, fontWeight: FontWeight.w400, color: AppColors.textDarkTheme),
-    bodyMedium: TextStyle(fontSize: 14, fontWeight: FontWeight.w400, color: AppColors.textDarkTheme),
-    bodyLarge: TextStyle(fontSize: 16, fontWeight: FontWeight.w400, color: AppColors.textDarkTheme),
+    bodySmall: TextStyle(
+        fontSize: 12,
+        fontWeight: FontWeight.w400,
+        color: AppColors.textDarkTheme),
+    bodyMedium: TextStyle(
+        fontSize: 14,
+        fontWeight: FontWeight.w400,
+        color: AppColors.textDarkTheme),
+    bodyLarge: TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.w400,
+        color: AppColors.textDarkTheme),
 
     /// Title TextTheme
-    titleSmall: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: AppColors.textDarkTheme),
-    titleMedium: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: AppColors.textDarkTheme),
-    titleLarge: TextStyle(fontSize: 22, fontWeight: FontWeight.w500, color: AppColors.textDarkTheme),
+    titleSmall: TextStyle(
+        fontSize: 14,
+        fontWeight: FontWeight.w500,
+        color: AppColors.textDarkTheme),
+    titleMedium: TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.w500,
+        color: AppColors.textDarkTheme),
+    titleLarge: TextStyle(
+        fontSize: 22,
+        fontWeight: FontWeight.w500,
+        color: AppColors.textDarkTheme),
 
     /// Headline TextTheme
-    headlineSmall: TextStyle(fontSize: 24, fontWeight: FontWeight.w400, color: AppColors.textDarkTheme),
-    headlineMedium: TextStyle(fontSize: 28, fontWeight: FontWeight.w400, color: AppColors.textDarkTheme),
-    headlineLarge: TextStyle(fontSize: 32, fontWeight: FontWeight.w400, color: AppColors.textDarkTheme),
+    headlineSmall: TextStyle(
+        fontSize: 24,
+        fontWeight: FontWeight.w400,
+        color: AppColors.textDarkTheme),
+    headlineMedium: TextStyle(
+        fontSize: 28,
+        fontWeight: FontWeight.w400,
+        color: AppColors.textDarkTheme),
+    headlineLarge: TextStyle(
+        fontSize: 32,
+        fontWeight: FontWeight.w400,
+        color: AppColors.textDarkTheme),
 
     /// Display TextTheme
-    displaySmall: TextStyle(fontSize: 36, fontWeight: FontWeight.w400, color: AppColors.textDarkTheme),
-    displayMedium: TextStyle(fontSize: 45, fontWeight: FontWeight.w400, color: AppColors.textDarkTheme),
-    displayLarge: TextStyle(fontSize: 57, fontWeight: FontWeight.w400, color: AppColors.textDarkTheme),
+    displaySmall: TextStyle(
+        fontSize: 36,
+        fontWeight: FontWeight.w400,
+        color: AppColors.textDarkTheme),
+    displayMedium: TextStyle(
+        fontSize: 45,
+        fontWeight: FontWeight.w400,
+        color: AppColors.textDarkTheme),
+    displayLarge: TextStyle(
+        fontSize: 57,
+        fontWeight: FontWeight.w400,
+        color: AppColors.textDarkTheme),
   ),
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ButtonStyle(
@@ -100,7 +145,8 @@ ThemeData darkTheme = ThemeData(
     ),
     focusedBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(10.0),
-      borderSide: BorderSide(color: AppColors.primary.withOpacity(0.5), width: 0.5),
+      borderSide:
+          BorderSide(color: AppColors.primary.withOpacity(0.5), width: 0.5),
     ),
   ),
   textSelectionTheme: TextSelectionThemeData(
@@ -126,7 +172,8 @@ ThemeData darkTheme = ThemeData(
   outlinedButtonTheme: OutlinedButtonThemeData(
     style: ButtonStyle(
       backgroundColor: MaterialStateProperty.all<Color>(Colors.transparent),
-      side: MaterialStateProperty.all<BorderSide>(const BorderSide(color: AppColors.primary)),
+      side: MaterialStateProperty.all<BorderSide>(
+          const BorderSide(color: AppColors.primary)),
       padding: MaterialStateProperty.all<EdgeInsets>(EdgeInsets.zero),
       textStyle: MaterialStateProperty.all<TextStyle>(
         const TextStyle(
@@ -150,8 +197,10 @@ ThemeData darkTheme = ThemeData(
       borderRadius: BorderRadius.circular(10),
     ),
   ),
-  radioTheme: RadioThemeData(fillColor: MaterialStateProperty.all<Color>(AppColors.primary)),
-  dividerTheme: const DividerThemeData(color: AppColors.dividerDark, thickness: 1, space: 0),
+  radioTheme: RadioThemeData(
+      fillColor: MaterialStateProperty.all<Color>(AppColors.primary)),
+  dividerTheme: const DividerThemeData(
+      color: AppColors.dividerDark, thickness: 1, space: 0),
   appBarTheme: const AppBarTheme(
     titleSpacing: 0,
     elevation: 0,

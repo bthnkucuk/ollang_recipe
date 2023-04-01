@@ -59,30 +59,33 @@ class HomeView extends GetView<HomeController> {
                       children: [
                         Expanded(
                           flex: 10,
-                          child: MyInputField(
-                            controller: controller.textEditingController,
-                            focusNode: controller.focusNode,
-                            prefixIcon: const Icon(Icons.search),
-                            suffixIcon: Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 15.w),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  GestureDetector(
-                                    onTap: () => controller.findRandom(),
-                                    child: const Icon(Icons.casino_outlined),
-                                  ),
-                                  SizedBox(width: 10.w),
-                                  GestureDetector(
-                                    onTap: () => controller.filterSearch(),
-                                    child: const Icon(Icons.tune_outlined),
-                                  ),
-                                ],
+                          child: SizedBox(
+                            height: 46.h,
+                            child: MyInputField(
+                              controller: controller.textEditingController,
+                              focusNode: controller.focusNode,
+                              prefixIcon: const Icon(Icons.search),
+                              suffixIcon: Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 15.w),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    GestureDetector(
+                                      onTap: () => controller.findRandom(),
+                                      child: const Icon(Icons.casino_outlined),
+                                    ),
+                                    SizedBox(width: 10.w),
+                                    GestureDetector(
+                                      onTap: () => controller.filterSearch(),
+                                      child: const Icon(Icons.tune_outlined),
+                                    ),
+                                  ],
+                                ),
                               ),
+                              hintText: 'Find best recipes',
+                              onSubmitted: (p) => controller.search(p),
                             ),
-                            hintText: 'Find best recipes',
-                            onSubmitted: (p) => controller.search(p),
                           ),
                         ),
                       ],

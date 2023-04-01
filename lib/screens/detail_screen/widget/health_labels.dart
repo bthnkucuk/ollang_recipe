@@ -23,7 +23,7 @@ class _HealthLabels extends StatelessWidget {
 
               /// TODO renk temadan
               backgroundColor: Colors.green,
-              label: Text(
+              label: Utf8EncodedText(
                 healthLabels[index].toString(),
                 style: s12W500(context),
               ),

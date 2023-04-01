@@ -86,9 +86,9 @@ class _SearchHistoryState extends State<_SearchHistory>
           ),
         ),
         Positioned(
-          top: widget.offset.dy + 60.h,
+          top: widget.offset.dy + 46.h,
           width: MyMediaQuery.width,
-          height: (30.h * widget.list.length).toDouble(),
+          height: (40.h * widget.list.length).toDouble(),
           child: Container(
             alignment: Alignment.center,
             padding: EdgeInsets.symmetric(horizontal: 15.w),
@@ -101,7 +101,8 @@ class _SearchHistoryState extends State<_SearchHistory>
                         Theme.of(context).colorScheme.primary.withOpacity(0.5),
                     width: 0.5,
                   ),
-                  borderRadius: BorderRadius.circular(10.w),
+                  borderRadius:
+                      BorderRadius.vertical(bottom: Radius.circular(10)),
                 ),
                 color: Theme.of(context).colorScheme.primaryContainer,
                 elevation: 10,
@@ -115,7 +116,7 @@ class _SearchHistoryState extends State<_SearchHistory>
                   shrinkWrap: true,
                   itemBuilder: (BuildContext context, int index) {
                     return SizedBox(
-                      height: 30.h,
+                      height: 40.h,
                       child: Padding(
                         padding: EdgeInsets.symmetric(horizontal: 15.w),
                         child: Row(
@@ -124,15 +125,15 @@ class _SearchHistoryState extends State<_SearchHistory>
                             Icon(
                               Icons.history,
                               color: Theme.of(context).colorScheme.onPrimary,
-                              size: 20.w,
+                              size: 20,
                             ),
-                            SizedBox(width: 10.w),
+                            SizedBox(width: 15.w),
                             GestureDetector(
                               onTap: () async =>
                                   await widget.onTap(widget.list[index]),
                               child: Text(
                                 widget.list[index],
-                                style: s14W600(context),
+                                style: s16W400(context).copyWith(fontSize: 15),
                               ),
                             ),
                             const Spacer(),
