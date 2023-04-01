@@ -5,6 +5,7 @@ import 'package:ollang_recipe/core/models/recipes_model.dart';
 import 'package:ollang_recipe/core/models/recipes_search_info_model.dart';
 import 'package:ollang_recipe/core/network_service.dart';
 
+//NOT api is somettime when ask for https:// image, cant handle it, so i replace it with http://
 ///[Repository] is a class that is used to make requests to the server.
 class Repository extends Header {
   Repository._();
@@ -32,7 +33,8 @@ class Repository extends Header {
     );
 
     if (response!.statusCode == HttpStatus.ok) {
-      Recipies model = Recipies.fromJson(jsonDecode(response.body));
+      Recipies model = Recipies.fromJson(
+          jsonDecode(response.body.replaceAll('https://', 'http://')));
       return model;
     } else {
       throw Exception('Status Error');
@@ -48,7 +50,8 @@ class Repository extends Header {
         headers: createHeader());
 
     if (response!.statusCode == HttpStatus.ok) {
-      Recipies model = Recipies.fromJson(jsonDecode(response.body));
+      Recipies model = Recipies.fromJson(
+          jsonDecode(response.body.replaceAll('https://', 'http://')));
       return model;
     } else {
       throw Exception('Status Error');
@@ -64,7 +67,8 @@ class Repository extends Header {
 
     if (response!.statusCode == HttpStatus.ok) {
       RecipesSearchInfoModel model = RecipesSearchInfoModel.fromJson(
-          jsonDecode(response.body)['paths']['/api/recipes/v2']);
+          jsonDecode(response.body.replaceAll('https://', 'http://'))['paths']
+              ['/api/recipes/v2']);
       return model;
     } else {
       throw Exception('Status Error');

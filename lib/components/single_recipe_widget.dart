@@ -56,7 +56,7 @@ class SingleRecipeWidget extends StatelessWidget {
                 child: Hero(
                   tag: recipe.uri!,
                   child: MyNetworkImage(
-                    url: recipe.images!.thumbnail!.url ?? recipe.image,
+                    url: recipe.image,
                   ),
                 ),
               ),

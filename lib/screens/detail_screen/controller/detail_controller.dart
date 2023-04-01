@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:get/get.dart';
 import 'package:ollang_recipe/core/models/recipes_model.dart';
+import 'package:share_plus/share_plus.dart';
 
 import '../../../core/session_services.dart';
 
@@ -18,11 +20,7 @@ class DetailController extends GetxController {
   final scaffoldKey = GlobalKey();
   BuildContext get context => scaffoldKey.currentContext!;
 
-  late final String? image = recipe.images != null
-      ? recipe.images!.large != null
-          ? recipe.images!.large!.url
-          : recipe.image
-      : recipe.image;
+  late final String? image = recipe.image;
 
   Future<void> goBack() => Navigator.maybePop(context);
 
@@ -40,5 +38,16 @@ class DetailController extends GetxController {
   void saveFav() {
     recipe.isFavorite.value = !recipe.isFavorite.value;
     sessionService.saveFavorite(recipe);
+  }
+
+//for share recipe
+  share() async {
+    final file = await DefaultCacheManager().getSingleFile(recipe.image!);
+
+    Share.shareXFiles(
+      [XFile(file.path)],
+      text:
+          "${recipe.label!}\n\nfor more info please check link \n\n${recipe.uri!}",
+    );
   }
 }

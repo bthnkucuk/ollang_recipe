@@ -15,7 +15,7 @@ class MyNetworkImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CachedNetworkImage(
-      imageUrl: url ?? '',
+      imageUrl: url!,
       width: width,
       height: height,
       imageBuilder: (context, imageProvider) => Container(
@@ -26,7 +26,10 @@ class MyNetworkImage extends StatelessWidget {
           ),
         ),
       ),
-      placeholder: (context, url) => const CircularProgressIndicator.adaptive(),
+      placeholder: (context, url) => Container(
+          height: 30,
+          margin: const EdgeInsets.all(10),
+          child: const FittedBox(child: CircularProgressIndicator.adaptive())),
       errorWidget: (context, url, error) => const MyErrorWidget(),
     );
   }

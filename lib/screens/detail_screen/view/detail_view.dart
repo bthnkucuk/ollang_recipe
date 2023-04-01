@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:get/get.dart';
 import 'package:ollang_recipe/components/extensions.dart';
 import 'package:ollang_recipe/components/my_media_query.dart';
 import 'package:ollang_recipe/core/models/recipes_model.dart';
+import 'package:share_plus/share_plus.dart';
 import '../../../components/my_error_widget.dart';
 import '../../../components/my_network_image.dart';
 import '../../../theme/text_style.dart';
@@ -24,6 +26,14 @@ class DetailView extends GetView<DetailController> {
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
+            actions: [
+              Container(
+                margin: const EdgeInsets.only(right: 10),
+                child: IconButton(
+                    onPressed: () => controller.share(),
+                    icon: Icon(Icons.share_outlined)),
+              )
+            ],
             pinned: true,
             expandedHeight: MyMediaQuery.height * .4,
             floating: false,
