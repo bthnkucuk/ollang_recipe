@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
 import 'package:ollang_recipe/components/extensions.dart';
 import 'package:ollang_recipe/components/my_network_image.dart';

@@ -62,9 +62,7 @@ class _SearchHistoryState extends State<_SearchHistory>
     runExpand();
 
     if (widget.list != oldWidget.list) {
-      setState(() {
-        print(widget.list);
-      });
+      setState(() {});
     }
   }
 
@@ -130,10 +128,8 @@ class _SearchHistoryState extends State<_SearchHistory>
                             ),
                             SizedBox(width: 10.w),
                             GestureDetector(
-                              onTap: () async {
-                                await widget.onTap(widget.list[index]);
-                                print("object");
-                              },
+                              onTap: () async =>
+                                  await widget.onTap(widget.list[index]),
                               child: Text(
                                 widget.list[index],
                                 style: s14W600(context),
@@ -141,9 +137,8 @@ class _SearchHistoryState extends State<_SearchHistory>
                             ),
                             const Spacer(),
                             GestureDetector(
-                              onTap: () async {
-                                await widget.onDelete(widget.list[index]);
-                              },
+                              onTap: () async =>
+                                  await widget.onDelete(widget.list[index]),
                               child: Text(
                                 'Remove',
                                 style: s12W400(context).copyWith(

@@ -208,11 +208,13 @@ class Items {
       };
 }
 
+// ignore: constant_identifier_names
 enum Type { STRING, BOOLEAN, ARRAY }
 
 final typeValues = EnumValues(
     {"array": Type.ARRAY, "boolean": Type.BOOLEAN, "string": Type.STRING});
 
+// ignore: constant_identifier_names
 enum In { QUERY, HEADER }
 
 final inValues = EnumValues({"header": In.HEADER, "query": In.QUERY});

@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 // ignore: constant_identifier_names
 
 ///[HttpMethods] is a enum define http methods.
+// ignore: constant_identifier_names
 enum HttpMethods { GET, POST }
 
 ///[HttpClient] is a base class that is used to make requests to the server
@@ -44,7 +45,7 @@ class HttpClient {
           response = await _post(uri, headers, body);
           break;
       }
-    } catch (e, s) {
+    } catch (_) {
       rethrow;
     }
 

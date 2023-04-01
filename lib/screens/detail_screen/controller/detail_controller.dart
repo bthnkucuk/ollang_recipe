@@ -41,10 +41,4 @@ class DetailController extends GetxController {
     recipe.isFavorite.value = !recipe.isFavorite.value;
     sessionService.saveFavorite(recipe);
   }
-
-  @override
-  void onReady() {
-    // TODO: implement onReady
-    super.onReady();
-  }
 }

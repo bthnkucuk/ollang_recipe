@@ -35,7 +35,7 @@ class Repository extends Header {
       Recipies model = Recipies.fromJson(jsonDecode(response.body));
       return model;
     } else {
-      throw Exception("Status Error");
+      throw Exception('Status Error');
     }
   }
 
@@ -51,7 +51,7 @@ class Repository extends Header {
       Recipies model = Recipies.fromJson(jsonDecode(response.body));
       return model;
     } else {
-      throw Exception("Status Error");
+      throw Exception('Status Error');
     }
   }
 
@@ -67,7 +67,7 @@ class Repository extends Header {
           jsonDecode(response.body)['paths']['/api/recipes/v2']);
       return model;
     } else {
-      throw Exception("Status Error");
+      throw Exception('Status Error');
     }
   }
 }

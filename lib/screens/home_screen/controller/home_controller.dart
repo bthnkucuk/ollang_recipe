@@ -25,7 +25,7 @@ class HomeController extends GetxController {
   final Rx<IconData> themeIcon = Rx(Icons.light_mode_outlined);
   final scrollController = ScrollController();
 
-  final Rx<LoadingStatus> _loadingStatus = LoadingStatus.loading.obs;
+  final Rx<LoadingStatus> _loadingStatus = LoadingStatus.loaded.obs;
   LoadingStatus get loadingStatus => _loadingStatus.value;
   set loadingStatus(LoadingStatus value) => _loadingStatus.value = value;
 
@@ -120,7 +120,6 @@ class HomeController extends GetxController {
           .items!
           .itemsEnum!;
     } catch (e) {
-      print(e);
       return [];
     }
   }
@@ -128,7 +127,7 @@ class HomeController extends GetxController {
   ///[findRandom] is finding the random recipe from the api.
   ///api not executing empty query, so it is taking the random filter from the [getFilter] method.
   ///if at least one filter is selected, api will execute the query with the selected filter.
-  /// isRandom is add query parameter "random=true"
+  /// isRandom is add query parameter 'random=true'
   Future<void> findRandom() async {
     var random = getFilter(FilterTypes.mealType);
     random.shuffle();
@@ -136,7 +135,7 @@ class HomeController extends GetxController {
     try {
       loadingStatus = LoadingStatus.wait;
       var response = await Repository.instance
-          .search('', filterQuery: {'mealType': random}, isRandom: true);
+          .search('', filterQuery: {'mealType': random.first}, isRandom: true);
       loadingStatus = LoadingStatus.loaded;
       await Navigator.pushNamed(context, Screens.detail,
           arguments: response.hits!.first.recipe);
@@ -184,7 +183,7 @@ class HomeController extends GetxController {
 
   void filterSearch() {
     ModalBottomSheet.showBottomSheet(const FilterView(), context,
-        title: "Filter");
+        title: 'Filter');
   }
 
 //for clearing the filter
@@ -245,6 +244,21 @@ class HomeController extends GetxController {
     sessionService.saveFavorite(recipiesList[index].recipe!);
   }
 
+//for first open
+  firstOpenRondomRecipies() async {
+    loadingStatus = LoadingStatus.loading;
+
+    var random = getFilter(FilterTypes.mealType);
+    random.shuffle();
+
+    var response = await Repository.instance
+        .search('', filterQuery: {'mealType': random.first});
+    recipiesList.value = response.hits!;
+    nextPage = response.links!.next != null ? response.links!.next!.href : null;
+
+    loadingStatus = LoadingStatus.loaded;
+  }
+
   lazyLoad() {
     /// for lazy load
     /// if the scroll is at the max scroll extent - 400, it will execute the [search] method.
@@ -255,10 +269,11 @@ class HomeController extends GetxController {
           scrollController.offset) {
         try {
           if (nextPage != null) {
-            print("next page gelecek");
+            print('next page');
 
             Repository.instance.lazyLoadSearch(nextPage!).then((value) {
               recipiesList.addAll(value.hits!);
+
               nextPage = value.links!.next!.href;
             });
 
@@ -270,10 +285,11 @@ class HomeController extends GetxController {
   }
 
   @override
-  void onInit() {
+  void onInit() async {
     super.onInit();
     focusNode = FocusNode()..addListener(_focusListener);
     searchHistory.value = sessionService.hiveStorage.user.searchHistory;
+    await firstOpenRondomRecipies();
     lazyLoad();
   }
 

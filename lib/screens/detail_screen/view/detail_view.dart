@@ -18,7 +18,6 @@ class DetailView extends GetView<DetailController> {
 
   @override
   Widget build(BuildContext context) {
-    print(controller.recipe.recipeYield);
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.primaryContainer,
       key: controller.scaffoldKey,

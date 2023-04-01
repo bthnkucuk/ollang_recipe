@@ -6,7 +6,6 @@ import 'package:ollang_recipe/screens/home_screen/controller/home_controller.dar
 
 import '../../../core/loading_status.dart';
 import '../../../core/router.dart';
-import '../../../main.dart';
 
 class FavoriteController extends GetxController {
   LoadingStatus get loadingStatus => _loadingStatus.value;
@@ -48,7 +47,6 @@ class FavoriteController extends GetxController {
 
   @override
   void onReady() {
-    // TODO: implement onReady
     super.onReady();
 
     loadRecipes();

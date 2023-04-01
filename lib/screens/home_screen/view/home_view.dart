@@ -45,11 +45,11 @@ class HomeView extends GetView<HomeController> {
                   children: [
                     SizedBox(height: 10.h),
                     Text(
-                      "What is in your kitchen?",
+                      'What is in your kitchen?',
                       style: s20W600(context),
                     ),
                     Text(
-                      "Type some ingredients or recipeies.",
+                      'Type some ingredients or recipeies.',
                       style: s12W300(context),
                     ),
                     SizedBox(height: 10.h),
@@ -81,7 +81,7 @@ class HomeView extends GetView<HomeController> {
                                 ],
                               ),
                             ),
-                            hintText: "Find best recipes",
+                            hintText: 'Find best recipes',
                             onSubmitted: (p) => controller.search(p),
                           ),
                         ),
@@ -114,7 +114,7 @@ class HomeView extends GetView<HomeController> {
                                   // for lazy load
                                   if (index ==
                                           controller.recipiesList.length - 1 &&
-                                      controller.nextPage != null)
+                                      controller.recipiesList.length % 20 == 0)
                                     Container(
                                       height: 40.h,
                                       margin: EdgeInsets.only(bottom: 30.h),
