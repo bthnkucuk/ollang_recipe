@@ -68,7 +68,7 @@ class HomeController extends GetxController {
 
 //when the search text is focused, the history overlay will be shown.
   _focusListener() {
-    if (focusNode.hasFocus) {
+    if (focusNode.hasFocus && searchHistory.isNotEmpty) {
       showOverlay();
     } else {
       hideOverlay();
@@ -88,9 +88,9 @@ class HomeController extends GetxController {
     Offset offset = renderBox.localToGlobal(Offset.zero);
 
     overlayEntry = OverlayEntry(builder: (context) {
-      return _SearchHistory(
+      return Obx(() => _SearchHistory(
           offset: offset,
-          list: searchHistory,
+          list: searchHistory.value,
           onTap: (value) async {
             textEditingController.text = value;
             FocusScope.of(context).unfocus();
@@ -98,7 +98,7 @@ class HomeController extends GetxController {
           },
           onDelete: (value) async {
             searchHistory.value = await sessionService.deleteHistory(value);
-          });
+          }));
     });
     overlayState = Overlay.of(context);
     overlayState!.insert(overlayEntry!);

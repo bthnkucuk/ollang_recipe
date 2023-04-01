@@ -22,7 +22,8 @@ class DetailController extends GetxController {
 
   late final String? image = recipe.image;
 
-  Future<void> goBack() => Navigator.maybePop(context);
+  Future<void> goBack() => Navigator.maybePop(context)
+      .whenComplete(() => FocusScope.of(context).unfocus());
 
   late List<String> nutritionInfos = [];
 

@@ -17,7 +17,7 @@ class FavoriteView extends GetView<FavoriteController> {
       appBar: MyAppBar(
         centerTitle: 'Favorites',
         leadingIcon: Icons.arrow_back_ios_new_outlined,
-        leadingOnPressed: () => Navigator.maybePop(context),
+        leadingOnPressed: () => controller.goBack(),
       ),
       body: Obx(() {
         return Padding(
@@ -55,7 +55,7 @@ class FavoriteView extends GetView<FavoriteController> {
                   )
                 else
                   const Expanded(
-                      child: Center(child: Text("Favorite list is empty!")))
+                      child: Center(child: Text('Favorite list is empty!')))
               else
                 const Expanded(
                   child: Center(

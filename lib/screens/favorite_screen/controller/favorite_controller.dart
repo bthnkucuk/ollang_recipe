@@ -21,8 +21,12 @@ class FavoriteController extends GetxController {
 
   BuildContext get context => scaffoldKey.currentContext!;
 
-  void goDetail(Recipe recipe) => Navigator.pushNamed(context, Screens.detail,
-      arguments: recipe..isFavorite.value = true);
+  Future<void> goBack() => Navigator.maybePop(context)
+      .whenComplete(() => FocusScope.of(context).unfocus());
+
+  Future<void> goDetail(Recipe recipe) =>
+      Navigator.pushNamed(context, Screens.detail,
+          arguments: recipe..isFavorite.value = true);
 
   /// [deleteFav] is deleting the recipe from the local storage using sessionService.
   /// It also updates the [isFavorite] value of the recipe in the [homeController.recipiesList] for updating home screen.
