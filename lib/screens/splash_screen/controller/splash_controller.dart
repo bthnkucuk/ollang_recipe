@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ollang_recipe/core/session_services.dart';
+import 'package:ollang_recipe/screens/home_screen/controller/home_controller.dart';
 
 import '../../../core/loading_status.dart';
 import '../../../core/models/recipes_search_info_model.dart';
@@ -30,7 +31,7 @@ class SplashController extends GetxController {
       ///[getSearchInfo] is getting the search info from the api. There are api request schema.
       ///Im usig the schema to create the filters. And finde api filters.
       Get.find<SessionServices>().recipesSearchInfo = await getSearchInfo();
-      await Future.delayed(const Duration(seconds: 1));
+      await Future.delayed(const Duration(seconds: 2));
 
       // when background processes are done, navigate to home screen
       goHome();

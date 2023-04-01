@@ -7,7 +7,7 @@ import 'package:ollang_recipe/screens/splash_screen/splash_screen.dart';
 
 ///[Screens] is a class that contains all the routes of the application
 class Screens {
-  static const String splash = '/splash';
+  static const String splash = '/';
   static const String home = '/home';
   static const String favorite = '/favorite';
   static const String detail = '/detail';
@@ -17,6 +17,9 @@ class Screens {
 ///[MyRouteGenerator] is a class that generate route based on [Screens] class.
 class MyRouteGenerator {
   static Route<dynamic>? generate(RouteSettings routeSettings) {
+    if (routeSettings.name == null) {
+      return MaterialPageRoute(builder: (_) => const HomeScreen());
+    }
     switch (routeSettings.name) {
       case Screens.home:
         return MaterialPageRoute(builder: (_) => const HomeScreen());

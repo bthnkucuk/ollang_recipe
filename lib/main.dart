@@ -22,7 +22,6 @@ class MyApp extends StatelessWidget {
       child: Builder(builder: (context) {
         return MaterialApp(
           title: 'Ollang Recipe',
-          initialRoute: Screens.splash,
           onGenerateRoute: MyRouteGenerator.generate,
           navigatorKey: navigatorKey,
           theme: lightTheme,

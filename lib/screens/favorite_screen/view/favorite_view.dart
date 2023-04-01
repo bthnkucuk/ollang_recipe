@@ -54,7 +54,8 @@ class FavoriteView extends GetView<FavoriteController> {
                     ),
                   )
                 else
-                  const Expanded(child: Center(child: Text("Nothing found!")))
+                  const Expanded(
+                      child: Center(child: Text("Favorite list is empty!")))
               else
                 const Expanded(
                   child: Center(

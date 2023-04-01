@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import 'package:ollang_recipe/components/my_media_query.dart';
 import 'package:ollang_recipe/screens/splash_screen/controller/splash_controller.dart';
 import 'package:ollang_recipe/theme/text_style.dart';
@@ -13,35 +14,37 @@ class SplashView extends GetView<SplashController> {
         key: controller.scaffoldKey,
         body: Stack(
           children: [
-            Image.asset(
-              'assets/splash1.jpeg',
-              height: MyMediaQuery.height,
-              width: MyMediaQuery.width,
-              fit: BoxFit.cover,
-              color: Colors.black.withOpacity(0.4),
-              colorBlendMode: BlendMode.colorBurn,
-            ),
             Center(
-              child: Container(
-                height: MyMediaQuery.width / 1.8,
-                width: MyMediaQuery.width / 1.8,
-                decoration: BoxDecoration(
-                    border: Border.all(color: Colors.white, width: 7),
-                    shape: BoxShape.circle,
-                    image: const DecorationImage(
-                        image: AssetImage('assets/splash2.jpeg'),
-                        fit: BoxFit.cover)),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const SizedBox(height: 100),
+                  Lottie.asset(
+                    'assets/splash_animation_recipe.json',
+                    width: 200,
+                    height: 200,
+                  ),
+                  Container(
+                    alignment: Alignment.topCenter,
+                    height: 100,
+                    child: CircularProgressIndicator.adaptive(),
+                  ),
+                ],
               ),
             ),
-            Container(
-              margin: EdgeInsets.only(bottom: (MyMediaQuery.width / 1.2)),
-              alignment: Alignment.center,
-              child: Text(
-                'Ollang Recipe',
-                style: s20W400(context)
-                    .copyWith(color: Colors.white, fontSize: 40),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Container(
+                alignment: Alignment.bottomCenter,
+                margin: EdgeInsets.only(bottom: MyMediaQuery.padding.bottom),
+                width: MyMediaQuery.width,
+                height: 200,
+                child: Text(
+                  'Ollang Recipe',
+                  style: s24W500(context).copyWith(fontSize: 24),
+                ),
               ),
-            )
+            ),
           ],
         ));
   }
