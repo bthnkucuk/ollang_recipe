@@ -13,6 +13,7 @@ class FavoriteView extends GetView<FavoriteController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: controller.scaffoldKey,
       appBar: MyAppBar(
         centerTitle: 'Favorites',
         leadingIcon: Icons.arrow_back_ios_new_outlined,
@@ -34,10 +35,17 @@ class FavoriteView extends GetView<FavoriteController> {
                         return Column(
                           children: [
                             if (index == 0) SizedBox(height: 20.h),
-                            SingleRecipeWidget(
-                              onDelete: () => controller.deleteFav(controller.recipiesList[index]),
-                              isDismissible: true,
-                              recipe: controller.recipiesList[index],
+                            GestureDetector(
+                              onTap: () {
+                                controller
+                                    .goDetail(controller.recipiesList[index]);
+                              },
+                              child: SingleRecipeWidget(
+                                onDelete: () => controller
+                                    .deleteFav(controller.recipiesList[index]),
+                                isDismissible: true,
+                                recipe: controller.recipiesList[index],
+                              ),
                             ),
                             SizedBox(height: 10.h)
                           ],

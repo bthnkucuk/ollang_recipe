@@ -21,15 +21,19 @@ class RecipeAdapter extends TypeAdapter<Recipe> {
       label: fields[1] as String?,
       image: fields[2] as String?,
       images: fields[3] as Images?,
-      calories: fields[4] as num?,
-      totalTime: fields[5] as num?,
+      recipeYield: fields[4] as double?,
+      healthLabels: (fields[5] as List?)?.cast<String?>(),
+      ingredients: (fields[6] as List?)?.cast<Ingredient>(),
+      calories: fields[7] as num?,
+      totalTime: fields[8] as num?,
+      totalNutrients: (fields[9] as Map?)?.cast<String, Total>(),
     );
   }
 
   @override
   void write(BinaryWriter writer, Recipe obj) {
     writer
-      ..writeByte(6)
+      ..writeByte(10)
       ..writeByte(0)
       ..write(obj.uri)
       ..writeByte(1)
@@ -39,9 +43,17 @@ class RecipeAdapter extends TypeAdapter<Recipe> {
       ..writeByte(3)
       ..write(obj.images)
       ..writeByte(4)
-      ..write(obj.calories)
+      ..write(obj.recipeYield)
       ..writeByte(5)
-      ..write(obj.totalTime);
+      ..write(obj.healthLabels)
+      ..writeByte(6)
+      ..write(obj.ingredients)
+      ..writeByte(7)
+      ..write(obj.calories)
+      ..writeByte(8)
+      ..write(obj.totalTime)
+      ..writeByte(9)
+      ..write(obj.totalNutrients);
   }
 
   @override
@@ -119,6 +131,80 @@ class LargeAdapter extends TypeAdapter<Large> {
   bool operator ==(Object other) =>
       identical(this, other) ||
       other is LargeAdapter &&
+          runtimeType == other.runtimeType &&
+          typeId == other.typeId;
+}
+
+class IngredientAdapter extends TypeAdapter<Ingredient> {
+  @override
+  final int typeId = 5;
+
+  @override
+  Ingredient read(BinaryReader reader) {
+    final numOfFields = reader.readByte();
+    final fields = <int, dynamic>{
+      for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
+    };
+    return Ingredient(
+      text: fields[0] as String?,
+      image: fields[1] as String?,
+    );
+  }
+
+  @override
+  void write(BinaryWriter writer, Ingredient obj) {
+    writer
+      ..writeByte(2)
+      ..writeByte(0)
+      ..write(obj.text)
+      ..writeByte(1)
+      ..write(obj.image);
+  }
+
+  @override
+  int get hashCode => typeId.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is IngredientAdapter &&
+          runtimeType == other.runtimeType &&
+          typeId == other.typeId;
+}
+
+class TotalAdapter extends TypeAdapter<Total> {
+  @override
+  final int typeId = 4;
+
+  @override
+  Total read(BinaryReader reader) {
+    final numOfFields = reader.readByte();
+    final fields = <int, dynamic>{
+      for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
+    };
+    return Total(
+      label: fields[0] as String?,
+      quantity: fields[1] as num?,
+    );
+  }
+
+  @override
+  void write(BinaryWriter writer, Total obj) {
+    writer
+      ..writeByte(2)
+      ..writeByte(0)
+      ..write(obj.label)
+      ..writeByte(1)
+      ..write(obj.quantity);
+  }
+
+  @override
+  int get hashCode => typeId.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is TotalAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

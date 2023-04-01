@@ -38,7 +38,8 @@ class SplashView extends GetView<SplashController> {
               alignment: Alignment.center,
               child: Text(
                 'Ollang Recipe',
-                style: s40W400(context).copyWith(color: Colors.white),
+                style: s20W400(context)
+                    .copyWith(color: Colors.white, fontSize: 40),
               ),
             )
           ],

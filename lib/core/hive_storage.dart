@@ -25,8 +25,16 @@ class HiveStorage {
     if (!Hive.isAdapterRegistered(3)) {
       Hive.registerAdapter(LargeAdapter());
     }
-
-    _box = await Hive.openBox<User>('storage');
+    if (!Hive.isAdapterRegistered(4)) {
+      Hive.registerAdapter(TotalAdapter());
+    }
+    if (!Hive.isAdapterRegistered(4)) {
+      Hive.registerAdapter(TotalAdapter());
+    }
+    if (!Hive.isAdapterRegistered(5)) {
+      Hive.registerAdapter(IngredientAdapter());
+    }
+    _box = await Hive.openBox<User>('user_box');
 
     if (_box.get("user") == null) {
       await _box.put(
@@ -38,6 +46,6 @@ class HiveStorage {
 
     user = _box.get("user")!;
 
-    //_box.clear();
+    //  _box.clear();
   }
 }

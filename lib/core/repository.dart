@@ -11,17 +11,22 @@ class Repository extends Header {
   static final Repository instance = Repository._();
 
   ///[search] is a method that is used to search for recipes.
-  Future<Recipies> search(String searchQuery) async {
+  Future<Recipies> search(String searchQuery,
+      {Map<String, dynamic> filterQuery = const {},
+      bool isRandom = false}) async {
     var response = await HttpClient.instance.request(
-        method: HttpMethods.GET,
-        path: HttpUrls.searchUrl,
-        queryParameters: {
-          'app_id': 'd615a47c',
-          'app_key': 'c9bbabb534a1b0e8e23b0851b8c80ecb',
-          'type': 'public',
-          'q': searchQuery
-        },
-        headers: createHeader());
+      method: HttpMethods.GET,
+      path: HttpUrls.searchUrl,
+      queryParameters: {
+        'app_id': 'd615a47c',
+        'app_key': 'c9bbabb534a1b0e8e23b0851b8c80ecb',
+        'type': 'public',
+        'q': searchQuery,
+        'random': isRandom.toString(),
+        ...filterQuery
+      },
+      headers: createHeader(),
+    );
 
     if (response!.statusCode == HttpStatus.ok) {
       Recipies model = Recipies.fromJson(jsonDecode(response.body));

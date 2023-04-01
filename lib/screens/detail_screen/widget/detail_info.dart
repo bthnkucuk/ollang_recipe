@@ -31,7 +31,7 @@ class _DetailInfo extends StatelessWidget {
               Expanded(
                 flex: 10,
                 child: Text(
-                  recipeName ?? "----",
+                  recipeName ?? '',
                   style: s24W600(context).copyWith(fontSize: 30),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
@@ -40,22 +40,18 @@ class _DetailInfo extends StatelessWidget {
               const Spacer(),
               Expanded(
                 flex: 1,
-                child: GestureDetector(
-
-                    /// TODO: fava kaydet.
-                    onTap: null,
-                    child: IconButton(
-                        padding: EdgeInsets.zero,
-                        onPressed: onFavoritePressed,
-                        icon: Obx(
-                          () => Icon(
-                            isFavorite!.value == false
-                                ? Icons.favorite_border_sharp
-                                : Icons.favorite,
-                            color: Theme.of(context).colorScheme.onPrimary,
-                            size: 30.w,
-                          ),
-                        ))),
+                child: Obx(
+                  () => GestureDetector(
+                    onTap: onFavoritePressed,
+                    child: Icon(
+                      isFavorite!.value == false
+                          ? Icons.favorite_border_sharp
+                          : Icons.favorite,
+                      color: Theme.of(context).colorScheme.onPrimary,
+                      size: 30.w,
+                    ),
+                  ),
+                ),
               )
             ],
           ),

@@ -1,9 +1,12 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ollang_recipe/core/models/recipes_model.dart';
 import 'package:ollang_recipe/core/session_services.dart';
 import 'package:ollang_recipe/screens/home_screen/controller/home_controller.dart';
 
 import '../../../core/loading_status.dart';
+import '../../../core/router.dart';
+import '../../../main.dart';
 
 class FavoriteController extends GetxController {
   LoadingStatus get loadingStatus => _loadingStatus.value;
@@ -15,17 +18,27 @@ class FavoriteController extends GetxController {
 
   final RxList<Recipe> recipiesList = <Recipe>[].obs;
 
+  final scaffoldKey = GlobalKey();
+
+  BuildContext get context => scaffoldKey.currentContext!;
+
+  void goDetail(Recipe recipe) => Navigator.pushNamed(context, Screens.detail,
+      arguments: recipe..isFavorite.value = true);
+
   deleteFav(Recipe recipe) {
     sessionService.deleteFavorite(recipe);
     homeController.recipiesList
-        .firstWhere((element) => element.recipe!.label == recipe.label && element.recipe!.uri == recipe.uri)
+        .firstWhere((element) =>
+            element.recipe!.label == recipe.label &&
+            element.recipe!.uri == recipe.uri)
         .recipe!
         .isFavorite
         .value = false;
   }
 
   loadRecipes() {
-    recipiesList.value = sessionService.hiveStorage.user.favorites.reversed.toList();
+    recipiesList.value =
+        sessionService.hiveStorage.user.favorites.reversed.toList();
 
     loadingStatus = LoadingStatus.loaded;
   }

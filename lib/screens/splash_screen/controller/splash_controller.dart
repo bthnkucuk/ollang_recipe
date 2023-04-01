@@ -5,7 +5,7 @@ import 'package:ollang_recipe/core/session_services.dart';
 import '../../../core/loading_status.dart';
 import '../../../core/models/recipes_search_info_model.dart';
 import '../../../core/repository.dart';
-import '../../../main.dart';
+import '../../../core/router.dart';
 
 class SplashController extends GetxController {
   final scaffoldKey = GlobalKey();

@@ -4,6 +4,7 @@ import 'package:ollang_recipe/components/extensions.dart';
 import 'package:ollang_recipe/components/my_media_query.dart';
 import 'package:ollang_recipe/core/models/recipes_model.dart';
 import '../../../components/my_error_widget.dart';
+import '../../../components/my_network_image.dart';
 import '../../../theme/text_style.dart';
 import '../controller/detail_controller.dart';
 
@@ -17,6 +18,7 @@ class DetailView extends GetView<DetailController> {
 
   @override
   Widget build(BuildContext context) {
+    print(controller.recipe.recipeYield);
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.primaryContainer,
       key: controller.scaffoldKey,
@@ -35,14 +37,7 @@ class DetailView extends GetView<DetailController> {
               background: controller.image != null
                   ? Hero(
                       tag: controller.recipe.uri!,
-
-                      /// TODO. komponen
-                      child: Image.network(
-                        controller.image!,
-                        fit: BoxFit.fill,
-                        errorBuilder: (context, error, stackTrace) =>
-                            const MyErrorWidget(),
-                      ),
+                      child: MyNetworkImage(url: controller.image),
                     )
                   : const SizedBox(),
               collapseMode: CollapseMode.parallax,
@@ -115,7 +110,7 @@ class DetailView extends GetView<DetailController> {
               ),
             ),
           SliverToBoxAdapter(
-              child: SizedBox(height: MyMediaQuery.padding.bottom * 2)),
+              child: SizedBox(height: MyMediaQuery.padding.bottom * 3)),
         ],
       ),
     );

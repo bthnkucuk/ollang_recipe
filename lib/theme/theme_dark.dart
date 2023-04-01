@@ -64,7 +64,7 @@ ThemeData darkTheme = ThemeData(
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ButtonStyle(
       elevation: MaterialStateProperty.all(0),
-      backgroundColor: MaterialStateProperty.all<Color>(AppColors.green),
+      backgroundColor: MaterialStateProperty.all<Color>(AppColors.primary),
       textStyle: MaterialStateProperty.all<TextStyle>(
         const TextStyle(
           color: Colors.white,

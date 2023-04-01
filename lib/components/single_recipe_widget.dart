@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
 import 'package:ollang_recipe/components/extensions.dart';
+import 'package:ollang_recipe/components/my_network_image.dart';
 import 'package:ollang_recipe/core/models/recipes_model.dart';
 import 'package:ollang_recipe/theme/text_style.dart';
 
@@ -58,9 +59,8 @@ class SingleRecipeWidget extends StatelessWidget {
                 aspectRatio: 90 / 75,
                 child: Hero(
                   tag: recipe.uri!,
-                  child: Image.network(
-                    recipe.images!.thumbnail!.url ?? recipe.image!,
-                    fit: BoxFit.cover,
+                  child: MyNetworkImage(
+                    url: recipe.images!.thumbnail!.url ?? recipe.image,
                   ),
                 ),
               ),

@@ -143,20 +143,24 @@ class Recipe {
   String? source;
   String? url;
   String? shareAs;
-  num? recipeYield;
+  @HiveField(4)
+  double? recipeYield;
   List<DietLabel?>? dietLabels;
+  @HiveField(5)
   List<String?>? healthLabels;
   List<Caution?>? cautions;
   List<String>? ingredientLines;
+  @HiveField(6)
   List<Ingredient>? ingredients;
-  @HiveField(4)
+  @HiveField(7)
   num? calories;
   num? totalWeight;
-  @HiveField(5)
+  @HiveField(8)
   num? totalTime;
   List<String>? cuisineType;
   List<MealType?>? mealType;
   List<DishType?>? dishType;
+  @HiveField(9)
   Map<String, Total>? totalNutrients;
   Map<String, Total>? totalDaily;
   List<Digest?>? digest;
@@ -170,7 +174,7 @@ class Recipe {
         source: json["source"],
         url: json["url"],
         shareAs: json["shareAs"],
-        recipeYield: json["yield"],
+        recipeYield: double.tryParse(json["yield"].toString()),
         dietLabels: json["dietLabels"] == null
             ? []
             : List<DietLabel?>.from(
@@ -426,6 +430,7 @@ class Large {
       };
 }
 
+@HiveType(typeId: 5)
 class Ingredient {
   Ingredient({
     this.text,
@@ -438,6 +443,7 @@ class Ingredient {
     this.image,
   });
 
+  @HiveField(0)
   String? text;
   num? quantity;
   String? measure;
@@ -445,6 +451,7 @@ class Ingredient {
   num? weight;
   String? foodCategory;
   String? foodId;
+  @HiveField(1)
   String? image;
 
   factory Ingredient.fromJson(Map<String, dynamic> json) => Ingredient(
@@ -474,6 +481,7 @@ enum MealType { LUNCH_DINNER }
 
 final mealTypeValues = EnumValues({"lunch/dinner": MealType.LUNCH_DINNER});
 
+@HiveType(typeId: 4)
 class Total {
   Total({
     this.label,
@@ -481,7 +489,9 @@ class Total {
     this.unit,
   });
 
+  @HiveField(0)
   String? label;
+  @HiveField(1)
   num? quantity;
   Unit? unit;
 

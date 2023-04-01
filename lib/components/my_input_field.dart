@@ -46,8 +46,9 @@ class MyInputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      autofocus: false,
       minLines: maxLines,
-      maxLines: maxLines,
+      maxLines: 1,
       textAlignVertical: TextAlignVertical.center,
       controller: controller,
       textInputAction: textInputAction ?? TextInputAction.search,
@@ -63,7 +64,9 @@ class MyInputField extends StatelessWidget {
         errorMaxLines: 5,
         fillColor: fillColor,
         hintText: hintText,
-        hintStyle: s14W400(context).copyWith(color: Colors.grey.shade600),
+        hintStyle: s14W400(context).copyWith(
+            color:
+                Theme.of(context).textTheme.bodySmall!.color!.withOpacity(0.4)),
         suffixIcon: suffixIcon ?? const SizedBox.shrink(),
         border: disableBorders != null
             ? const OutlineInputBorder(borderSide: BorderSide.none)
@@ -71,12 +74,10 @@ class MyInputField extends StatelessWidget {
                 borderRadius: BorderRadius.all(Radius.circular(10)),
                 borderSide: BorderSide.none,
               ),
-        enabledBorder: disableBorders != null ? const OutlineInputBorder(borderSide: BorderSide.none) : null,
-        contentPadding: EdgeInsets.only(
-          top: verticalPadding ?? 0,
-          bottom: verticalPadding ?? 0,
-          left: leftPadding ?? 15,
-        ),
+        enabledBorder: disableBorders != null
+            ? const OutlineInputBorder(borderSide: BorderSide.none)
+            : null,
+        contentPadding: EdgeInsets.zero,
       ),
     );
   }

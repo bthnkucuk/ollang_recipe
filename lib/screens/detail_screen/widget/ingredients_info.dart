@@ -17,18 +17,14 @@ class _IngredientsInfo extends StatelessWidget {
             child: Row(
               children: [
                 ClipRRect(
-                  borderRadius: BorderRadius.circular(10.w),
-                  child: ingredients[index].image != null
-                      ? Image.network(
-                          ingredients[index].image!,
-                          height: 40.w,
-                          width: 40.w,
-                        )
-                      : const SizedBox(),
-                ),
+                    borderRadius: BorderRadius.circular(10.w),
+                    child: MyNetworkImage(
+                      url: ingredients[index].image,
+                      height: 40.w,
+                      width: 40.w,
+                    )),
                 SizedBox(width: 5.w),
                 Expanded(
-                  //TODO: komponent
                   child: Text(
                     ingredients[index].text ?? '',
                     style: s12W500(context),

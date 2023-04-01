@@ -20,10 +20,8 @@ mixin ModalBottomSheet {
       isScrollControlled: true,
       builder: (BuildContext context) {
         return SizedBox(
-          height: MyMediaQuery.height * 0.6,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
+          height: MyMediaQuery.height * 0.7,
+          child: ListView(
             children: [
               Padding(
                 padding: EdgeInsets.only(top: 10.h),
@@ -37,7 +35,7 @@ mixin ModalBottomSheet {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text(title, style: s20W600(context).copyWith(color: Theme.of(context).colorScheme.primary)),
+                          Text(title, style: s24W600(context)),
                         ],
                       ),
                     ],

@@ -8,7 +8,7 @@ class SessionServices extends GetxController {
   HiveStorage hiveStorage = HiveStorage();
   RecipesSearchInfoModel recipesSearchInfo = RecipesSearchInfoModel();
 
-  saveFavorite(Recipe recipe) async {
+  Future<void> saveFavorite(Recipe recipe) async {
     if (hiveStorage.user.favorites.firstWhereOrNull((element) =>
             element.label == recipe.label && element.uri == recipe.uri) ==
         null) {
@@ -20,9 +20,33 @@ class SessionServices extends GetxController {
     }
   }
 
-  deleteFavorite(Recipe recipe) async {
+  Future<void> deleteFavorite(Recipe recipe) async {
     hiveStorage.user.favorites
         .removeWhere((element) => element.label == recipe.label);
     await hiveStorage.user.save();
+  }
+
+  Future<List<String>> saveHistory(String key) async {
+    await deleteHistory(key);
+
+    hiveStorage.user.searchHistory.add(key);
+    await hiveStorage.user.save();
+
+    var reversedList = hiveStorage.user.searchHistory.reversed.toList();
+
+    if (reversedList.length > 10) {
+      reversedList = reversedList.getRange(0, 10).toList();
+    }
+
+    return reversedList;
+  }
+
+  Future<List<String>> deleteHistory(String key) async {
+    hiveStorage.user.searchHistory.removeWhere((element) => element == key);
+    await hiveStorage.user.save();
+
+    var reversedList = hiveStorage.user.searchHistory.reversed.toList();
+
+    return reversedList;
   }
 }
