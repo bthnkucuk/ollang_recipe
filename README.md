@@ -17,7 +17,7 @@ Flutter recipe search app using Edamam api.
 
 ## Design on Figma
 
-https://www.figma.com/file/ZvRMhOkxXv3AnvYFIJrQiH/Ollang-Case-Design?node-id=0%3A1&t=ofKfTfgznI8hOlNk-1
+[![Watch the video](./screenshots/figma_pre.png)](https://www.figma.com/file/ZvRMhOkxXv3AnvYFIJrQiH/Ollang-Case-Design?node-id=0%3A1&t=ofKfTfgznI8hOlNk-1)
 
 ## Youtube Video
 
@@ -50,7 +50,7 @@ https://www.figma.com/file/ZvRMhOkxXv3AnvYFIJrQiH/Ollang-Case-Design?node-id=0%3
 
 ## Used Packages and Versions
 
-**Packages:** get, hive, hive_flutter, http, lottie, cached_network_image, share_plus, flutter_cache_manager
+**Packages:** get, hive, hive_flutter, http, lottie, cached_network_image, share_plus, flutter_cache_manager, screenshot
 
 **Dart Version:** 2.19.6
 

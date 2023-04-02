@@ -22,6 +22,7 @@ class DetailView extends GetView<DetailController> {
   @override
   Widget build(BuildContext context) {
     return Screenshot(
+      key: UniqueKey(),
       controller: controller.screenshotController,
       child: Scaffold(
         backgroundColor: Theme.of(context).colorScheme.primaryContainer,

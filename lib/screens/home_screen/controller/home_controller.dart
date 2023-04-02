@@ -131,20 +131,22 @@ class HomeController extends GetxController {
   ///if at least one filter is selected, api will execute the query with the selected filter.
   /// isRandom is add query parameter 'random=true'
   Future<void> findRandom() async {
-    var random = getFilter(FilterTypes.mealType);
-    random.shuffle();
+    if (loadingStatus != LoadingStatus.wait) {
+      var random = getFilter(FilterTypes.health);
+      random.shuffle();
 
-    try {
-      loadingStatus = LoadingStatus.wait;
-      var response = await Repository.instance
-          .search('', filterQuery: {'mealType': random.first}, isRandom: true);
-      loadingStatus = LoadingStatus.loaded;
-      if (context.mounted)
-        await Navigator.pushNamed(context, Screens.detail,
-            arguments: response.hits!.first.recipe);
-    } catch (e) {
-      debugPrint(e.toString());
-      loadingStatus = LoadingStatus.error;
+      try {
+        loadingStatus = LoadingStatus.wait;
+        var response = await Repository.instance
+            .search('', filterQuery: {'health': random.first}, isRandom: true);
+        loadingStatus = LoadingStatus.loaded;
+        if (context.mounted)
+          await Navigator.pushNamed(context, Screens.detail,
+              arguments: response.hits!.first.recipe);
+      } catch (e) {
+        debugPrint(e.toString());
+        loadingStatus = LoadingStatus.error;
+      }
     }
   }
 

@@ -37,7 +37,7 @@ class SplashView extends GetView<SplashController> {
               alignment: Alignment.bottomCenter,
               child: Container(
                 alignment: Alignment.bottomCenter,
-                margin: EdgeInsets.only(bottom: MyMediaQuery.padding.bottom),
+                margin: const EdgeInsets.only(bottom: 100),
                 width: MyMediaQuery.width,
                 height: 200,
                 child: Text(
