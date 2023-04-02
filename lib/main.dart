@@ -17,6 +17,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //intialize the screen size
     MyMediaQuery.setScreenSize();
 
     return MaterialAppUpdater(

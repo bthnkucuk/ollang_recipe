@@ -93,32 +93,32 @@ class HomeView extends GetView<HomeController> {
                     ),
                     SizedBox(height: 10.h),
                     if (controller.loadingStatus == LoadingStatus.loaded)
-                      if (controller.recipiesList.isNotEmpty)
+                      if (controller.recipesList.isNotEmpty)
                         Expanded(
                           child: ListView.builder(
                             controller: controller.scrollController,
                             shrinkWrap: true,
-                            itemCount: controller.recipiesList.length,
+                            itemCount: controller.recipesList.length,
                             itemBuilder: (BuildContext context, int index) {
                               return Column(
                                 children: [
                                   if (index == 0) SizedBox(height: 20.h),
                                   GestureDetector(
                                     onTap: () => controller.goDetail(
-                                        controller.recipiesList[index].recipe!),
+                                        controller.recipesList[index].recipe!),
                                     child: SingleRecipeWidget(
                                       onFavIconTap: () =>
                                           controller.saveFav(index),
-                                      recipe: controller
-                                          .recipiesList[index].recipe!,
+                                      recipe:
+                                          controller.recipesList[index].recipe!,
                                     ),
                                   ),
                                   SizedBox(height: 10.h),
 
                                   // for lazy load
                                   if (index ==
-                                          controller.recipiesList.length - 1 &&
-                                      controller.recipiesList.length % 20 == 0)
+                                          controller.recipesList.length - 1 &&
+                                      controller.recipesList.length % 20 == 0)
                                     Container(
                                       height: 40.h,
                                       margin: EdgeInsets.only(bottom: 30.h),

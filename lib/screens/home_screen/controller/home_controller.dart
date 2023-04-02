@@ -23,13 +23,13 @@ class HomeController extends GetxController {
   final textEditingController = TextEditingController();
   final RxString appBarTitle = 'Ollang Recipe'.obs;
   final Rx<IconData> themeIcon = Rx(Icons.light_mode_outlined);
-  final scrollController = ScrollController();
+  late final ScrollController scrollController;
 
   final Rx<LoadingStatus> _loadingStatus = LoadingStatus.loaded.obs;
   LoadingStatus get loadingStatus => _loadingStatus.value;
   set loadingStatus(LoadingStatus value) => _loadingStatus.value = value;
 
-  final RxList<Hit> recipiesList = <Hit>[].obs;
+  final RxList<Hit> recipesList = <Hit>[].obs;
   String? nextPage;
 
   //For fitering the recipes
@@ -58,7 +58,8 @@ class HomeController extends GetxController {
     }
 
     if (timeStart.value != 0 || timeEnd.value != 300) {
-      filterForQuery['time'] = '${timeStart.value.toInt()}-${timeEnd.value.toInt()}';
+      filterForQuery['time'] =
+          '${timeStart.value.toInt()}-${timeEnd.value.toInt()}';
     }
 
     search(textEditingController.text);
@@ -66,7 +67,7 @@ class HomeController extends GetxController {
   }
 
 //when the search text is focused, the history overlay will be shown.
-  _focusListener() {
+  void _focusListener() {
     if (focusNode.hasFocus && searchHistory.isNotEmpty) {
       showOverlay();
     } else {
@@ -81,8 +82,10 @@ class HomeController extends GetxController {
   OverlayEntry? overlayEntry;
   OverlayState? overlayState;
 
+//for showing the search history overlay
   void showOverlay() {
-    RenderBox renderBox = overlayDimensionKey.currentContext!.findRenderObject() as RenderBox;
+    RenderBox renderBox =
+        overlayDimensionKey.currentContext!.findRenderObject() as RenderBox;
     Offset offset = renderBox.localToGlobal(Offset.zero);
 
     overlayEntry = OverlayEntry(builder: (context) {
@@ -113,7 +116,8 @@ class HomeController extends GetxController {
   ///ist taking filters from [RecipesSearchInfoModel] the model is getting from the api in splash screen.
   List<String> getFilter(FilterTypes type) {
     try {
-      return sessionService.recipesSearchInfo.recipesSearchInfoModelGet!.parameters!
+      return sessionService
+          .recipesSearchInfo.recipesSearchInfoModelGet!.parameters!
           .firstWhere((element) => element.name == type.name)
           .items!
           .itemsEnum!;
@@ -132,9 +136,12 @@ class HomeController extends GetxController {
 
     try {
       loadingStatus = LoadingStatus.wait;
-      var response = await Repository.instance.search('', filterQuery: {'mealType': random.first}, isRandom: true);
+      var response = await Repository.instance
+          .search('', filterQuery: {'mealType': random.first}, isRandom: true);
       loadingStatus = LoadingStatus.loaded;
-      if (context.mounted) await Navigator.pushNamed(context, Screens.detail, arguments: response.hits!.first.recipe);
+      if (context.mounted)
+        await Navigator.pushNamed(context, Screens.detail,
+            arguments: response.hits!.first.recipe);
     } catch (e) {
       debugPrint(e.toString());
       loadingStatus = LoadingStatus.error;
@@ -172,11 +179,14 @@ class HomeController extends GetxController {
 
 //for changing the theme
   void changeTheme() => MaterialAppInheritedWidget.of(context).changeTheme();
-  Future<void> goFavorite() async => await Navigator.pushNamed(context, Screens.favorite);
-  void goDetail(Recipe recipe) => Navigator.pushNamed(context, Screens.detail, arguments: recipe);
+  Future<void> goFavorite() async =>
+      await Navigator.pushNamed(context, Screens.favorite);
+  void goDetail(Recipe recipe) =>
+      Navigator.pushNamed(context, Screens.detail, arguments: recipe);
 
   void filterSearch() {
-    ModalBottomSheet.showBottomSheet(const FilterView(), context, title: 'Filter');
+    ModalBottomSheet.showBottomSheet(const FilterView(), context,
+        title: 'Filter');
   }
 
 //for clearing the filter
@@ -203,15 +213,19 @@ class HomeController extends GetxController {
     if (textEditingController.text.isNotEmpty || filterForQuery.isNotEmpty) {
       try {
         loadingStatus = LoadingStatus.loading;
-        final response = await Repository.instance.search(query, filterQuery: filterForQuery);
+        final response = await Repository.instance
+            .search(query, filterQuery: filterForQuery);
 
-        recipiesList.value = response.hits!;
-        nextPage = response.links!.next != null ? response.links!.next!.href : null;
+        recipesList.value = response.hits!;
+        nextPage =
+            response.links!.next != null ? response.links!.next!.href : null;
 
-        for (var element in recipiesList) {
+        for (var element in recipesList) {
           element.recipe!.label;
-          final isElementFavorite = sessionService.hiveStorage.user.favorites.firstWhereOrNull((whereElement) =>
-                  whereElement.label == element.recipe!.label && whereElement.uri! == element.recipe!.uri!) !=
+          final isElementFavorite = sessionService.hiveStorage.user.favorites
+                  .firstWhereOrNull((whereElement) =>
+                      whereElement.label == element.recipe!.label &&
+                      whereElement.uri! == element.recipe!.uri!) !=
               null;
           if (isElementFavorite) {
             element.recipe!.isFavorite.value = true;
@@ -228,59 +242,62 @@ class HomeController extends GetxController {
 
   ///[saveFav] is saving the recipe to the favorite list.
   void saveFav(int index) {
-    recipiesList[index].recipe!.isFavorite.value = !recipiesList[index].recipe!.isFavorite.value;
-    sessionService.saveFavorite(recipiesList[index].recipe!);
+    recipesList[index].recipe!.isFavorite.value =
+        !recipesList[index].recipe!.isFavorite.value;
+    sessionService.saveFavorite(recipesList[index].recipe!);
   }
 
 //for first open
-  firstOpenRondomRecipies() async {
+  firstOpenRondomRecipes() async {
     loadingStatus = LoadingStatus.loading;
 
     var random = getFilter(FilterTypes.mealType);
     random.shuffle();
 
-    var response = await Repository.instance.search('', filterQuery: {'mealType': random.first});
-    recipiesList.value = response.hits!;
+    var response = await Repository.instance
+        .search('', filterQuery: {'mealType': random.first});
+    recipesList.value = response.hits!;
     nextPage = response.links!.next != null ? response.links!.next!.href : null;
 
     loadingStatus = LoadingStatus.loaded;
   }
 
-  lazyLoad() {
+  void _lazyLoad() {
     /// for lazy load
     /// if the scroll is at the max scroll extent - 400, it will execute the [search] method.
     /// nextPage is the next page url from the api.
     /// nextPage can be null. Its for not sending too many request to the api and detect the if next page is exist.
-    scrollController.addListener(() async {
-      if (scrollController.position.maxScrollExtent - 400 <= scrollController.offset) {
-        try {
-          if (nextPage != null) {
-            Repository.instance.lazyLoadSearch(nextPage!).then((value) {
-              recipiesList.addAll(value.hits!);
 
-              nextPage = value.links!.next!.href;
-            });
+    if (scrollController.position.maxScrollExtent - 400 <=
+        scrollController.offset) {
+      try {
+        if (nextPage != null) {
+          Repository.instance.lazyLoadSearch(nextPage!).then((value) {
+            recipesList.addAll(value.hits!);
 
-            nextPage = null;
-          }
-        } catch (_) {}
-      }
-    });
+            nextPage = value.links!.next!.href;
+          });
+
+          nextPage = null;
+        }
+      } catch (_) {}
+    }
   }
 
   @override
   void onInit() async {
     super.onInit();
     focusNode = FocusNode()..addListener(_focusListener);
+    scrollController = ScrollController()..addListener(_lazyLoad);
     searchHistory.value = sessionService.hiveStorage.user.searchHistory;
-    await firstOpenRondomRecipies();
-    lazyLoad();
+    await firstOpenRondomRecipes();
   }
 
   @override
   void onClose() {
     super.onClose();
     focusNode.removeListener(() {});
+    scrollController.removeListener(_lazyLoad);
     focusNode.dispose();
     textEditingController.dispose();
     scrollController.dispose();

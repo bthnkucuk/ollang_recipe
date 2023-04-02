@@ -15,7 +15,7 @@ class Repository extends Header {
   ///[searchQuery] is a string that is used to search for recipes.
   ///[filterQuery] is a map that is used to filter recipes.
   ///[isRandom] is a boolean that is used to get random recipes.
-  Future<Recipies> search(String searchQuery,
+  Future<Recipes> search(String searchQuery,
       {Map<String, dynamic> filterQuery = const {},
       bool isRandom = false}) async {
     var response = await HttpClient.instance.request(
@@ -33,7 +33,7 @@ class Repository extends Header {
     );
 
     if (response!.statusCode == HttpStatus.ok) {
-      Recipies model = Recipies.fromJson(
+      Recipes model = Recipes.fromJson(
           jsonDecode(response.body.replaceAll('https://', 'http://')));
       return model;
     } else {
@@ -42,7 +42,7 @@ class Repository extends Header {
   }
 
   ///[lazyLoadSearch] is a method that is used to lazy load recipes.
-  Future<Recipies> lazyLoadSearch(String nextPage) async {
+  Future<Recipes> lazyLoadSearch(String nextPage) async {
     var response = await HttpClient.instance.request(
         method: HttpMethods.GET,
         path: nextPage,
@@ -50,7 +50,7 @@ class Repository extends Header {
         headers: createHeader());
 
     if (response!.statusCode == HttpStatus.ok) {
-      Recipies model = Recipies.fromJson(
+      Recipes model = Recipes.fromJson(
           jsonDecode(response.body.replaceAll('https://', 'http://')));
       return model;
     } else {

@@ -23,7 +23,8 @@ class DetailController extends GetxController {
 
   late final String? image = recipe.image;
 
-  Future<void> goBack() => Navigator.maybePop(context).whenComplete(() => FocusScope.of(context).unfocus());
+  Future<void> goBack() => Navigator.maybePop(context)
+      .whenComplete(() => FocusScope.of(context).unfocus());
 
   late List<String> nutritionInfos = [];
 
@@ -38,17 +39,19 @@ class DetailController extends GetxController {
 
   final sessionService = Get.find<SessionServices>();
 
+//for save favorite
   void saveFav() {
     recipe.isFavorite.value = !recipe.isFavorite.value;
     sessionService.saveFavorite(recipe);
   }
 
 //for share recipe
-  share() async {
+  Future<void> share() async {
     final directory = (await getApplicationDocumentsDirectory()).path;
 
     var ss = await screenshotController.captureAndSave(directory,
-        fileName: 'scren_shot_detailaa.jpg', delay: const Duration(milliseconds: 100));
+        fileName: 'scren_shot_detailaa.jpg',
+        delay: const Duration(milliseconds: 100));
 
     Share.shareXFiles(
       [XFile(ss!)],
@@ -58,6 +61,8 @@ class DetailController extends GetxController {
   }
 
   final RxDouble scrollRange = 1.0.obs;
+
+  /// [scrollRange] is the value to arrange border radius of the [AppBar] in the [DetailScreen].
   _scrollListener() {
     var offset = scrollController.offset;
     var max = scrollController.position.maxScrollExtent;
@@ -70,7 +75,9 @@ class DetailController extends GetxController {
       scrollRange.value = 1;
     }
 
-    if (offset < -150) Navigator.maybePop(context).whenComplete(() => FocusScope.of(context).unfocus());
+    if (offset < -150)
+      Navigator.maybePop(context)
+          .whenComplete(() => FocusScope.of(context).unfocus());
   }
 
   @override

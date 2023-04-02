@@ -15,7 +15,7 @@ class FavoriteController extends GetxController {
   final sessionService = Get.find<SessionServices>();
   final homeController = Get.find<HomeController>();
 
-  final RxList<Recipe> recipiesList = <Recipe>[].obs;
+  final RxList<Recipe> recipesList = <Recipe>[].obs;
 
   final scaffoldKey = GlobalKey();
 
@@ -29,11 +29,11 @@ class FavoriteController extends GetxController {
           arguments: recipe..isFavorite.value = true);
 
   /// [deleteFav] is deleting the recipe from the local storage using sessionService.
-  /// It also updates the [isFavorite] value of the recipe in the [homeController.recipiesList] for updating home screen.
-  deleteFav(Recipe recipe) {
+  /// It also updates the [isFavorite] value of the recipe in the [homeController.recipesList] for updating home screen.
+  void deleteFav(Recipe recipe) {
     sessionService.deleteFavorite(recipe);
-    recipiesList.remove(recipe);
-    var homeRecipe = homeController.recipiesList.firstWhereOrNull((element) =>
+    recipesList.remove(recipe);
+    var homeRecipe = homeController.recipesList.firstWhereOrNull((element) =>
         element.recipe!.label == recipe.label &&
         element.recipe!.uri == recipe.uri);
 
@@ -43,8 +43,8 @@ class FavoriteController extends GetxController {
   }
 
   /// [loadRecipes] is loading the list of favorites from the local storage using sessionService.
-  loadRecipes() {
-    recipiesList.value =
+  void loadRecipes() {
+    recipesList.value =
         sessionService.hiveStorage.user.favorites.reversed.toList();
     loadingStatus = LoadingStatus.loaded;
   }

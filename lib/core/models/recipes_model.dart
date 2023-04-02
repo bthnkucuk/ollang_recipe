@@ -5,11 +5,10 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 part 'recipes_model.g.dart';
 
-///[Recipies] is a class that use to parse json data from api, and useing.
+///[Recipes] is a class that use to parse json data from api, and useing.
 ///If data need to be saved in local storage, it use [Hive] package.
-///
-class Recipies {
-  Recipies({
+class Recipes {
+  Recipes({
     this.from,
     this.to,
     this.count,
@@ -23,7 +22,7 @@ class Recipies {
   WelcomeLinks? links;
   List<Hit>? hits;
 
-  factory Recipies.fromJson(Map<String, dynamic> json) => Recipies(
+  factory Recipes.fromJson(Map<String, dynamic> json) => Recipes(
         from: json["from"],
         to: json["to"],
         count: json["count"],

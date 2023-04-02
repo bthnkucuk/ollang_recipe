@@ -29,6 +29,7 @@ class DetailView extends GetView<DetailController> {
         body: CustomScrollView(
           controller: controller.scrollController,
           slivers: [
+            // image and recipe info
             SliverAppBar(
               backgroundColor: Theme.of(context).colorScheme.primaryContainer,
               title: Obx(
@@ -89,6 +90,7 @@ class DetailView extends GetView<DetailController> {
               ),
             ),
             SliverToBoxAdapter(child: SizedBox(height: 10.h)),
+            // nutrition info
             _NutritionInfo(
               nutritionInfos: controller.nutritionInfos,
               nutrionIcons: controller.nutrionIcons,
@@ -105,6 +107,7 @@ class DetailView extends GetView<DetailController> {
             ),
             SliverToBoxAdapter(child: SizedBox(height: 5.h)),
             if (controller.recipe.ingredients != null)
+              // ingredients info
               _IngredientsInfo(ingredients: controller.recipe.ingredients!)
             else
               const SliverToBoxAdapter(

@@ -1,5 +1,6 @@
 part of '../view/home_view.dart';
 
+// for random recipe animation when user tap on the dice icon
 class _RandomRecipeWait extends StatelessWidget {
   const _RandomRecipeWait();
 
@@ -13,7 +14,7 @@ class _RandomRecipeWait extends StatelessWidget {
         filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
         child: FractionallySizedBox(
           widthFactor: 0.4,
-          child: LottieBuilder.asset('assets/dice.json'),
+          child: LottieBuilder.asset(MyAssets.dice),
         ),
       ),
     );

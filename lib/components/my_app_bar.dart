@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+///[MyAppBar] is a custom app bar widget.
 class MyAppBar extends StatelessWidget with PreferredSizeWidget {
   const MyAppBar({
     super.key,

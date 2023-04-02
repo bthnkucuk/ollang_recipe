@@ -10,17 +10,16 @@ https://www.figma.com/file/ZvRMhOkxXv3AnvYFIJrQiH/Ollang-Case-Design?node-id=0%3
 
 ## Demo
 
-<img src="./screenshots/details.gif" width=250>
-<img src="./screenshots/favorite.gif" width=250>
+<img src="./screenshots/1.gif" width=200>
+<img src="./screenshots/2.gif" width=200>
+<img src="./screenshots/3.gif" width=200>
 
-<img src="./screenshots/filter.gif" width=250>
-<img src="./screenshots/history.gif" width=250>
+<img src="./screenshots/4.gif" width=200>
+<img src="./screenshots/5.gif" width=200>
+<img src="./screenshots/6.gif" width=200>
 
-<img src="./screenshots/lazy_load.gif" width=250>
-<img src="./screenshots/random.gif" width=250>
-
-<img src="./screenshots/search.gif" width=250>
-<img src="./screenshots/theme.gif" width=250>
+<img src="./screenshots/7.gif" width=200>
+<img src="./screenshots/8.gif" width=200>
 
 ## Features
 

@@ -26,11 +26,11 @@ class FavoriteView extends GetView<FavoriteController> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               if (controller.loadingStatus == LoadingStatus.loaded)
-                if (controller.recipiesList.isNotEmpty)
+                if (controller.recipesList.isNotEmpty)
                   Expanded(
                     child: ListView.builder(
                       shrinkWrap: true,
-                      itemCount: controller.recipiesList.length,
+                      itemCount: controller.recipesList.length,
                       itemBuilder: (BuildContext context, int index) {
                         return Column(
                           children: [
@@ -38,13 +38,13 @@ class FavoriteView extends GetView<FavoriteController> {
                             GestureDetector(
                               onTap: () {
                                 controller
-                                    .goDetail(controller.recipiesList[index]);
+                                    .goDetail(controller.recipesList[index]);
                               },
                               child: SingleRecipeWidget(
                                 onDelete: () => controller
-                                    .deleteFav(controller.recipiesList[index]),
+                                    .deleteFav(controller.recipesList[index]),
                                 isDismissible: true,
-                                recipe: controller.recipiesList[index],
+                                recipe: controller.recipesList[index],
                               ),
                             ),
                             SizedBox(height: 10.h)
