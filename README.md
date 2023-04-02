@@ -2,11 +2,26 @@
 
 Flutter recipe search app using Edamam api.
 
+## Notes
+
+- Edamam api has a limit of 10 requests per minute.
+- Search results coming with lazy load. So when user scrolls to bottom, it gets next page of results. (If you scroll too fast, api limit will be reached.)
+- Som api text cant decoded properly. So I created a extension method for decoding text.
+- Application use get package for state management.
+- When app starts, it gets api schema from Edamam for getting available filters.
+- Lottie package is used for animations.
+- When app oppened, it gets some random recipes from Edamam. And shows it on home page. (Also there is a dice icon for getting random recipe. And showing details of it.)
+- Calorie filter is not working properly on Edamam api.
+
 <br />
 
 ## Design on Figma
 
 https://www.figma.com/file/ZvRMhOkxXv3AnvYFIJrQiH/Ollang-Case-Design?node-id=0%3A1&t=ofKfTfgznI8hOlNk-1
+
+## Youtube Video
+
+[![Watch the video](./screenshots/youtube_pre.png)](https://www.youtube.com/watch?v=A_3XZv1bx2g)
 
 ## Demo
 
@@ -31,7 +46,7 @@ https://www.figma.com/file/ZvRMhOkxXv3AnvYFIJrQiH/Ollang-Case-Design?node-id=0%3
 - Lazy load for search results
 - Theme mode
 - Search recipe with name or ingredients
-- Share recipe
+- Share recipe by taking a screenshot with screenshot package
 
 ## Used Packages and Versions
 
