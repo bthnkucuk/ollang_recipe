@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'dart:developer' as developer;
 
 // ignore: constant_identifier_names
 
@@ -45,7 +46,9 @@ class HttpClient {
           response = await _post(uri, headers, body);
           break;
       }
-    } catch (_) {
+    } catch (e) {
+      developer.log(
+          '$e method: $method, path: $path, queryParameters: $queryParameters');
       rethrow;
     }
 

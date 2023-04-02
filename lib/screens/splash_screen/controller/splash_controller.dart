@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:ollang_recipe/core/session_services.dart';
 import '../../../core/loading_status.dart';
 import '../../../core/models/recipes_search_info_model.dart';
-import '../../../core/repository.dart';
+import '../../../core/network_services/repository.dart';
 import '../../../core/router.dart';
 
 class SplashController extends GetxController {
@@ -15,7 +15,8 @@ class SplashController extends GetxController {
 
   BuildContext get context => scaffoldKey.currentContext!;
 
-  Future<void> goHome() async => await Navigator.popAndPushNamed(context, Screens.home);
+  Future<void> goHome() async =>
+      await Navigator.popAndPushNamed(context, Screens.home);
 
   Future<void> ready() async {
     try {

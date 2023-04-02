@@ -3,7 +3,8 @@ import 'dart:io';
 
 import 'package:ollang_recipe/core/models/recipes_model.dart';
 import 'package:ollang_recipe/core/models/recipes_search_info_model.dart';
-import 'package:ollang_recipe/core/network_service.dart';
+
+import 'network_service.dart';
 
 //NOT api is somettime when ask for https:// image, cant handle it, so i replace it with http://
 ///[Repository] is a class that is used to make requests to the server.

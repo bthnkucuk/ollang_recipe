@@ -2,16 +2,16 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ollang_recipe/components/bottom_sheet.dart';
-import 'package:ollang_recipe/components/extensions.dart';
-import 'package:ollang_recipe/components/my_media_query.dart';
+import 'package:ollang_recipe/core/extensions.dart';
+import 'package:ollang_recipe/core/my_media_query.dart';
 import 'package:ollang_recipe/core/models/recipes_model.dart';
-import 'package:ollang_recipe/core/repository.dart';
 
 import '../../../core/loading_status.dart';
+import '../../../core/network_services/repository.dart';
 import '../../../core/router.dart';
 import '../../../core/session_services.dart';
-import '../../../theme/material_app_updater.dart';
-import '../../../theme/text_style.dart';
+import '../../../core/theme/material_app_updater.dart';
+import '../../../core/theme/text_style.dart';
 import '../view/filter_view.dart';
 
 part '../widget/search_history.dart';
@@ -140,9 +140,10 @@ class HomeController extends GetxController {
         var response = await Repository.instance
             .search('', filterQuery: {'health': random.first}, isRandom: true);
         loadingStatus = LoadingStatus.loaded;
-        if (context.mounted)
+        if (context.mounted) {
           await Navigator.pushNamed(context, Screens.detail,
               arguments: response.hits!.first.recipe);
+        }
       } catch (e) {
         debugPrint(e.toString());
         loadingStatus = LoadingStatus.error;
@@ -251,17 +252,22 @@ class HomeController extends GetxController {
 
 //for first open
   firstOpenRondomRecipes() async {
-    loadingStatus = LoadingStatus.loading;
+    try {
+      loadingStatus = LoadingStatus.loading;
 
-    var random = getFilter(FilterTypes.mealType);
-    random.shuffle();
+      var random = getFilter(FilterTypes.mealType);
+      random.shuffle();
 
-    var response = await Repository.instance
-        .search('', filterQuery: {'mealType': random.first});
-    recipesList.value = response.hits!;
-    nextPage = response.links!.next != null ? response.links!.next!.href : null;
+      var response = await Repository.instance
+          .search('', filterQuery: {'mealType': random.first});
+      recipesList.value = response.hits!;
+      nextPage =
+          response.links!.next != null ? response.links!.next!.href : null;
 
-    loadingStatus = LoadingStatus.loaded;
+      loadingStatus = LoadingStatus.loaded;
+    } catch (_) {
+      loadingStatus = LoadingStatus.error;
+    }
   }
 
   void _lazyLoad() {

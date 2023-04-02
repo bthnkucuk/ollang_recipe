@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:ollang_recipe/components/no_glow_effect.dart';
 
-import 'components/my_media_query.dart';
+import 'core/my_media_query.dart';
 
 import 'core/router.dart';
-import 'theme/material_app_updater.dart';
-import 'theme/theme_dark.dart';
-import 'theme/theme_light.dart';
+import 'core/theme/material_app_updater.dart';
+import 'core/theme/theme_dark.dart';
+import 'core/theme/theme_light.dart';
 
 void main() {
   runApp(const MyApp());

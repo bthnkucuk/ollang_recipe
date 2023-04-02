@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ollang_recipe/components/extensions.dart';
+import 'package:ollang_recipe/core/extensions.dart';
 
 import '../../../components/my_app_bar.dart';
 import '../../../components/single_recipe_widget.dart';

@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:ollang_recipe/components/my_error_widget.dart';
-import 'package:ollang_recipe/components/my_media_query.dart';
+import 'package:ollang_recipe/core/my_media_query.dart';
 
 ///[MyNetworkImage] is a class that use cached_network_image package and show image.
 ///If image is not found, it shows [MyErrorWidget].

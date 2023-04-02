@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ollang_recipe/components/extensions.dart';
+import 'package:ollang_recipe/core/extensions.dart';
 import 'package:ollang_recipe/components/utf8_encoded_text.dart';
 import 'package:ollang_recipe/screens/home_screen/controller/home_controller.dart';
-import '../../../theme/text_style.dart';
+import '../../../core/theme/text_style.dart';
 
 part '../widget/single_filter.dart';
 

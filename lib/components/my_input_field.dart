@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:ollang_recipe/components/extensions.dart';
+import 'package:ollang_recipe/core/extensions.dart';
 
-import '../theme/text_style.dart';
+import '../core/theme/text_style.dart';
 
 ///[MyInputField] is a custom input field widget
 class MyInputField extends StatelessWidget {

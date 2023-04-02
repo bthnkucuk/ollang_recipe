@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
-import 'package:ollang_recipe/components/my_media_query.dart';
+import 'package:ollang_recipe/core/my_media_query.dart';
 import 'package:ollang_recipe/core/assets.dart';
 import 'package:ollang_recipe/screens/splash_screen/controller/splash_controller.dart';
-import 'package:ollang_recipe/theme/text_style.dart';
+import 'package:ollang_recipe/core/theme/text_style.dart';
 
 class SplashView extends GetView<SplashController> {
   const SplashView({super.key});

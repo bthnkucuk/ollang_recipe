@@ -3,15 +3,15 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
-import 'package:ollang_recipe/components/extensions.dart';
+import 'package:ollang_recipe/core/extensions.dart';
 import 'package:ollang_recipe/components/my_input_field.dart';
-import 'package:ollang_recipe/components/my_media_query.dart';
+import 'package:ollang_recipe/core/my_media_query.dart';
 import 'package:ollang_recipe/components/single_recipe_widget.dart';
 import 'package:ollang_recipe/core/assets.dart';
 
 import '../../../components/my_app_bar.dart';
 import '../../../core/loading_status.dart';
-import '../../../theme/text_style.dart';
+import '../../../core/theme/text_style.dart';
 import '../controller/home_controller.dart';
 
 part '../widget/random_recipe_wait.dart';
@@ -54,6 +54,8 @@ class HomeView extends GetView<HomeController> {
                       style: s12W300(context),
                     ),
                     SizedBox(height: 10.h),
+
+                    //search area
                     Row(
                       key: controller.overlayDimensionKey,
                       mainAxisSize: MainAxisSize.max,
@@ -92,6 +94,8 @@ class HomeView extends GetView<HomeController> {
                       ],
                     ),
                     SizedBox(height: 10.h),
+
+                    //recipes list
                     if (controller.loadingStatus == LoadingStatus.loaded)
                       if (controller.recipesList.isNotEmpty)
                         Expanded(
@@ -133,22 +137,20 @@ class HomeView extends GetView<HomeController> {
                         )
 
                       // some state handling
-                      else if (controller.textEditingController.text.isEmpty)
-                        const Expanded(
-                            child: Center(child: Text('Search something!')))
                       else
                         const Expanded(
-                            child: Center(child: Text('Nothing Found2!')))
+                            child: Center(child: Text('Nothing Found!')))
                     else if (controller.loadingStatus == LoadingStatus.loading)
                       Expanded(
                         child: Center(child: Lottie.asset(MyAssets.search)),
                       )
                     else
                       const Expanded(
-                          child: Center(child: Text('Nothing Found!'))),
+                          child: Center(child: Text('Something went wrong!'))),
                   ],
                 ),
               ),
+              // for random recipe, and show lotte animation
               if (controller.loadingStatus == LoadingStatus.wait)
                 const _RandomRecipeWait()
             ],

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:ollang_recipe/components/extensions.dart';
+import 'package:ollang_recipe/core/extensions.dart';
 
 ///Some api texts cant be encode properly,
 /// [Utf8EncodedText] is a [Text] widget that encodes the [text] to UTF-8.

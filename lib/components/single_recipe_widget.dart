@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ollang_recipe/components/extensions.dart';
+import 'package:ollang_recipe/core/extensions.dart';
 import 'package:ollang_recipe/components/my_network_image.dart';
 import 'package:ollang_recipe/components/utf8_encoded_text.dart';
 import 'package:ollang_recipe/core/models/recipes_model.dart';
-import 'package:ollang_recipe/theme/text_style.dart';
+import 'package:ollang_recipe/core/theme/text_style.dart';
 
 ///[SingleRecipeWidget] is a widget that displays a single recipe.
 class SingleRecipeWidget extends StatelessWidget {

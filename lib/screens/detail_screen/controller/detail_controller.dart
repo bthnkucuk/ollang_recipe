@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ollang_recipe/components/extensions.dart';
+import 'package:ollang_recipe/core/extensions.dart';
 import 'package:ollang_recipe/core/models/recipes_model.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:screenshot/screenshot.dart';
@@ -75,9 +75,10 @@ class DetailController extends GetxController {
       scrollRange.value = 1;
     }
 
-    if (offset < -150)
+    if (offset < -150) {
       Navigator.maybePop(context)
           .whenComplete(() => FocusScope.of(context).unfocus());
+    }
   }
 
   @override

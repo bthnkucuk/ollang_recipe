@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ollang_recipe/components/extensions.dart';
-import 'package:ollang_recipe/components/my_media_query.dart';
+import 'package:ollang_recipe/core/extensions.dart';
+import 'package:ollang_recipe/core/my_media_query.dart';
 import 'package:ollang_recipe/components/utf8_encoded_text.dart';
 import 'package:ollang_recipe/core/models/recipes_model.dart';
 import 'package:screenshot/screenshot.dart';
 import '../../../components/my_error_widget.dart';
 import '../../../components/my_network_image.dart';
-import '../../../theme/app_colors.dart';
-import '../../../theme/text_style.dart';
+import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/text_style.dart';
 import '../controller/detail_controller.dart';
 
 part '../widget/detail_info.dart';
