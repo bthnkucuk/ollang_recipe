@@ -22,17 +22,17 @@ class MyApp extends StatelessWidget {
     return MaterialAppUpdater(
       child: Builder(builder: (context) {
         return MaterialApp(
-          builder: (context, child) => ScrollConfiguration(
-            behavior: NoGlowBehavior(),
-            child: child!,
-          ),
           title: 'Ollang Recipe',
-          onGenerateRoute: MyRouteGenerator.generate,
+          onGenerateRoute: Screens.navigateTo,
           navigatorKey: navigatorKey,
           theme: lightTheme,
           darkTheme: darkTheme,
           debugShowCheckedModeBanner: false,
           themeMode: MaterialAppInheritedWidget.of(context).themeMode,
+          builder: (context, child) => ScrollConfiguration(
+            behavior: NoGlowBehavior(),
+            child: child!,
+          ),
         );
       }),
     );

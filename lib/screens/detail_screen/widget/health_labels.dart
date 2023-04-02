@@ -20,9 +20,7 @@ class _HealthLabels extends StatelessWidget {
               side: BorderSide.none,
               shape: const StadiumBorder(),
               labelStyle: s12W300(context),
-
-              /// TODO renk temadan
-              backgroundColor: Colors.green,
+              backgroundColor: AppColors.green,
               label: Utf8EncodedText(
                 healthLabels[index].toString(),
                 style: s12W500(context),

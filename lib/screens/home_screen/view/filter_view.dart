@@ -30,21 +30,6 @@ class FilterView extends GetView<HomeController> {
               filterType: FilterTypes.dishType,
               onChipTap: (chip, type) => controller.saveFilter(chip, type),
             ),
-            // Text('Calory', style: s18W600(context)),
-            // SizedBox(height: 10.h),
-            // RangeSlider(
-            //   divisions: 100,
-            //   inactiveColor: Colors.grey,
-            //   labels:
-            //       RangeLabels(controller.calStart.value.round().toString(), controller.calEnd.value.round().toString()),
-            //   min: 0.0,
-            //   max: 3000.0,
-            //   values: RangeValues(controller.calStart.value, controller.calEnd.value),
-            //   onChanged: (values) {
-            //     controller.calStart(values.start);
-            //     controller.calEnd(values.end);
-            //   },
-            // ),
             SizedBox(height: 20.h),
             _SingleFilter(
               chipList: controller.getFilter(FilterTypes.mealType),
@@ -90,7 +75,7 @@ class FilterView extends GetView<HomeController> {
             ElevatedButton(
               onPressed: () => controller.applyFilter(),
               child: Text(
-                "Filter",
+                'Apply',
                 style: s20W500(context).copyWith(color: Colors.white),
               ),
             ),

@@ -14,12 +14,13 @@ class SingleRecipeWidget extends StatelessWidget {
 
   final Recipe recipe;
 
-  const SingleRecipeWidget(
-      {super.key,
-      this.isDismissible = false,
-      required this.recipe,
-      this.onFavIconTap,
-      this.onDelete});
+  const SingleRecipeWidget({
+    super.key,
+    this.isDismissible = false,
+    required this.recipe,
+    this.onFavIconTap,
+    this.onDelete,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -27,16 +28,16 @@ class SingleRecipeWidget extends StatelessWidget {
     return Dismissible(
       direction:
           isDismissible ? DismissDirection.endToStart : DismissDirection.none,
-      key: Key(recipe.uri!), // Unique key
+      key: UniqueKey(), // Unique key
       onDismissed: (direction) => onDelete!(),
       background: Container(
-        color: Colors.red,
+        decoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.error,
+          borderRadius: BorderRadius.circular(10.w),
+        ),
         alignment: Alignment.centerRight,
         padding: EdgeInsets.only(right: 20.w),
-        child: const Icon(
-          Icons.delete,
-          color: Colors.white,
-        ),
+        child: const Icon(Icons.delete, color: Colors.white),
       ),
       child: Container(
         height: 90.h,

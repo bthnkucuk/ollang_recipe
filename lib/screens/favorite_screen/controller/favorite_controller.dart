@@ -32,27 +32,26 @@ class FavoriteController extends GetxController {
   /// It also updates the [isFavorite] value of the recipe in the [homeController.recipiesList] for updating home screen.
   deleteFav(Recipe recipe) {
     sessionService.deleteFavorite(recipe);
-    homeController.recipiesList
-        .firstWhere((element) =>
-            element.recipe!.label == recipe.label &&
-            element.recipe!.uri == recipe.uri)
-        .recipe!
-        .isFavorite
-        .value = false;
+    recipiesList.remove(recipe);
+    var homeRecipe = homeController.recipiesList.firstWhereOrNull((element) =>
+        element.recipe!.label == recipe.label &&
+        element.recipe!.uri == recipe.uri);
+
+    if (homeRecipe != null) {
+      homeRecipe.recipe!.isFavorite.value = false;
+    }
   }
 
   /// [loadRecipes] is loading the list of favorites from the local storage using sessionService.
   loadRecipes() {
     recipiesList.value =
         sessionService.hiveStorage.user.favorites.reversed.toList();
-
     loadingStatus = LoadingStatus.loaded;
   }
 
   @override
   void onReady() {
     super.onReady();
-
     loadRecipes();
   }
 }

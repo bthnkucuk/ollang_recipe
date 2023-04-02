@@ -7,6 +7,7 @@ import 'package:ollang_recipe/components/extensions.dart';
 import 'package:ollang_recipe/components/my_input_field.dart';
 import 'package:ollang_recipe/components/my_media_query.dart';
 import 'package:ollang_recipe/components/single_recipe_widget.dart';
+import 'package:ollang_recipe/core/assets.dart';
 
 import '../../../components/my_app_bar.dart';
 import '../../../core/loading_status.dart';
@@ -140,8 +141,7 @@ class HomeView extends GetView<HomeController> {
                             child: Center(child: Text('Nothing Found2!')))
                     else if (controller.loadingStatus == LoadingStatus.loading)
                       Expanded(
-                        child:
-                            Center(child: Lottie.asset('assets/search.json')),
+                        child: Center(child: Lottie.asset(MyAssets.search)),
                       )
                     else
                       const Expanded(

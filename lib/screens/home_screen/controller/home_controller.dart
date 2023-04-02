@@ -58,8 +58,7 @@ class HomeController extends GetxController {
     }
 
     if (timeStart.value != 0 || timeEnd.value != 300) {
-      filterForQuery['time'] =
-          '${timeStart.value.toInt()}-${timeEnd.value.toInt()}';
+      filterForQuery['time'] = '${timeStart.value.toInt()}-${timeEnd.value.toInt()}';
     }
 
     search(textEditingController.text);
@@ -79,17 +78,17 @@ class HomeController extends GetxController {
   final RxList<String> searchHistory = <String>[].obs;
 
   final GlobalKey overlayDimensionKey = GlobalKey();
-  late OverlayEntry? overlayEntry;
+  OverlayEntry? overlayEntry;
   OverlayState? overlayState;
 
   void showOverlay() {
-    RenderBox renderBox =
-        overlayDimensionKey.currentContext!.findRenderObject() as RenderBox;
+    RenderBox renderBox = overlayDimensionKey.currentContext!.findRenderObject() as RenderBox;
     Offset offset = renderBox.localToGlobal(Offset.zero);
 
     overlayEntry = OverlayEntry(builder: (context) {
       return Obx(() => _SearchHistory(
           offset: offset,
+          // ignore: invalid_use_of_protected_member
           list: searchHistory.value,
           onTap: (value) async {
             textEditingController.text = value;
@@ -114,8 +113,7 @@ class HomeController extends GetxController {
   ///ist taking filters from [RecipesSearchInfoModel] the model is getting from the api in splash screen.
   List<String> getFilter(FilterTypes type) {
     try {
-      return sessionService
-          .recipesSearchInfo.recipesSearchInfoModelGet!.parameters!
+      return sessionService.recipesSearchInfo.recipesSearchInfoModelGet!.parameters!
           .firstWhere((element) => element.name == type.name)
           .items!
           .itemsEnum!;
@@ -134,11 +132,9 @@ class HomeController extends GetxController {
 
     try {
       loadingStatus = LoadingStatus.wait;
-      var response = await Repository.instance
-          .search('', filterQuery: {'mealType': random.first}, isRandom: true);
+      var response = await Repository.instance.search('', filterQuery: {'mealType': random.first}, isRandom: true);
       loadingStatus = LoadingStatus.loaded;
-      await Navigator.pushNamed(context, Screens.detail,
-          arguments: response.hits!.first.recipe);
+      if (context.mounted) await Navigator.pushNamed(context, Screens.detail, arguments: response.hits!.first.recipe);
     } catch (e) {
       debugPrint(e.toString());
       loadingStatus = LoadingStatus.error;
@@ -176,14 +172,11 @@ class HomeController extends GetxController {
 
 //for changing the theme
   void changeTheme() => MaterialAppInheritedWidget.of(context).changeTheme();
-  Future<void> goFavorite() async =>
-      await Navigator.pushNamed(context, Screens.favorite);
-  void goDetail(Recipe recipe) =>
-      Navigator.pushNamed(context, Screens.detail, arguments: recipe);
+  Future<void> goFavorite() async => await Navigator.pushNamed(context, Screens.favorite);
+  void goDetail(Recipe recipe) => Navigator.pushNamed(context, Screens.detail, arguments: recipe);
 
   void filterSearch() {
-    ModalBottomSheet.showBottomSheet(const FilterView(), context,
-        title: 'Filter');
+    ModalBottomSheet.showBottomSheet(const FilterView(), context, title: 'Filter');
   }
 
 //for clearing the filter
@@ -210,24 +203,20 @@ class HomeController extends GetxController {
     if (textEditingController.text.isNotEmpty || filterForQuery.isNotEmpty) {
       try {
         loadingStatus = LoadingStatus.loading;
-        final response = await Repository.instance
-            .search(query, filterQuery: filterForQuery);
+        final response = await Repository.instance.search(query, filterQuery: filterForQuery);
 
         recipiesList.value = response.hits!;
-        nextPage =
-            response.links!.next != null ? response.links!.next!.href : null;
+        nextPage = response.links!.next != null ? response.links!.next!.href : null;
 
-        recipiesList.forEach((element) {
+        for (var element in recipiesList) {
           element.recipe!.label;
-          final isElementFavorite = sessionService.hiveStorage.user.favorites
-                  .firstWhereOrNull((whereElement) =>
-                      whereElement.label == element.recipe!.label &&
-                      whereElement.uri! == element.recipe!.uri!) !=
+          final isElementFavorite = sessionService.hiveStorage.user.favorites.firstWhereOrNull((whereElement) =>
+                  whereElement.label == element.recipe!.label && whereElement.uri! == element.recipe!.uri!) !=
               null;
           if (isElementFavorite) {
             element.recipe!.isFavorite.value = true;
           }
-        });
+        }
 
         loadingStatus = LoadingStatus.loaded;
       } catch (e) {
@@ -239,8 +228,7 @@ class HomeController extends GetxController {
 
   ///[saveFav] is saving the recipe to the favorite list.
   void saveFav(int index) {
-    recipiesList[index].recipe!.isFavorite.value =
-        !recipiesList[index].recipe!.isFavorite.value;
+    recipiesList[index].recipe!.isFavorite.value = !recipiesList[index].recipe!.isFavorite.value;
     sessionService.saveFavorite(recipiesList[index].recipe!);
   }
 
@@ -251,8 +239,7 @@ class HomeController extends GetxController {
     var random = getFilter(FilterTypes.mealType);
     random.shuffle();
 
-    var response = await Repository.instance
-        .search('', filterQuery: {'mealType': random.first});
+    var response = await Repository.instance.search('', filterQuery: {'mealType': random.first});
     recipiesList.value = response.hits!;
     nextPage = response.links!.next != null ? response.links!.next!.href : null;
 
@@ -265,12 +252,9 @@ class HomeController extends GetxController {
     /// nextPage is the next page url from the api.
     /// nextPage can be null. Its for not sending too many request to the api and detect the if next page is exist.
     scrollController.addListener(() async {
-      if (scrollController.position.maxScrollExtent - 400 <=
-          scrollController.offset) {
+      if (scrollController.position.maxScrollExtent - 400 <= scrollController.offset) {
         try {
           if (nextPage != null) {
-            print('next page');
-
             Repository.instance.lazyLoadSearch(nextPage!).then((value) {
               recipiesList.addAll(value.hits!);
 

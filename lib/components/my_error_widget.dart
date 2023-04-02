@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:ollang_recipe/components/extensions.dart';
+import 'package:ollang_recipe/core/assets.dart';
 
 ///[MyErrorWidget] is a class that use lottie animation and show error message.
 class MyErrorWidget extends StatelessWidget {
@@ -15,8 +16,7 @@ class MyErrorWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SizedBox(height: 10.h),
-          FractionallySizedBox(
-              widthFactor: 0.9, child: Lottie.asset('assets/404.json')),
+          FractionallySizedBox(widthFactor: 0.9, child: Lottie.asset(MyAssets.error)),
           Text(
             error ?? '',
             maxLines: 1,

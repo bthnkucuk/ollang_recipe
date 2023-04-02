@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ollang_recipe/core/session_services.dart';
-import 'package:ollang_recipe/screens/home_screen/controller/home_controller.dart';
-
 import '../../../core/loading_status.dart';
 import '../../../core/models/recipes_search_info_model.dart';
 import '../../../core/repository.dart';
@@ -17,8 +15,7 @@ class SplashController extends GetxController {
 
   BuildContext get context => scaffoldKey.currentContext!;
 
-  Future<void> goHome() async =>
-      await Navigator.popAndPushNamed(context, Screens.home);
+  Future<void> goHome() async => await Navigator.popAndPushNamed(context, Screens.home);
 
   Future<void> ready() async {
     try {
@@ -39,8 +36,6 @@ class SplashController extends GetxController {
       loadingStatus = LoadingStatus.loaded;
     } catch (e) {
       loadingStatus = LoadingStatus.error;
-
-      print(e);
     }
   }
 

@@ -1,14 +1,10 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:get/get.dart';
 import 'package:ollang_recipe/components/extensions.dart';
 import 'package:ollang_recipe/core/models/recipes_model.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:share_plus/share_plus.dart';
-
 import '../../../core/session_services.dart';
 
 class DetailController extends GetxController {
@@ -27,8 +23,7 @@ class DetailController extends GetxController {
 
   late final String? image = recipe.image;
 
-  Future<void> goBack() => Navigator.maybePop(context)
-      .whenComplete(() => FocusScope.of(context).unfocus());
+  Future<void> goBack() => Navigator.maybePop(context).whenComplete(() => FocusScope.of(context).unfocus());
 
   late List<String> nutritionInfos = [];
 
@@ -53,8 +48,7 @@ class DetailController extends GetxController {
     final directory = (await getApplicationDocumentsDirectory()).path;
 
     var ss = await screenshotController.captureAndSave(directory,
-        fileName: 'scren_shot_detailaa.jpg',
-        delay: const Duration(milliseconds: 100));
+        fileName: 'scren_shot_detailaa.jpg', delay: const Duration(milliseconds: 100));
 
     Share.shareXFiles(
       [XFile(ss!)],
@@ -67,7 +61,16 @@ class DetailController extends GetxController {
   _scrollListener() {
     var offset = scrollController.offset;
     var max = scrollController.position.maxScrollExtent;
+
     scrollRange.value = (max - offset) / max;
+
+    if (scrollRange.value < 0) {
+      scrollRange.value = 0;
+    } else if (scrollRange.value > 1) {
+      scrollRange.value = 1;
+    }
+
+    if (offset < -150) Navigator.maybePop(context).whenComplete(() => FocusScope.of(context).unfocus());
   }
 
   @override

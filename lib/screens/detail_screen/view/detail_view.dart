@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ollang_recipe/components/extensions.dart';
@@ -9,6 +7,7 @@ import 'package:ollang_recipe/core/models/recipes_model.dart';
 import 'package:screenshot/screenshot.dart';
 import '../../../components/my_error_widget.dart';
 import '../../../components/my_network_image.dart';
+import '../../../theme/app_colors.dart';
 import '../../../theme/text_style.dart';
 import '../controller/detail_controller.dart';
 

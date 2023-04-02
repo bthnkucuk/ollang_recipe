@@ -20,8 +20,7 @@ class _SearchHistory extends StatefulWidget {
   State<_SearchHistory> createState() => _SearchHistoryState();
 }
 
-class _SearchHistoryState extends State<_SearchHistory>
-    with SingleTickerProviderStateMixin {
+class _SearchHistoryState extends State<_SearchHistory> with SingleTickerProviderStateMixin {
   bool displayOverly = true;
 
   late AnimationController animController;
@@ -97,19 +96,16 @@ class _SearchHistoryState extends State<_SearchHistory>
               child: Material(
                 shape: RoundedRectangleBorder(
                   side: BorderSide(
-                    color:
-                        Theme.of(context).colorScheme.primary.withOpacity(0.5),
+                    color: Theme.of(context).colorScheme.primary.withOpacity(0.5),
                     width: 0.5,
                   ),
-                  borderRadius:
-                      BorderRadius.vertical(bottom: Radius.circular(10)),
+                  borderRadius: const BorderRadius.vertical(bottom: Radius.circular(10)),
                 ),
                 color: Theme.of(context).colorScheme.primaryContainer,
                 elevation: 10,
                 shadowColor: Colors.grey.withOpacity(0.5),
                 child: ListView.separated(
-                  separatorBuilder: (context, index) =>
-                      Divider(indent: 20.w, endIndent: 20.w),
+                  separatorBuilder: (context, index) => Divider(indent: 20.w, endIndent: 20.w),
                   padding: EdgeInsets.zero,
                   physics: const NeverScrollableScrollPhysics(),
                   itemCount: widget.list.length,
@@ -129,8 +125,7 @@ class _SearchHistoryState extends State<_SearchHistory>
                             ),
                             SizedBox(width: 15.w),
                             GestureDetector(
-                              onTap: () async =>
-                                  await widget.onTap(widget.list[index]),
+                              onTap: () async => await widget.onTap(widget.list[index]),
                               child: Text(
                                 widget.list[index],
                                 style: s16W400(context).copyWith(fontSize: 15),
@@ -138,13 +133,10 @@ class _SearchHistoryState extends State<_SearchHistory>
                             ),
                             const Spacer(),
                             GestureDetector(
-                              onTap: () async =>
-                                  await widget.onDelete(widget.list[index]),
+                              onTap: () async => await widget.onDelete(widget.list[index]),
                               child: Text(
                                 'Remove',
-                                style: s12W400(context).copyWith(
-                                    color:
-                                        Theme.of(context).colorScheme.primary),
+                                style: s12W400(context).copyWith(color: Theme.of(context).colorScheme.primary),
                               ),
                             )
                           ],
